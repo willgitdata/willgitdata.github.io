@@ -12,31 +12,16 @@
     <link rel="shortcut icon" href="DALL·E 2023-03-16 11.11.36.ico" type="image/x-icon">
     <style>
         /* Additional CSS for centering */
-        .wrapper {
-	    height: 100vh;
-	    display: flex;
-	    flex-direction: column;
-	}
-	
-	/* Make sure content takes up full available height and centers its children */
-	.wrapper .content {
-	    flex: 1;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-	}
-	
-	/* Ensure .inner is centered and limits its width for readability */
-	.wrapper .content > .inner {
-	    max-width: 800px;  /* or another suitable width */
-	    margin: 0 auto;
-	    text-align: center;
-	}
-
-	/* To ensure iframe doesn't stretch */
-	iframe {
-	    align-self: center;
-	}
+        #wrapper .inner, footer .inner, #sidebar .inner {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        iframe {
+            margin: 0 auto; /* Center the iframes */
+        }
 
         /* Color palette changes */
         #intro {
@@ -74,17 +59,12 @@
 	section {
 	    text-align: center;
 	}
-	    /* Center content for Projects and Resume sections */
-	#one .content > .inner, #four .content > .inner {
+
+	#projects .content, #resume .content {
 	    display: flex;
 	    flex-direction: column;
-	    align-items: center;
 	    justify-content: center;
-	    text-align: center;
-	}
-	
-	#one .content > .inner > *, #four .content > .inner > * {
-	    align-self: center; /* Ensure nested elements also remain centered */
+	    height: 100%;
 	}
 
 
