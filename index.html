@@ -59,6 +59,18 @@
 	section {
 	    text-align: center;
 	}
+	    /* Center content for Projects and Resume sections */
+	#one .content > .inner, #four .content > .inner {
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    text-align: center;
+	}
+	
+	#one .content > .inner > *, #four .content > .inner > * {
+	    align-self: center; /* Ensure nested elements also remain centered */
+	}
 
 
     </style>
