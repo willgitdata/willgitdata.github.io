@@ -62,7 +62,23 @@
 	    text-align: center;
 	}
 
-
+	.centered-container {
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    text-align: center;
+	    width: 100%;
+	}
+	
+	.centered-container section {
+	    width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	}
+	
 
     </style>
 </head>
@@ -100,6 +116,7 @@
         </section>
 
 
+	<div class="centered-container">
 
 	<!-- One -->
 		<section id="one" class="wrapper style2 spotlights" style="background-color: #78290F; display: flex; flex-direction: column; align-items: center; justify-content: center;">
@@ -167,7 +184,7 @@
 		        </div>
 		    </section>
 		</section>
-
+	</div>
 
 				<!-- Two -->
 					<section id="two" class="wrapper style3 fade-up">
