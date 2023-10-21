@@ -50,6 +50,15 @@
 	    align-items: center; /* Horizontally center */
 	    justify-content: center; /* Vertically center, if needed */
 	}
+	section, section * {
+	    margin: 0;
+	    padding: 0;
+	    box-sizing: border-box; /* This ensures that padding doesn't increase the total width/height of an element */
+	}
+	
+	section {
+	    text-align: center;
+	}
     </style>
 </head>
 
