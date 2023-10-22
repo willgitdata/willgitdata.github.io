@@ -11,46 +11,48 @@
     <link rel="icon" href="DALL·E 2023-03-16 11.11.36.ico" type="image/x-icon">
     <link rel="shortcut icon" href="DALL·E 2023-03-16 11.11.36.ico" type="image/x-icon">
     <style>
-        /* Additional CSS for centering */
-        #wrapper .inner, footer .inner, #sidebar .inner {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        iframe {
-            margin: 0 auto; /* Center the iframes */
-        }
-
-        /* Color palette changes */
-        #intro {
-            background-color: #96BDC6;
-        }
-        #one {
-            background-color: #C1D8AC;
-            color: #FFF; /* Ensure readable text color on this background */
-        }
-        #two {
-            background-color: #E4D5B7;
-        }
-        #four {
-            background-color: #D3AFA9;
-            color: #FFF; /* Ensure readable text color on this background */
-        }
-        #three {
-            background-color: #CDBFC7;
-        }
+	/* Additional CSS for centering */
+	#wrapper .inner, footer .inner, #sidebar .inner {
+	    text-align: center;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	}
+	iframe {
+	    margin: 0 auto; /* Center the iframes */
+	}
+	
+	/* Color palette changes */
+	#intro {
+	    background-color: #96BDC6;
+	}
+	#one {
+	    background-color: #C1D8AC;
+	    color: #FFF; /* Ensure readable text color on this background */
+	}
+	#two {
+	    background-color: #E4D5B7;
+	}
+	#four {
+	    background-color: #D3AFA9;
+	    color: #FFF; /* Ensure readable text color on this background */
+	}
+	#three {
+	    background-color: #CDBFC7;
+	}
+	
 	body {
-	    max-width: 1400px; /* You can adjust this value based on your preference */
+	    max-width: 1400px; /* Adjust this value based on your preference */
 	    margin-left: auto;
 	    margin-right: auto;
 	    display: flex;
 	    flex-direction: column;
 	    align-items: center; /* Horizontally center */
 	    justify-content: center; /* Vertically center, if needed */
+	    width: 100%; /* Added to ensure the body takes full width */
 	}
-
+	
 	section, section * {
 	    margin: 0;
 	    padding: 0;
@@ -61,7 +63,7 @@
 	section {
 	    text-align: center;
 	}
-
+	
 	.centered-container {
 	    display: flex;
 	    flex-direction: column;
@@ -78,7 +80,7 @@
 	    align-items: center;
 	    justify-content: center;
 	}
-
+	
 	.work-section h2 {
 	    font-size: 2rem;  /* Adjust as needed */
 	}
@@ -91,18 +93,26 @@
 	    font-size: .8rem;  /* Adjust as needed */
 	    padding: 3px 5px; /* Adjust padding to resize button */
 	}
+	
 	.sidebar {
 	    background-color: #f4f4f4; /* Optional: set background color for sidebar */
-	    padding: 2px;
-	    width: 5%; /* Reduced the width */
+	    padding: 20px;
+	    width: 15%; /* Reduced the width */
 	    box-sizing: border-box;
 	}
 	
 	.column-right {
 	    display: none; /* This hides the right column */
 	}
-
 	
+	#main-content { /* This style ensures the main content fills up the remaining space */
+	    flex: 1;
+	}
+	
+	body {
+	    display: flex; /* Makes body a flex container to accommodate sidebar and main content */
+	    overflow-x: hidden; /* Prevent horizontal scroll */
+	}
 
     </style>
 </head>
