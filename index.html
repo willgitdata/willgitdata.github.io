@@ -113,6 +113,46 @@
 	    overflow-x: hidden; /* Prevent horizontal scroll */
 	}
 
+
+	@media only screen and (max-width: 768px) {
+        /* Adjust body settings for mobile */
+        body {
+            flex-direction: column; /* Stacks elements vertically */
+            align-items: stretch; /* Elements take the full width */
+        }
+        
+        /* If your sidebar was floating to the left or right, 
+        we make it take full width on mobile */
+        .sidebar {
+            width: 100%;
+            padding: 10px; /* Reduced padding for mobile */
+        }
+        
+        /* Adjusting container widths */
+        .centered-container, .centered-container section {
+            width: 100%;
+        }
+        
+        /* Adjust font sizes for mobile, if needed */
+        .work-section h2 {
+            font-size: 1.5rem;  /* Smaller font for mobile */
+        }
+        
+        .work-section p {
+            font-size: 1.2rem;  /* Smaller font for mobile */
+        }
+        
+        .work-section .actions .button {
+            font-size: .7rem;
+            padding: 2px 4px;
+        }
+        
+        /* If you have elements hidden on desktop and want them visible on mobile */
+        .column-right {
+            display: block; /* Display the previously hidden right column */
+        }
+    }
+
     </style>
 </head>
 
