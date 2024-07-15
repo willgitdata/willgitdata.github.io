@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>About</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Fonts-->
+		<link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/fonts/pe-icon/pe-icon.css">
+		<!-- Vendors-->
+		<link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap/grid.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendors/magnific-popup/magnific-popup.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendors/swiper/swiper.css">
+		<!-- App & fonts-->
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:400,700">
+		<link rel="stylesheet" type="text/css" id="app-stylesheet" href="assets/css/main.css"><!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		<style>
+			.features {
+				display: flex;
+				flex-wrap: wrap; /* Allows the boxes to wrap to the next line if needed */
+				gap: 20px; /* Space between the boxes */
+				justify-content: center; /* Center the boxes horizontally */
+			}
+
+			.skills-intro-container {
+            display: flex;
+            justify-content: center; /* Center the text horizontally */
+            margin-bottom: 20px; /* Space below the intro text */
+        	}
+	
+			.feature-box {
+				flex: 1 1 calc(33.333% - 40px); /* Flex grow, shrink, and basis */
+				max-width: calc(33.333% - 40px); /* Max width to ensure three columns */
+				box-sizing: border-box; /* Include padding and border in the element's total width and height */
+				border: 1px solid #ccc; /* Border color */
+				padding: 20px; /* Padding inside the box */
+				border-radius: 10px; /* Rounded corners */
+				background-color: #2D5676; /* Background color */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
+				text-align: center; /* Center text content */
+				color: #fff; /* Text color */
+
+			}
+	
+			.feature-box section {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+	
+			.feature-box .icon {
+				font-size: 2em; /* Icon size */
+				margin-bottom: 10px; /* Space between icon and text */
+			}
+
+			.feature-box h3, .feature-box p {
+            color: #fff; /* Text color */
+        }
+	
+			@media (max-width: 768px) {
+				.feature-box {
+					flex: 1 1 100%; /* Full width on smaller screens */
+					max-width: 100%;
+				}
+			}
+		</style>
+	</head>
+
+	
+	<body>
+		<div class="page-wrap" id="root">
+			
+			<!-- header -->
+			<header class="header header--fixed">
+				<div class="header__inner">
+					<div class="navbar-toggle" id="fs-button">
+						<div class="navbar-icon"><span></span></div>
+					</div>
+				</div>
+				
+				<!-- fullscreenmenu__module -->
+				<div class="fullscreenmenu__module" trigger="#fs-button">
+					
+					<!-- overlay-menu -->
+					<nav class="overlay-menu">
+						
+						<!--  -->
+						<ul class="wil-menu-list">
+							<li><a href="index.html">Home</a>
+							</li>
+							<li class="current-menu-item"><a href="about.html">About</a>
+							</li>
+							<li><a href="contact.html">Resume</a>
+							</li>
+						</ul><!--  -->
+						
+					</nav><!-- End / overlay-menu -->
+					
+				</div><!-- End / fullscreenmenu__module -->
+				
+			</header><!-- End / header -->
+			
+			<!-- Content-->
+			<div class="wil-content">
+				
+				<!-- Section -->
+				<section class="awe-section">
+					<div class="container">
+						<!-- page-title -->
+						<div class="page-title pb-40" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+							<h2 class="page-title__title">About me</h2>
+							<p class="page-title__text">Technical experience and personal projects</p>
+							<div class="page-title__divider"></div>
+						</div><!-- End / page-title -->
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+				
+				<!-- Section -->
+				<section class="awe-section bg-gray">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-5 col-md-offset-4 col-lg-offset-4 ">
+								
+								<!--  -->
+								<div class="mt-30">
+									<h2 class="about__title">William Humphrey</h2>
+									<p class="about__subtitle">Data scientist</p>
+									<p class="about__text">I am a data scientist who has a background in healthcare and social care. Specifically predicting who can benefit the most from social care assistance as a way to improve healthcare outcomes. 
+										My main areas of interest are reinforcement learning, autonomous vehicles, and audio generative models.</p>
+									
+									<!-- progress -->
+									<div class="progress">
+										<h5 class="progress__title">Data Science</h5>
+										<div class="progress__wrap">
+											<div class="progress__bar" data-progress-percent="100" data-timing="ease" data-duration="1000" data-delay="500"></div><span class="progress__number">39%</span>
+										</div>
+									</div><!-- End / progress -->
+									
+									
+									<!-- progress -->
+									<div class="progress">
+										<h5 class="progress__title">Product design</h5>
+										<div class="progress__wrap">
+											<div class="progress__bar" data-progress-percent="75" data-timing="ease" data-duration="1000" data-delay="500"></div><span class="progress__number">47%</span>
+										</div>
+									</div><!-- End / progress -->
+									
+									
+									<!-- progress -->
+									<div class="progress">
+										<h5 class="progress__title">web development</h5>
+										<div class="progress__wrap">
+											<div class="progress__bar" data-progress-percent="20" data-timing="ease" data-duration="1000" data-delay="500"></div><span class="progress__number">59%</span>
+										</div>
+									</div><!-- End / progress -->
+									
+								</div><!-- End /  -->
+								
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+
+				<div class="skills-intro-container">
+					<h3 class="skills-intro">Here are my technical skills and tools I use</p>
+				</div>
+    <div class="features">
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-code"></span>
+                <h3>Python</h3>
+                <p>Pandas<br>
+                   Numpy<br>
+                   Scikit-Learn<br>
+                   Matplotlib<br>
+                   Seaborn
+                </p>
+            </section>
+        </div>
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-database"></span>
+                <h3>SQL</h3>
+                <p>For accessing, cleaning, and organizing data. Currently using AWS Redshift and Snowflake!</p>
+            </section>
+        </div>
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-search"></span>
+                <h3>R</h3>
+                <p>For easier implementation of complex statistical analyses such as survival analysis or empirical dynamic modeling.</p>
+            </section>
+        </div>
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-desktop"></span>
+                <h3>Tableau</h3>
+                <p>For creating advanced, customer-facing visualizations which can be updated live from a database.</p>
+            </section>
+        </div>
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-cloud"></span>
+                <h3>AWS/GCP</h3>
+                <p>For a secure development environment and streamlined model deployment.</p>
+            </section>
+        </div>
+        <div class="feature-box">
+            <section>
+                <span class="fa fa-spinner"></span>
+                <h3>Tensorflow & Pytorch</h3>
+                <p>For building neural networks. I've successfully implemented production variational autoencoders and convolutional neural networks!</p>
+            </section>
+        </div>
+    </div>
+
+				<!-- Section -->
+				<section class="awe-section bg-gray">
+					<div class="container">
+						<div class="row">
+							<div style="text-align:center">
+								
+								<!-- Box 1 -->
+								<div class="box mt-30">
+									<h2 class="about__title">Pollenate</h2>
+									<p class="about__subtitle">Commercial Pollination Platform</p>
+									<p class="about__text">I learned how complex the commercial pollination industry 
+										is and am working on a platform to make it better for everyone involved.</p>
+									<a href="https://pollenate.us">Here is a link if you're curious! (it is still in development)</a>
+								</div><!-- End / Box 1 -->
+			
+								<!-- Box 2 -->
+								<div class="box mt-30">
+									<h2 class="about__title">Roll Call Report</h2>
+									<p class="about__subtitle">Twitter Bot for voting results</p>
+									<p class="about__text">I built a bot that tweets out senate and house voting results in the U.S. Sadly Twitter changed to X and increased its api pricing so this is deprecated.</p>
+								</div><!-- End / Box 2 -->
+								
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+			
+			<!-- footer -->
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-6 ">
+							<p class="footer__coppy">Feel free to reach out via email or LinkedIn!</p>
+						</div>
+						<div class="col-md-6 col-lg-6 ">
+							<div class="footer__social">
+								
+								<!-- social-icon -->
+								<a class="social-icon" href="https://github.com/willgitdata"><i class="fa fa-github"></i>
+								</a><!-- End / social-icon -->
+								
+								
+								<!-- social-icon -->
+								<a class="social-icon" href="https://www.linkedin.com/in/willliamhumphrey"><i class="fa fa-linkedin"></i>
+								</a><!-- End / social-icon -->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End / footer -->
+			
+		</div>
+		<!-- Vendors-->
+		<script type="text/javascript" src="assets/vendors/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/imagesloaded/imagesloaded.pkgd.js"></script>
+		<script type="text/javascript" src="assets/vendors/isotope-layout/isotope.pkgd.js"></script>
+		<script type="text/javascript" src="assets/vendors/jquery-one-page/jquery.nav.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/jquery.easing/jquery.easing.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/jquery.matchHeight/jquery.matchHeight.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/masonry-layout/masonry.pkgd.js"></script>
+		<script type="text/javascript" src="assets/vendors/jquery.waypoints/jquery.waypoints.min.js"></script>
+		<script type="text/javascript" src="assets/vendors/swiper/swiper.jquery.js"></script>
+		<script type="text/javascript" src="assets/vendors/menu/menu.js"></script>
+		<script type="text/javascript" src="assets/vendors/typed/typed.min.js"></script>
+		<!-- App-->
+		<script type="text/javascript" src="assets/js/main.js"></script>
+	</body>
+</html>
