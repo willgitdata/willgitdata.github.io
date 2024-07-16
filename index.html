@@ -78,11 +78,7 @@
 					max-width: 100%;
 				}
 			}
-
-			.small-audio {
-				width: 150px; /* Adjust the width as needed */
-				height: 100px; /* Adjust the height as needed */
-			}
+			
 						
 			
 		</style>
@@ -134,7 +130,7 @@
 								
 								<!-- typing__module -->
 								<div class="typing__module">
-									<div class="typed-strings"><span>am a data scientist.</span><span>am a co-founder.</span><span> like creative projects.</span><span> love to collaborate!</span><span>can't think of more...</span>
+									<div class="typed-strings"><span>am a data scientist</span><span>am a co-founder.</span><span> like creative ideas.</span><span> love to collaborate!</span><span>can't think of more</span>
 									</div><span class="typed"></span>
 								</div><!-- End / typing__module -->
 							</h2>
@@ -165,7 +161,17 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 1</h3>
 								<p>Trance House</p>
-								<audio controls src="./song1.wav" class="small-audio"></audio>
+								<figure>
+									<div class="boton" onclick="toggleAudio(this)">
+									  <audio id="audio" src="/song1.wav"></audio>
+									  <div class="fondo" x="0" y="0" width="100" height="100"></div>
+									  <div class="icono" width="100" height="100">
+										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
+										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
+									  </div>
+									  <div class="puntero"></div>
+									</div>
+								  </figure>
 								
 							
 							</section>
@@ -175,7 +181,20 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 2</h3>
 								<p>Disco Loop</p>
-								<audio controls src="./song2.wav" class="small-audio"></audio>
+
+								<figure>
+									<div class="boton" onclick="toggleAudio(this)">
+									  <audio id="audio" src="/song2.wav"></audio>
+									  <div class="fondo" x="0" y="0" width="100" height="100"></div>
+									  <div class="icono" width="100" height="100">
+										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
+										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
+									  </div>
+									  <div class="puntero"></div>
+									</div>
+								  </figure>
+
+								
 								
 							
 							</section>
@@ -185,7 +204,17 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 3</h3>
 								<p>Ethereal Pop</p>
-								<audio controls src="./song3.wav" class="small-audio"></audio>
+								<figure>
+									<div class="boton" onclick="toggleAudio(this)">
+									  <audio id="audio" src="/song3.wav"></audio>
+									  <div class="fondo" x="0" y="0" width="100" height="100"></div>
+									  <div class="icono" width="100" height="100">
+										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
+										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
+									  </div>
+									  <div class="puntero"></div>
+									</div>
+								  </figure>
 								
 							
 							</section>
@@ -372,5 +401,17 @@
 		<script type="text/javascript" src="assets/vendors/typed/typed.min.js"></script>
 		<!-- App-->
 		<script type="text/javascript" src="assets/js/main.js"></script>
+		<script>
+			function toggleAudio(element) {
+			  var audio = element.querySelector('audio');
+			  if (audio.paused) {
+				audio.play();
+				element.classList.add('active');
+			  } else {
+				audio.pause();
+				element.classList.remove('active');
+			  }
+			}
+		  </script>
 	</body>
 </html>
