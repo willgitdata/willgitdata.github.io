@@ -18,6 +18,67 @@
 		<link rel="stylesheet" type="text/css" id="app-stylesheet" href="assets/css/main.css"><!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 		<![endif]-->
+		<style>
+			.wil-content {
+            padding: 0 20px; /* Add padding on the sides */
+            margin: 1 auto; /* Center the content horizontally */
+            box-sizing: border-box; /* Include padding and border in the element's total width */
+        }
+			
+			.features {
+				display: flex;
+				flex-wrap: wrap; /* Allows the boxes to wrap to the next line if needed */
+				gap: 20px; /* Space between the boxes */
+				justify-content: center; /* Center the boxes horizontally */
+			}
+
+			.skills-intro-container {
+            display: flex;
+            justify-content: center; /* Center the text horizontally */
+            margin-bottom: 20px; /* Space below the intro text */
+        	}
+	
+			.feature-box {
+				flex: 1 1 calc(33.333% - 40px); /* Flex grow, shrink, and basis */
+				max-width: calc(33.333% - 40px); /* Max width to ensure three columns */
+				box-sizing: border-box; /* Include padding and border in the element's total width and height */
+				border: 1px solid #ccc; /* Border color */
+				padding: 20px; /* Padding inside the box */
+				border-radius: 10px; /* Rounded corners */
+				background-color: #AFDDE5; /* Background color */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
+				text-align: center; /* Center text content */
+				color: #fff; /* Text color */
+				transition: transform 0.3s ease; /* Transition transform property for smooth animation */
+				}
+
+				.feature-box:hover {
+					transform: translateY(-10px); /* Move the box 10px up on hover */
+				}
+
+	
+			.feature-box section {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+	
+			.feature-box .icon {
+				font-size: 2em; /* Icon size */
+				margin-bottom: 10px; /* Space between icon and text */
+			}
+
+			.feature-box h3, .feature-box p {
+            color: #fff; /* Text color */
+        }
+	
+			@media (max-width: 768px) {
+				.feature-box {
+					flex: 1 1 100%; /* Full width on smaller screens */
+					max-width: 100%;
+				}
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -76,6 +137,57 @@
 				</section>
 				<!-- End / Section -->
 				
+
+				<!-- Section -->
+				<section class="awe-section bg-gray">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 ">
+								
+								<!-- title -->
+								<div class="title">
+									<h2 class="title__title">My personal projects</h2>
+								</div><!-- End / title -->
+								
+								<h3>Daft Junk</h3><br>
+								<div class="skills-intro-container">
+									
+										<p class="skills-intro">I love Daft Punk and so I decided to fine-tune a WaveNet model and see how well it can produce Daft Punk sounding music. Here are the results (#3 is the best imo):</p>
+								</div>
+					<div class="features">
+						<div class="feature-box">
+							<section>
+								<span class="fa fa-music"></span>
+								<h3>Song 1</h3>
+								<p>Trance House</p>
+								<audio controls src="./song1.wav"></audio>
+								
+							
+							</section>
+						</div>
+						<div class="feature-box">
+							<section>
+								<span class="fa fa-music"></span>
+								<h3>Song 2</h3>
+								<p>Disco Loop</p>
+								<audio controls src="./song2.wav"></audio>
+								
+							
+							</section>
+						</div>
+						<div class="feature-box">
+							<section>
+								<span class="fa fa-music"></span>
+								<h3>Song 3</h3>
+								<p>Ethereal Pop</p>
+								<audio controls src="./song3.wav"></audio>
+								
+							
+							</section>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
 				
 				<!-- Section -->
 				<section class="awe-section bg-gray">
