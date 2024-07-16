@@ -53,7 +53,7 @@
 				}
 
 				.feature-box:hover {
-					transform: translateY(-10px); /* Move the box 10px up on hover */
+					transform: translateY(-5px); /* Move the box 10px up on hover */
 				}
 
 	
@@ -72,12 +72,19 @@
             color: #fff; /* Text color */
         }
 	
-			@media (max-width: 768px) {
+			@media (max-width: 2000) {
 				.feature-box {
 					flex: 1 1 100%; /* Full width on smaller screens */
 					max-width: 100%;
 				}
 			}
+
+			.small-audio {
+				width: 200px; /* Adjust the width as needed */
+				height: 30px; /* Adjust the height as needed */
+			}
+						
+			
 		</style>
 	</head>
 	
@@ -150,9 +157,7 @@
 								</div><!-- End / title -->
 								
 								<h3>Daft Junk</h3><br>
-								<div class="skills-intro-container">
-									
-										<p class="skills-intro">I love Daft Punk and so I decided to fine-tune a WaveNet model and see how well it can produce Daft Punk sounding music. Here are the results (#3 is the best imo):</p>
+									<p>I love Daft Punk and so I decided to fine-tune a WaveNet model and see how well it can produce Daft Punk sounding music. Here are the results (#3 is the best imo)</p>
 								</div>
 					<div class="features">
 						<div class="feature-box">
@@ -160,7 +165,7 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 1</h3>
 								<p>Trance House</p>
-								<audio controls src="./song1.wav"></audio>
+								<audio controls src="./song1.wav" class="small-audio"></audio>
 								
 							
 							</section>
@@ -170,7 +175,7 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 2</h3>
 								<p>Disco Loop</p>
-								<audio controls src="./song2.wav"></audio>
+								<audio controls src="./song2.wav" class="small-audio"></audio>
 								
 							
 							</section>
@@ -180,7 +185,7 @@
 								<span class="fa fa-music"></span>
 								<h3>Song 3</h3>
 								<p>Ethereal Pop</p>
-								<audio controls src="./song3.wav"></audio>
+								<audio controls src="./song3.wav" class="small-audio"></audio>
 								
 							
 							</section>
