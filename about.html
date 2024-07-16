@@ -50,8 +50,13 @@
 				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
 				text-align: center; /* Center text content */
 				color: #fff; /* Text color */
+				transition: transform 0.3s ease; /* Transition transform property for smooth animation */
+				}
 
-			}
+				.feature-box:hover {
+					transform: translateY(-10px); /* Move the box 10px up on hover */
+				}
+
 	
 			.feature-box section {
 				display: flex;
@@ -184,6 +189,7 @@
             <section>
                 <span class="fa fa-code"></span>
                 <h3>Python</h3>
+				
                 <p>Pandas<br>
                    Numpy<br>
                    Scikit-Learn<br>

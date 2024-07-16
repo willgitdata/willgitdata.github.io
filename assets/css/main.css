@@ -2827,3 +2827,13 @@ ul {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
     margin-bottom: 20px;    /* Space between boxes */
 }
+
+
+#skill-card i {
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+  }
+  #skill-card:hover i {
+    top: -10px;
+  }
