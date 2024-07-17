@@ -2844,31 +2844,31 @@ ul {
     justify-content: center;
   }
   .fondo {
-    background: #f4471f;
+    background: #ff594f;
     border-radius: 50%;
     box-shadow: 0 1px 2.2px rgba(0, 0, 0, 0.051),
       0 2.3px 5.3px rgba(0, 0, 0, 0.059), 0 4.4px 10px rgba(0, 0, 0, 0.06),
       0 7.8px 17.9px rgba(0, 0, 0, 0.059), 0 14.6px 33.4px rgba(0, 0, 0, 0.059),
       0 35px 80px rgba(0, 0, 0, 0.07);
     cursor: pointer;
-    height: 100px;
+    height: 50px;
     position: absolute;
-    width: 100px;
+    width: 50px;
   }
   .botón:active .fondo {
-    background: #e93c15;
+    background: #ff594f;
   }
   .icono {
-    height: 200px;
+    height: 54px;
     transform: rotate(-120deg);
     transition: transform 500ms;
-    width: 200px;
+    width: 52px;
   }
   .parte {
     background: white;
-    height: 200px;
+    height: 55px;
     position: absolute;
-    width: 200px;
+    width: 55px;
   }
   .izquierda {
     clip-path: polygon(

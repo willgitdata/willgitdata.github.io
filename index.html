@@ -397,6 +397,8 @@
 		<script>
 			function toggleAudio(element) {
 			  var audio = element.querySelector('audio');
+			  
+			  // Check if audio is paused and toggle play
 			  if (audio.paused) {
 				audio.play();
 				element.classList.add('active');
@@ -404,6 +406,19 @@
 				audio.pause();
 				element.classList.remove('active');
 			  }
+			  
+			  // Reset the timeout whenever audio is toggled
+			  if (typeof element.timeout !== 'undefined') {
+				clearTimeout(element.timeout);
+			  }
+			  
+			  // Set a timeout to toggle play icon after 15 seconds of inactivity
+			  element.timeout = setTimeout(function() {
+				if (!audio.paused) { // Only toggle if audio is still playing
+				  audio.pause();
+				  element.classList.remove('active');
+				}
+			  }, 15000); // 15000 milliseconds = 15 seconds
 			}
 		  </script>
 	</body>
