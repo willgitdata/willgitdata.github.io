@@ -264,19 +264,6 @@
       box-shadow: 0 8px 0 rgba(95, 204, 115, 0.1);
     }
 
-    .project-card.featured {
-      border-color: var(--magenta);
-      grid-column: 1 / -1;
-    }
-
-    .project-card.featured::before {
-      background: var(--magenta);
-    }
-
-    .project-card.featured:hover {
-      border-color: var(--magenta);
-      box-shadow: 0 8px 0 rgba(255, 45, 170, 0.15);
-    }
 
     .project-tag {
       font-family: var(--pixel-font);
@@ -461,7 +448,6 @@
       nav a { font-size: 8px; }
       section { padding: 5rem 1rem 3rem; }
       .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: 1; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
@@ -535,7 +521,7 @@
     <h2 class="section-title">What I've built</h2>
     <div class="projects-grid">
 
-      <div class="project-card featured">
+      <div class="project-card">
         <span class="project-tag tag-oss">open source</span>
         <h3>Augur</h3>
         <p>An open-source TypeScript package for RAG systems. Adaptively routes queries to the optimal retrieval strategy &mdash; vector, BM25, hybrid, or reranking &mdash; with explainable traces and no API keys required.</p>
@@ -543,28 +529,17 @@
       </div>
 
       <div class="project-card">
+        <span class="project-tag tag-work">startup</span>
+        <h3>Pollenate</h3>
+        <p>Improving commercial pollination for everyone. A platform connecting growers with pollinators to solve agricultural challenges. Founded and scaled from the ground up.</p>
+        <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
+      </div>
+
+      <div class="project-card">
         <span class="project-tag tag-music">ai music</span>
         <h3>AI Music Channel</h3>
         <p>A YouTube channel where the music and videos are both AI-generated, produced automatically through a pipeline I built. No human instruments, no human editing.</p>
         <a href="https://www.youtube.com/channel/UC-Yt1cT_JxEMl0kDewNzFUQ" target="_blank" rel="noopener">Listen on YouTube</a>
-      </div>
-
-      <div class="project-card">
-        <span class="project-tag tag-ai">wavenet</span>
-        <h3>Daft Junk</h3>
-        <p>Trained a WaveNet model on Daft Punk's discography to generate new electronic tracks. Trance, disco, and ethereal pop &mdash; made by a neural net.</p>
-        <div class="music-row">
-          <button class="play-btn" onclick="toggleAudio(this, 'song1.wav')">Song 1</button>
-          <button class="play-btn" onclick="toggleAudio(this, 'song2.wav')">Song 2</button>
-          <button class="play-btn" onclick="toggleAudio(this, 'song3.wav')">Song 3</button>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-tag tag-work">startup</span>
-        <h3>Pollenate</h3>
-        <p>Improving commercial pollination for everyone. A platform connecting growers with pollinators to solve agricultural challenges.</p>
-        <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
       </div>
 
     </div>
@@ -594,7 +569,7 @@
       <div class="skill-item">
         <span class="skill-icon">&#x1F9E0;</span>
         <h4>ML</h4>
-        <p>TensorFlow, PyTorch, WaveNet</p>
+        <p>TensorFlow, PyTorch</p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x2601;</span>
