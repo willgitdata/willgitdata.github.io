@@ -1,425 +1,763 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Home</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<meta name="format-detection" content="telephone=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<!-- Fonts-->
-		<link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/fonts/pe-icon/pe-icon.css">
-		<!-- Vendors-->
-		<link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap/grid.css">
-		<link rel="stylesheet" type="text/css" href="assets/vendors/magnific-popup/magnific-popup.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/vendors/swiper/swiper.css">
-		<!-- App & fonts-->
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:400,700">
-		<link rel="stylesheet" type="text/css" id="app-stylesheet" href="assets/css/main.css"><!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<![endif]-->
-		<style>
-			.wil-content {
-            padding: 0 20px; /* Add padding on the sides */
-            margin: 1 auto; /* Center the content horizontally */
-            box-sizing: border-box; /* Include padding and border in the element's total width */
-        }
-			
-			.features {
-				display: flex;
-				flex-wrap: wrap; /* Allows the boxes to wrap to the next line if needed */
-				gap: 20px; /* Space between the boxes */
-				justify-content: center; /* Center the boxes horizontally */
-			}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>William Humphrey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-			.skills-intro-container {
-			display: flex;
-			justify-content: center; /* Center the text horizontally */
-			margin-bottom: 20px; /* Space below the intro text */
-		}
+    :root {
+      --bg: #0a0a1a;
+      --bg-card: #111128;
+      --cyan: #5fcc73;
+      --magenta: #ff2daa;
+      --green: #a3d96c;
+      --yellow: #ffe600;
+      --text: #c8c8d8;
+      --text-dim: #6a6a8a;
+      --border: #2a2a4a;
+      --pixel-font: 'Press Start 2P', monospace;
+      --body-font: 'VT323', monospace;
+    }
 
-		.feature-box {
-			flex: 1 1 calc(33.333% - 40px); /* Flex grow, shrink, and basis */
-			max-width: calc(33.333% - 40px); /* Max width to ensure three columns */
-			box-sizing: border-box; /* Include padding and border in the element's total width and height */
-			border: 1px solid #ccc; /* Border color */
-			padding: 20px; /* Padding inside the box */
-			border-radius: 10px; /* Rounded corners */
-			background-color: #AFDDE5; /* Background color */
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
-			text-align: center; /* Center text content */
-			color: #fff; /* Text color */
-			cursor: pointer; /* Change cursor to pointer on hover */
-			transition: transform .2s ease; /* Transition transform property for smooth animation */
-		}
+    html { scroll-behavior: smooth; }
 
-		.feature-box:active {
-			transform: translateY(-10px); /* Move the box up on click */
-		}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body-font);
+      font-size: 20px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-		.feature-box section {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
+    /* Scanline overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px,
+        rgba(0, 0, 0, 0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-		.feature-box .icon {
-			font-size: 2em; /* Icon size */
-			margin-bottom: 10px; /* Space between icon and text */
-		}
+    /* Star field canvas */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
 
-		.feature-box h3,
-		.feature-box p {
-			color: #fff; /* Text color */
-		}
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(10, 10, 26, 0.92);
+      border-bottom: 2px solid var(--border);
+      backdrop-filter: blur(6px);
+    }
 
-		@media (max-width: 2000px) {
-			.feature-box {
-				flex: 1 1 100%; /* Full width on smaller screens */
-				max-width: 100%;
-			}
-		}
-						
-			
-		</style>
-	</head>
-	
-	<body>
-		<div class="page-wrap" id="root">
-			
-			<!-- header -->
-			<header class="header header--fixed">
-				<div class="header__inner">
-					<div class="navbar-toggle" id="fs-button">
-						<div class="navbar-icon"><span></span></div>
-					</div>
-				</div>
-				
-				<!-- fullscreenmenu__module -->
-				<div class="fullscreenmenu__module" trigger="#fs-button">
-					
-					<!-- overlay-menu -->
-					<nav class="overlay-menu">
-						
-						<!--  -->
-						<ul class="wil-menu-list">
-							<li class="current-menu-item"><a href="index.html">Home</a>
-							</li>
-							<li><a href="about.html">About</a>
-							</li>
-							<li><a href="contact.html">Resume</a>
-							</li>
-						</ul><!--  -->
-						
-					</nav><!-- End / overlay-menu -->
-					
-				</div><!-- End / fullscreenmenu__module -->
-				
-			</header><!-- End / header -->
-			
-			<!-- Content-->
-			<div class="wil-content">
-				
-				<!-- Section -->
-				<section class="awe-section">
-					<div class="container">
-						
-						<!-- page-title -->
-						<div class="page-title">
-							<h2 class="page-title__title">Hi, my name is William Humphrey.<br>I
-								
-								<!-- typing__module -->
-								<div class="typing__module">
-									<div class="typed-strings"><span>am a data scientist</span><span>am a founder</span><span> like creative ideas</span><span> love to collaborate</span><span>can't think of more</span>
-									</div><span class="typed"></span>
-								</div><!-- End / typing__module -->
-							</h2>
-						</div><!-- End / page-title -->
-						
-					</div>
-				</section>
-				<!-- End / Section -->
-				
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
 
-				<!-- Section -->
-				<section class="awe-section bg-gray">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6 ">
-								
-								<!-- title -->
-								<div class="title">
-									<h2 class="title__title">My personal projects</h2>
-								</div><!-- End / title -->
-								
-								<h3>Daft Junk</h3><br>
-									<p>I love Daft Punk so I decided to train my own <a href="https://deepmind.google/discover/blog/wavenet-a-generative-model-for-raw-audio/">WaveNet</a> model and see how well it can produce Daft Punk sounding music. Here are the results (#3 is the best imo)</p>
-								</div>
-					<div class="features">
-						<div class="feature-box">
-							<section>
-								<span class="fa fa-music"></span>
-								<h3>Song 1</h3>
-								<p>Trance House</p>
-								<figure>
-									<div class="boton" onclick="toggleAudio(this)">
-									  <audio id="audio" src="/song1.wav"></audio>
-									  <div class="icono" width="100" height="100">
-										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
-										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
-									  </div>
-									  <div class="puntero"></div>
-									</div>
-								  </figure>
-								</section>
-						</div>
-						<div class="feature-box">
-							<section>
-								<span class="fa fa-music"></span>
-								<h3>Song 2</h3>
-								<p>Disco Loop</p>
+    nav a {
+      font-family: var(--pixel-font);
+      font-size: 10px;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color 0.2s;
+    }
 
-								<figure>
-									<div class="boton" onclick="toggleAudio(this)">
-									  <audio id="audio" src="/song2.wav"></audio>
-									  <div class="icono" width="100" height="100">
-										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
-										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
-									  </div>
-									  <div class="puntero"></div>
-									</div>
-								  </figure>
+    nav a:hover, nav a.active {
+      color: var(--cyan);
+      text-shadow: 0 0 10px var(--cyan);
+    }
 
-							
-							</section>
-						</div>
-						<div class="feature-box">
-							<section>
-								<span class="fa fa-music"></span>
-								<h3>Song 3</h3>
-								<p>Ethereal Pop</p>
-								<figure>
-									<div class="boton" onclick="toggleAudio(this)">
-									  <audio id="audio" src="/song3.wav"></audio>
-									  <div class="icono" width="100" height="100">
-										<div class="parte izquierda" x="0" y="0" width="100" height="100" fill="#fff"></div>
-										<div class="parte derecha" x="0" y="0" width="100" height="100" fill="#fff"></div>
-									  </div>
-									  <div class="puntero"></div>
-									</div>
-								  </figure>
-								
-							
-							</section>
-						</div>
-					</div>
-				</section>
-				<!-- End / Section -->
-				
-				<!-- Section -->
-				<section class="awe-section bg-gray">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6 ">
-								
-								<!-- title -->
-								<div class="title">
-									<h2 class="title__title">My work</h2>
-								</div><!-- End / title -->
-								
-							</div>
-						</div>
-						<div class="grid-css grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
-							<div class="grid__inner">
-								<div class="grid-sizer"></div>
-								<div class="grid-item">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- work -->
-											<div class="work"><a href="https://www.pollenate.us/">
-													
-													<!-- hoverbox ef-zoom-in -->
-													<div class="hoverbox ef-zoom-in light">
-														
-														<!-- hb_front -->
-														<div class="hb_front"><img src="https://images.unsplash.com/photo-1504392022767-a8fc0771f239?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""/>
-														</div><!-- End / hb_front -->
-														
-														
-														<!-- hb_back -->
-														<div class="hb_back">
-															<h2 class="work__title">Pollenate</h2><span class="work__text">Improving commercial pollination for everyone</span>
-														</div><!-- End / hb_back -->
-														
-													</div><!-- End / hoverbox ef-zoom-in -->
-													</a>
-											</div><!-- End / work -->
-											
-										</div>
-									</div>
-								</div>
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 4rem;
+    }
 
-								<div class="grid-item">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- work -->
-											<div class="work"><a href="https://uniteus.com/press/2023-medicare-advantage-aep-results-unite-us/">
-													
-													<!-- hoverbox ef-slide-right -->
-													<div class="hoverbox ef-slide-right light">
-														
-														<!-- hb_front -->
-														<div class="hb_front"><img src="https://images.unsplash.com/photo-1590098563176-07884b06d7f7?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""/>
-														</div><!-- End / hb_front -->
-														
-														
-														<!-- hb_back -->
-														<div class="hb_back">
-															<h2 class="work__title">Increasing AEP Enrollment</h2><span class="work__text">Helping insurers increase their customers during the annual enrollment period</span>
-														</div><!-- End / hb_back -->
-														
-													</div><!-- End / hoverbox ef-slide-right -->
-													</a>
-											</div><!-- End / work -->
-											
-										</div>
-									</div>
-								</div>
+    .container {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
 
-								<div class="grid-item">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											
-											<!-- work -->
-											<div class="work"><a href="https://drive.google.com/file/d/1Otd3JRf-UL_whRGNMZ40n7cW3ykOQc7h/view">
-													
-													<!-- hoverbox ef-slide-bottom -->
-													<div class="hoverbox ef-slide-bottom light">
-														
-														<!-- hb_front -->
-														<div class="hb_front"><img src="https://www.indy100.com/media-library/related-video-heres-what-would-happen-if-we-nuked-an-asteroid-on-a-collision-course-with-earth.jpg?id=50963389&width=1245&height=700&quality=85&coordinates=0%2C0%2C0%2C0" alt=""/>
-														</div><!-- End / hb_front -->
-														
-														
-														<!-- hb_back -->
-														<div class="hb_back">
-															<h2 class="work__title">2023 Impact Report</h2><span class="work__text">Impact of my work at Unite Us</span>
-														</div><!-- End / hb_back -->
-														
-													</div><!-- End / hoverbox ef-slide-bottom -->
-													</a>
-											</div><!-- End / work -->
-											
-										</div>
-									</div>
-								</div>
-								<div class="grid-item">
-									<div class="grid-item__inner">
-										<div class="grid-item__content-wrapper">
-											
-											<!-- work -->
-											<div class="work"><a href="https://uniteus.com/community-map/">
-													
-													<!-- hoverbox ef-move-top -->
-													<div class="hoverbox ef-move-top light">
-														
-														<!-- hb_front -->
-														<div class="hb_front"><img src="https://wallpaperaccess.com/full/127442.jpg" alt=""/>
-														</div><!-- End / hb_front -->
-														
-														
-														<!-- hb_back -->
-														<div class="hb_back">
-															<h2 class="work__title">Community needs map</h2><span class="work__text">Map showing SDOH community needs across the U.S.</span>
-														</div><!-- End / hb_back -->
-														
-													</div><!-- End / hoverbox ef-move-top -->
-													</a>
-											</div><!-- End / work -->
-											
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- End / Section -->
-				
-			</div>
-			<!-- End / Content-->
-			
-			<!-- footer -->
-			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-lg-6 ">
-							<p class="footer__coppy">Feel free to reach out via email or LinkedIn!</p>
-						</div>
-						<div class="col-md-6 col-lg-6 ">
-							<div class="footer__social">
-								
-								<!-- social-icon -->
-								<a class="social-icon" href="https://github.com/willgitdata"><i class="fa fa-github"></i>
-								</a><!-- End / social-icon -->
-								
-								
-								<!-- social-icon -->
-								<a class="social-icon" href="https://www.linkedin.com/in/willliamhumphrey"><i class="fa fa-linkedin"></i>
-								</a><!-- End / social-icon -->
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!-- End / footer -->
-			
-		</div>
-		<!-- Vendors-->
-		<script type="text/javascript" src="assets/vendors/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/imagesloaded/imagesloaded.pkgd.js"></script>
-		<script type="text/javascript" src="assets/vendors/isotope-layout/isotope.pkgd.js"></script>
-		<script type="text/javascript" src="assets/vendors/jquery-one-page/jquery.nav.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/jquery.easing/jquery.easing.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/jquery.matchHeight/jquery.matchHeight.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/masonry-layout/masonry.pkgd.js"></script>
-		<script type="text/javascript" src="assets/vendors/jquery.waypoints/jquery.waypoints.min.js"></script>
-		<script type="text/javascript" src="assets/vendors/swiper/swiper.jquery.js"></script>
-		<script type="text/javascript" src="assets/vendors/menu/menu.js"></script>
-		<script type="text/javascript" src="assets/vendors/typed/typed.min.js"></script>
-		<!-- App-->
-		<script type="text/javascript" src="assets/js/main.js"></script>
-		<script>
-			function toggleAudio(element) {
-			  var audio = element.querySelector('audio');
-			  
-			  // Check if audio is paused and toggle play
-			  if (audio.paused) {
-				audio.play();
-				element.classList.add('active');
-			  } else {
-				audio.pause();
-				element.classList.remove('active');
-			  }
-			  
-			  // Reset the timeout whenever audio is toggled
-			  if (typeof element.timeout !== 'undefined') {
-				clearTimeout(element.timeout);
-			  }
-			  
-			  // Set a timeout to toggle play icon after 15 seconds of inactivity
-			  element.timeout = setTimeout(function() {
-				if (!audio.paused) { // Only toggle if audio is still playing
-				  audio.pause();
-				  element.classList.remove('active');
-				}
-			  }, 15000); // 15000 milliseconds = 15 seconds
-			}
-		  </script>
-	</body>
+    /* Hero */
+    #hero {
+      text-align: center;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--pixel-font);
+      font-size: clamp(18px, 4vw, 32px);
+      color: #fff;
+      line-height: 1.8;
+    }
+
+    .hero-title .name {
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(95, 204, 115, 0.5);
+    }
+
+    .typed-cursor {
+      display: inline-block;
+      width: 2ch;
+      background: var(--green);
+      animation: blink 0.7s step-end infinite;
+      margin-left: 4px;
+      color: transparent;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .hero-subtitle {
+      font-family: var(--body-font);
+      font-size: 24px;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .hero-links a {
+      font-family: var(--pixel-font);
+      font-size: 10px;
+      color: var(--bg);
+      background: var(--cyan);
+      padding: 12px 24px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      transition: all 0.2s;
+      image-rendering: pixelated;
+    }
+
+    .hero-links a:hover {
+      background: var(--magenta);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 0 rgba(255, 45, 170, 0.4);
+    }
+
+    .hero-links a.outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 2px solid var(--cyan);
+    }
+
+    .hero-links a.outline:hover {
+      color: var(--magenta);
+      border-color: var(--magenta);
+    }
+
+    /* Section titles */
+    .section-label {
+      font-family: var(--pixel-font);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--magenta);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--pixel-font);
+      font-size: clamp(14px, 3vw, 22px);
+      color: #fff;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* About */
+    #about { background: rgba(17, 17, 40, 0.4); }
+
+    .about-text {
+      font-size: 22px;
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    .about-text a {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .about-text a:hover {
+      border-color: var(--cyan);
+    }
+
+    /* Project cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      padding: 1.5rem;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 0 rgba(95, 204, 115, 0.1);
+    }
+
+    .project-card.featured {
+      border-color: var(--magenta);
+      grid-column: 1 / -1;
+    }
+
+    .project-card.featured::before {
+      background: var(--magenta);
+    }
+
+    .project-card.featured:hover {
+      border-color: var(--magenta);
+      box-shadow: 0 8px 0 rgba(255, 45, 170, 0.15);
+    }
+
+    .project-tag {
+      font-family: var(--pixel-font);
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 4px 8px;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag-oss { color: var(--green); border: 1px solid var(--green); }
+    .tag-ai { color: var(--magenta); border: 1px solid var(--magenta); }
+    .tag-work { color: var(--yellow); border: 1px solid var(--yellow); }
+    .tag-music { color: var(--cyan); border: 1px solid var(--cyan); }
+
+    .project-card h3 {
+      font-family: var(--pixel-font);
+      font-size: 12px;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .project-card p {
+      font-size: 20px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--pixel-font);
+      font-size: 9px;
+      color: var(--cyan);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .project-card a:hover { color: var(--magenta); }
+    .project-card a::after { content: ' >>'; }
+
+    /* Music player */
+    .music-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .play-btn {
+      font-family: var(--pixel-font);
+      font-size: 9px;
+      background: transparent;
+      color: var(--cyan);
+      border: 2px solid var(--cyan);
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .play-btn:hover {
+      background: var(--cyan);
+      color: var(--bg);
+    }
+
+    .play-btn.playing {
+      background: var(--magenta);
+      border-color: var(--magenta);
+      color: var(--bg);
+      animation: pulse 1s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 45, 170, 0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(255, 45, 170, 0); }
+    }
+
+    /* Skills */
+    #skills { background: rgba(17, 17, 40, 0.4); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-item {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .skill-item:hover {
+      border-color: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .skill-icon {
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .skill-item h4 {
+      font-family: var(--pixel-font);
+      font-size: 9px;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+
+    .skill-item p {
+      font-size: 16px;
+      color: var(--text-dim);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 2px solid var(--border);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: var(--pixel-font);
+      font-size: 10px;
+      color: var(--text-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 8px var(--cyan);
+    }
+
+    .footer-copy {
+      font-size: 16px;
+      color: var(--text-dim);
+    }
+
+    /* Pixel art decorations */
+    .pixel-divider {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 2rem 0;
+    }
+
+    .pixel-divider span {
+      width: 6px;
+      height: 6px;
+      background: var(--border);
+      display: inline-block;
+    }
+
+    .pixel-divider span:nth-child(3) { background: var(--cyan); }
+    .pixel-divider span:nth-child(5) { background: var(--magenta); }
+    .pixel-divider span:nth-child(7) { background: var(--green); }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav ul { gap: 1rem; }
+      nav a { font-size: 8px; }
+      section { padding: 5rem 1rem 3rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: 1; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <ul>
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="container" style="text-align:center;">
+    <h1 class="hero-title">
+      Hi, I'm <span class="name">William Humphrey</span><br>
+      I <span id="typed-text"></span><span class="typed-cursor">_</span>
+    </h1>
+    <p class="hero-subtitle">Data scientist. AI Engineer. Founder. Gardener.</p>
+    <div class="hero-links">
+      <a href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.youtube.com/channel/UC-Yt1cT_JxEMl0kDewNzFUQ" target="_blank" rel="noopener" class="outline">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <p class="section-label">// about</p>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-text">
+      <p>
+        I'm an AI engineer and data scientist who got into the field by building
+        predictive models in healthcare &mdash; figuring out which patients would
+        benefit most from social care interventions before outcomes got worse.
+        That work taught me to care about building things that actually ship and
+        actually help people.
+      </p>
+      <br>
+      <p>
+        Now I spend most of my time on retrieval systems, LLM tooling, and
+        generative models. I built
+        <a href="https://github.com/willgitdata/augur" target="_blank" rel="noopener">augur</a>,
+        an open-source npm package for embedding retrieval that gives developers
+        fast vector search without needing a full database &mdash; just embeddings
+        in, nearest neighbors out. I also run a fully
+        <a href="https://www.youtube.com/channel/UC-Yt1cT_JxEMl0kDewNzFUQ" target="_blank" rel="noopener">AI-generated music channel</a>
+        on YouTube, where every track is produced end-to-end by models I've trained
+        or orchestrated.
+      </p>
+    </div>
+    <div class="pixel-divider">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <p class="section-label">// projects</p>
+    <h2 class="section-title">What I've built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <span class="project-tag tag-oss">open source</span>
+        <h3>Augur</h3>
+        <p>An open-source npm package for embedding retrieval. Fast, lightweight, and built for developers who need vector search without the overhead.</p>
+        <a href="https://github.com/willgitdata/augur" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-music">ai music</span>
+        <h3>AI Music Channel</h3>
+        <p>A YouTube channel featuring entirely AI-generated music. Every track is produced by machine learning models &mdash; no human instruments, no human vocals.</p>
+        <a href="https://www.youtube.com/channel/UC-Yt1cT_JxEMl0kDewNzFUQ" target="_blank" rel="noopener">Listen on YouTube</a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-ai">wavenet</span>
+        <h3>Daft Junk</h3>
+        <p>Trained a WaveNet model on Daft Punk's discography to generate new electronic tracks. Trance, disco, and ethereal pop &mdash; made by a neural net.</p>
+        <div class="music-row">
+          <button class="play-btn" onclick="toggleAudio(this, 'song1.wav')">Song 1</button>
+          <button class="play-btn" onclick="toggleAudio(this, 'song2.wav')">Song 2</button>
+          <button class="play-btn" onclick="toggleAudio(this, 'song3.wav')">Song 3</button>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag tag-work">startup</span>
+        <h3>Pollenate</h3>
+        <p>Improving commercial pollination for everyone. A platform connecting growers with pollinators to solve agricultural challenges.</p>
+        <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <p class="section-label">// skills</p>
+    <h2 class="section-title">Tools & tech</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="skill-icon">&#x1F40D;</span>
+        <h4>Python</h4>
+        <p>PyTorch, LangChain, FastAPI</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x1F916;</span>
+        <h4>LLMs</h4>
+        <p>RAG, fine-tuning, agents</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x1F50D;</span>
+        <h4>Retrieval</h4>
+        <p>Embeddings, vector search</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x1F9E0;</span>
+        <h4>ML</h4>
+        <p>TensorFlow, PyTorch, WaveNet</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x2601;</span>
+        <h4>Cloud</h4>
+        <p>AWS, GCP, Docker</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x1F4E6;</span>
+        <h4>TypeScript</h4>
+        <p>Node.js, npm packages</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.youtube.com/channel/UC-Yt1cT_JxEMl0kDewNzFUQ" target="_blank" rel="noopener">YouTube</a>
+  </div>
+  <p class="footer-copy">Feel free to reach out via email or LinkedIn.</p>
+</footer>
+
+<script>
+// Star field
+(function() {
+  var canvas = document.getElementById('stars');
+  var ctx = canvas.getContext('2d');
+  var stars = [];
+  var count = 120;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function init() {
+    resize();
+    stars = [];
+    for (var i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.3 + 0.05,
+        opacity: Math.random() * 0.6 + 0.2
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      ctx.fillStyle = 'rgba(200, 200, 230, ' + s.opacity + ')';
+      ctx.fillRect(Math.floor(s.x), Math.floor(s.y), Math.ceil(s.size), Math.ceil(s.size));
+      s.y += s.speed;
+      if (s.y > canvas.height) {
+        s.y = 0;
+        s.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
+
+// Typing effect
+(function() {
+  var phrases = [
+    'build retrieval systems',
+    'train generative models',
+    'ship open source',
+    'fine-tune LLMs',
+    'prune branches irl'
+  ];
+  var el = document.getElementById('typed-text');
+  var phraseIndex = 0;
+  var charIndex = 0;
+  var deleting = false;
+  var delay = 120;
+
+  function tick() {
+    var current = phrases[phraseIndex];
+    if (deleting) {
+      el.textContent = current.substring(0, charIndex--);
+      delay = 60;
+      if (charIndex < 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        delay = 400;
+      }
+    } else {
+      el.textContent = current.substring(0, charIndex++);
+      delay = 120;
+      if (charIndex > current.length) {
+        deleting = true;
+        delay = 1800;
+      }
+    }
+    setTimeout(tick, delay);
+  }
+
+  tick();
+})();
+
+// Audio player
+var currentAudio = null;
+var currentBtn = null;
+
+function toggleAudio(btn, src) {
+  if (currentBtn && currentBtn !== btn) {
+    currentBtn.classList.remove('playing');
+    currentBtn.textContent = currentBtn.dataset.label;
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+  }
+
+  if (!btn.dataset.label) btn.dataset.label = btn.textContent;
+
+  if (currentAudio && currentBtn === btn && !currentAudio.paused) {
+    currentAudio.pause();
+    btn.classList.remove('playing');
+    btn.textContent = btn.dataset.label;
+    currentAudio = null;
+    currentBtn = null;
+    return;
+  }
+
+  currentAudio = new Audio(src);
+  currentBtn = btn;
+  currentAudio.play();
+  btn.classList.add('playing');
+  btn.textContent = '|| Pause';
+
+  currentAudio.addEventListener('ended', function() {
+    btn.classList.remove('playing');
+    btn.textContent = btn.dataset.label;
+    currentAudio = null;
+    currentBtn = null;
+  });
+}
+
+// Active nav highlight on scroll
+(function() {
+  var links = document.querySelectorAll('nav a');
+  var sections = document.querySelectorAll('section');
+
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY + 100;
+    sections.forEach(function(section) {
+      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+        var id = section.getAttribute('id');
+        links.forEach(function(link) {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
 </html>
