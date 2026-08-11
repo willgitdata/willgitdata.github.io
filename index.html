@@ -386,6 +386,9 @@
       color: var(--text-dim);
     }
 
+    /* keeps hyphenated terms from splitting across lines */
+    .nb { white-space: nowrap; }
+
     /* Footer */
     footer {
       position: relative;
@@ -560,22 +563,22 @@
       <div class="skill-item">
         <span class="skill-icon">&#x1F4BB;&#xFE0F;</span>
         <h4>Languages</h4>
-        <p>Python, TypeScript, SQL</p>
+        <p>Python, TypeScript, SQL, Java, R</p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x1F916;</span>
         <h4>LLMs</h4>
-        <p>RAG, retrieval, agents, fine-tuning</p>
+        <p>RAG, retrieval, evaluation, agents, <span class="nb">fine-tuning</span></p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x1F9E0;</span>
         <h4>ML</h4>
-        <p>PyTorch, TensorFlow, embeddings</p>
+        <p>PyTorch, TensorFlow, XGBoost, embeddings</p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x1F5C3;&#xFE0F;</span>
         <h4>Data</h4>
-        <p>Snowflake, Postgres, warehousing</p>
+        <p>Snowflake, dbt, Postgres, warehousing</p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x2601;&#xFE0F;</span>
