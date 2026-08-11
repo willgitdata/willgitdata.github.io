@@ -386,6 +386,9 @@
       color: var(--text-dim);
     }
 
+    /* keeps hyphenated terms from splitting across lines */
+    .nb { white-space: nowrap; }
+
     /* Footer */
     footer {
       position: relative;
@@ -529,6 +532,12 @@
       </div>
 
       <div class="project-card">
+        <span class="project-tag tag-ai">ai infra</span>
+        <h3>Apoideia</h3>
+        <p>A memory and learning runtime for AI agent fleets in regulated industries. One line of wrap() gives agents memory that survives restarts, an explainable trace behind every recall, and a learning loop that improves them over time. Currently in private development.</p>
+      </div>
+
+      <div class="project-card">
         <span class="project-tag tag-work">startup</span>
         <h3>Pollenate</h3>
         <p>Improving commercial pollination for everyone. A platform connecting growers with pollinators to solve agricultural challenges. Founded and scaled from the ground up.</p>
@@ -552,34 +561,29 @@
     <h2 class="section-title">Tools & tech</h2>
     <div class="skills-grid">
       <div class="skill-item">
-        <span class="skill-icon">&#x1F40D;</span>
-        <h4>Python</h4>
-        <p>PyTorch, LangChain, FastAPI</p>
+        <span class="skill-icon">&#x1F4BB;&#xFE0F;</span>
+        <h4>Languages</h4>
+        <p>Python, TypeScript, SQL, Java, R</p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x1F916;</span>
         <h4>LLMs</h4>
-        <p>RAG, fine-tuning, agents</p>
-      </div>
-      <div class="skill-item">
-        <span class="skill-icon">&#x1F50D;</span>
-        <h4>Retrieval</h4>
-        <p>Embeddings, vector search</p>
+        <p>RAG, retrieval, evaluation, agents, <span class="nb">fine-tuning</span></p>
       </div>
       <div class="skill-item">
         <span class="skill-icon">&#x1F9E0;</span>
         <h4>ML</h4>
-        <p>TensorFlow, PyTorch</p>
+        <p>PyTorch, TensorFlow, XGBoost, embeddings</p>
       </div>
       <div class="skill-item">
-        <span class="skill-icon">&#x2601;</span>
+        <span class="skill-icon">&#x1F5C3;&#xFE0F;</span>
+        <h4>Data</h4>
+        <p>Snowflake, dbt, Postgres, warehousing</p>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">&#x2601;&#xFE0F;</span>
         <h4>Cloud</h4>
-        <p>AWS, GCP, Docker</p>
-      </div>
-      <div class="skill-item">
-        <span class="skill-icon">&#x1F4E6;</span>
-        <h4>TypeScript</h4>
-        <p>Node.js, npm packages</p>
+        <p>AWS, GCP, Docker, Temporal</p>
       </div>
     </div>
   </div>
