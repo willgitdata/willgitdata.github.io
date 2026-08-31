@@ -69,7 +69,7 @@
       .catch(() => false);
   }
 
-  root.ApoideiaSession = { normalizeOrigin, apply, check };
+  root.ApoideaSession = { normalizeOrigin, apply, check };
 
   if (typeof document !== 'undefined' && document) {
     check(document, root.APOIDEIA_CONFIG);

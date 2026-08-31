@@ -1,5 +1,5 @@
 // The "How it works" walkthrough: the same agent, the same job, side by side —
-// once without Apoideia and once with.
+// once without Apoidea and once with.
 //
 // Nothing here is drawn to look good. Every step, every token count, and both
 // running totals are read from /evals/walkthrough-data.json, which is the
@@ -126,7 +126,7 @@
           </div>
           ${sideBySide('plan', [
             'Identical model, identical prompt, identical tools. The only difference in this entire walkthrough is what is in the context window.',
-            'Apoideia recalled the firm\'s handling rule and injected it before the first call. That is the whole integration — one <code>agent.wrap()</code> line.',
+            'Apoidea recalled the firm\'s handling rule and injected it before the first call. That is the whole integration — one <code>agent.wrap()</code> line.',
           ])}`,
       },
       {

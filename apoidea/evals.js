@@ -26,7 +26,7 @@
   }
 
   // One panel = one metric, both arms, scaled against the larger of the two.
-  // The baseline bar is deliberately neutral and the Apoideia bar carries the
+  // The baseline bar is deliberately neutral and the Apoidea bar carries the
   // colour: green where we win, red where we lose. A panel that comes out red
   // is the page working, not the page broken.
   function panel(o) {
@@ -36,8 +36,8 @@
       <div class="bm-panel hv-card">
         <h3>${o.title} <span class="bm-delta ${t}">${signed(o.delta, o.unit ?? '%')}</span></h3>
         <p class="bm-sub">${o.sub}</p>
-        ${bar('Without Apoideia', o.aLabel, o.aVal / max, 'flat')}
-        ${bar('With Apoideia', o.bLabel, o.bVal / max, t)}
+        ${bar('Without Apoidea', o.aLabel, o.aVal / max, 'flat')}
+        ${bar('With Apoidea', o.bLabel, o.bVal / max, t)}
         <p class="bm-note">${o.note}</p>
       </div>`;
   }
@@ -266,7 +266,7 @@
   // it still renders the right number rather than nothing.
   // McNemar lives in paired.js — the landing page renders the same p-value, and a
   // statistic computed in two places eventually disagrees with itself.
-  const paired = (d, kind) => window.ApoideiaPaired.paired(d, kind);
+  const paired = (d, kind) => window.ApoideaPaired.paired(d, kind);
 
 
   // What accuracy looks like with the tasks nobody answered removed.
@@ -300,8 +300,8 @@
       <div class="bm-panel hv-card">
         <h3>${o.title} <span class="bm-delta ${t}">${signed(o.delta, o.unit ?? '%')}</span></h3>
         <p class="bm-sub">${o.sub}</p>
-        ${bar('Without Apoideia', o.aLabel, o.aVal / max, 'flat')}
-        ${bar('With Apoideia', o.bLabel, o.bVal / max, t)}
+        ${bar('Without Apoidea', o.aLabel, o.aVal / max, 'flat')}
+        ${bar('With Apoidea', o.bLabel, o.bVal / max, t)}
         <p class="bm-note">${o.note}</p>
       </div>`;
   }

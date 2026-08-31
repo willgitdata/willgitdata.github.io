@@ -98,7 +98,7 @@
     return n;
   }
 
-  root.ApoideiaConsoleLink = { DEFAULT_ORIGIN, SELECTOR, normalizeBase, resolve, apply };
+  root.ApoideaConsoleLink = { DEFAULT_ORIGIN, SELECTOR, normalizeBase, resolve, apply };
 
   // Browsers run the rewrite immediately; node loads this file for its tests and
   // has no document to rewrite.

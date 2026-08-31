@@ -9,7 +9,7 @@
 // paired. Comparing two independent confidence intervals throws that pairing
 // away, and with it the finding — on the knowledge-dependent split the intervals
 // overlap while McNemar on identical data gives p = 0.041.
-window.ApoideiaPaired = (function () {
+window.ApoideaPaired = (function () {
   /**
    * @param {object} d  a real-model results file
    * @param {'overall'|'knowledge_dependent'|'no_knowledge_needed'} kind

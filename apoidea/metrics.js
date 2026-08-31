@@ -14,7 +14,7 @@
 // The file is in two halves, and the split is what makes the second claim
 // testable rather than merely asserted:
 //
-//   window.ApoideiaMetrics  — every computation, pure. Takes a parsed results
+//   window.ApoideaMetrics  — every computation, pure. Takes a parsed results
 //                             file, returns a description of a tile. No DOM, no
 //                             fetch, loadable in node.
 //   the renderer below      — turns those descriptions into the same markup the
@@ -95,7 +95,7 @@
     }
     // Same function the performance page uses, so the p-value on the landing
     // page can never disagree with the one in the breakdown.
-    const sig = root.ApoideiaPaired.paired(d, 'knowledge_dependent');
+    const sig = root.ApoideaPaired.paired(d, 'knowledge_dependent');
     return measured(
       `${pct(kd.baseline.accuracy)} → ${pct(kd.apoideia.accuracy)}`,
       SLOT.accuracy.label,
@@ -161,7 +161,7 @@
   /** Does this file carry a run at all? Both callers ask the same question. */
   const hasRun = (d) => Boolean(d && d.baseline && d.baseline.tasks && d.apoideia);
 
-  root.ApoideiaMetrics = {
+  root.ApoideaMetrics = {
     pct, signed, num, measured, unmeasured, absent, finite, usable,
     SLOT, hasRun, tokens, accuracy, recall, cost, external,
   };
@@ -171,7 +171,7 @@
   // The renderer needs a DOM; node loads this file for the pure half above.
   if (typeof document === 'undefined') return;
 
-  const M = window.ApoideiaMetrics;
+  const M = window.ApoideaMetrics;
   const grid = document.getElementById('headline-metrics');
   if (!grid) return;
 

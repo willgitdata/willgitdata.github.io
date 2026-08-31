@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Apoideia — the memory &amp; learning runtime for AI agent fleets</title>
+<title>Apoidea — the memory &amp; learning runtime for AI agent fleets</title>
 <meta name="description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
 <link rel="canonical" href="https://willgitdata.github.io/apoidea/" />
 
@@ -12,16 +12,16 @@
      has no domain yet, so the deployment supplies it rather than the file
      guessing one that would not resolve. -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Apoideia" />
-<meta property="og:title" content="Apoideia — the memory &amp; learning runtime for AI agent fleets" />
+<meta property="og:site_name" content="Apoidea" />
+<meta property="og:title" content="Apoidea — the memory &amp; learning runtime for AI agent fleets" />
 <meta property="og:description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
 <meta property="og:url" content="https://willgitdata.github.io/apoidea/" />
 <meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="The Apoideia bee" />
+<meta property="og:image:alt" content="The Apoidea bee" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Apoideia — the memory &amp; learning runtime for AI agent fleets" />
+<meta name="twitter:title" content="Apoidea — the memory &amp; learning runtime for AI agent fleets" />
 <meta name="twitter:description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
 <meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
 
@@ -110,7 +110,7 @@
 </header>
 
 <div class="hero wrap">
-  <h1>Your agents forget. Apoideia is the memory &amp; learning runtime that fixes that — durably, explainably, inside your perimeter.</h1>
+  <h1>Your agents forget. Apoidea is the memory &amp; learning runtime that fixes that — durably, explainably, inside your perimeter.</h1>
   <p class="sub">Built for finance, healthcare, legal, insurance, and anyone running a large fleet of agents. Wrap your existing LLM client, add durable memory and a self-improving learning loop in under 20 lines.</p>
   <div class="demo-cta-row">
     <button class="hv-btn hv-btn-secondary" data-open-demo>▶ How it works</button>
@@ -145,10 +145,10 @@
     </div>
     <pre class="hv-code lang-block active" data-lang="python">pip install -e sdks/python
 
-from apoideia import Apoideia
+from apoideia import Apoidea
 from anthropic import Anthropic
 
-apo = Apoideia()                                   # APOIDEIA_API_KEY
+apo = Apoidea()                                   # APOIDEIA_API_KEY
 agent = apo.agent("claims-triage")
 client = agent.wrap(Anthropic())                   # memory + tracing, one line
 
@@ -165,10 +165,10 @@ with agent.run() as run:
     run.finish(outcome="success")                  # routes to Diaz: recalled, not told</pre>
     <pre class="hv-code lang-block" data-lang="ts">npm install ./sdks/typescript
 
-import { Apoideia } from "apoideia";
+import { Apoidea } from "apoideia";
 import Anthropic from "@anthropic-ai/sdk";
 
-const apo = new Apoideia();                        // APOIDEIA_API_KEY
+const apo = new Apoidea();                        // APOIDEIA_API_KEY
 const agent = await apo.agent("claims-triage");
 const client = agent.wrap(new Anthropic());        // memory + tracing, one line
 
@@ -211,9 +211,9 @@ await run.finish("success");                       // routes to Diaz: recalled, 
 
 <section id="compare">
   <div class="wrap">
-    <h2>Apoideia vs. hosted black-box runtimes</h2>
+    <h2>Apoidea vs. hosted black-box runtimes</h2>
     <table class="cmp-table">
-      <thead><tr><th></th><th>Apoideia</th><th>Typical hosted runtime</th></tr></thead>
+      <thead><tr><th></th><th>Apoidea</th><th>Typical hosted runtime</th></tr></thead>
       <tbody>
         <tr><td>Durable memory across restarts</td><td class="cmp-yes">Yes — S3-CAS + event log</td><td class="cmp-partial">Sometimes</td></tr>
         <tr><td>Explainable recall trace</td><td class="cmp-yes">Every recall, strategy + reasons</td><td class="cmp-no">Rarely surfaced</td></tr>
