@@ -1,0 +1,611 @@
+/* HIVE-8 FORMS — the form, layout and feedback layer.
+ *
+ * hive8.css is a *token and chrome* sheet: colours, display type, cards,
+ * buttons, inputs, chips, meters, KPIs. Everything a console actually needs to
+ * put those on a page — a topbar, a two-area nav, panels with headers, labelled
+ * fields with errors, tables, modals, toasts, spinners, empty and error states —
+ * lived nowhere, so the vanilla console hand-rolled ~40 lines of it inline in
+ * apps/console/index.html and the site re-invented its own. This file is that
+ * missing layer, authored once.
+ *
+ * Rules it holds itself to:
+ *   - Every colour is a hive8 custom property. No new palette entries, which is
+ *     what makes the light theme in hive8.css work here for free.
+ *   - Load AFTER hive8.css. It reads that sheet's variables and deliberately
+ *     extends a few of its classes (.hv-btn, .hv-input) rather than restating
+ *     them.
+ *   - Component classes are unscoped `.hv-*`, matching hive8.css. Only the
+ *     base typography there is scoped to `.hive8` — which is why the host page
+ *     still MUST carry <body class="hive8">.
+ *   - Additive only: nothing here changes an existing hive8 rule's meaning.
+ */
+
+/* ---------------------------------------------------------------- page shell */
+
+/* Fixed topbar + scrolling content, sized to the viewport so a short page
+   doesn't leave the nav floating in the middle of the screen. */
+.hv-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hv-topbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  border-bottom: 2px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.hv-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  white-space: nowrap;
+}
+.hv-brand img { width: 24px; height: 24px; image-rendering: pixelated; }
+/* The brand is usually also the home link; keep it text-coloured rather than
+   honey so it reads as chrome and not as a call to action. */
+.hive8 a.hv-brand { color: var(--text); text-decoration: none; }
+
+.hv-topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Which tenant you are acting on. Bordered rather than merely coloured, so it
+   reads as a discrete thing and not as a second brand word. */
+.hv-org-chip {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--honey);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+.hv-account-email {
+  font-size: 12px;
+  color: var(--text-dim);
+  max-width: 22ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The primary, two-area nav (Developer | Fleet). Deliberately larger and
+   further apart than the sub-nav: switching area is a bigger move than
+   switching pane, and the hierarchy should be visible without reading. */
+.hv-nav {
+  display: flex;
+  gap: 4px;
+}
+.hv-nav-item {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  background: none;
+  border: 2px solid transparent;
+  padding: 8px 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.hive8 a.hv-nav-item { color: var(--text-dim); text-decoration: none; }
+.hv-nav-item:hover { color: var(--text); }
+.hive8 a.hv-nav-item:hover { color: var(--text); text-decoration: none; }
+.hv-nav-item.hv-active,
+.hive8 a.hv-nav-item.hv-active {
+  color: var(--honey);
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+/* Sub-nav: the panes within one area. A dotted baseline instead of a solid
+   one so it reads as subordinate to the topbar's 2px rule. */
+.hv-subnav {
+  display: flex;
+  gap: 2px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow-x: auto;
+}
+.hv-subnav-item {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-dim);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.hive8 a.hv-subnav-item { color: var(--text-dim); text-decoration: none; }
+.hv-subnav-item:hover { color: var(--text); }
+.hive8 a.hv-subnav-item:hover { color: var(--text); text-decoration: none; }
+.hv-subnav-item.hv-active,
+.hive8 a.hv-subnav-item.hv-active {
+  color: var(--honey);
+  border-bottom-color: var(--honey);
+}
+
+.hv-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 64px;
+  flex: 1;
+}
+.hv-page-wide { max-width: 1400px; }
+
+.hv-page-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.hv-page-header h1, .hv-page-header h2 { margin: 0; }
+.hv-page-subtitle { color: var(--text-dim); font-size: 13px; }
+.hv-page-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+/* Utilities. Kept to the three that every pane needs; anything more specific
+   belongs in the pane, not here. */
+.hv-stack { display: grid; gap: 12px; }
+.hv-stack-tight { display: grid; gap: 6px; }
+.hv-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hv-muted { color: var(--text-dim); font-size: 12px; }
+.hv-mono { font-family: var(--font-mono); }
+
+/* --------------------------------------------------------------------- panel */
+
+/* A .hv-card with a header. The card supplies the surface and the 2px border;
+   the panel adds structure, so the two compose rather than compete. */
+.hv-panel {
+  background: var(--surface);
+  border: 2px solid var(--border);
+}
+.hv-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--border);
+}
+.hv-panel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.hv-panel-subtitle { color: var(--text-dim); font-size: 12px; margin: 2px 0 0; }
+.hv-panel-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.hv-panel-body { padding: 16px; }
+/* A panel whose body is a table wants no padding — the cells carry their own. */
+.hv-panel-body-flush { padding: 0; }
+.hv-panel-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------- forms */
+
+.hv-form { display: grid; gap: 16px; }
+.hv-form-actions { display: flex; gap: 8px; align-items: center; }
+.hv-form-actions-end { justify-content: flex-end; }
+
+.hv-field { display: grid; gap: 4px; }
+.hv-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+/* An asterisk alone is not an accessible required marker — the components pair
+   this with `required` on the control itself. This is only the visual cue. */
+.hv-label .hv-required { color: var(--honey); margin-left: 3px; }
+.hv-hint { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+.hv-field-error { font-size: 12px; color: var(--red); line-height: 1.5; }
+
+/* hive8.css styles .hv-input; these are its missing siblings, matched to it
+   line for line so a select never sits a pixel off from the input beside it. */
+.hv-select,
+.hv-textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 2px solid var(--border);
+  padding: 8px 10px;
+  width: 100%;
+}
+.hv-textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+.hv-textarea-mono { font-family: var(--font-mono); font-size: 13px; white-space: pre; }
+.hv-select:focus,
+.hv-textarea:focus { outline: 2px solid var(--honey); outline-offset: 1px; }
+
+/* Validity is driven off aria-invalid rather than a class, so the visual state
+   cannot drift from what a screen reader is told. */
+.hv-input[aria-invalid="true"],
+.hv-select[aria-invalid="true"],
+.hv-textarea[aria-invalid="true"] { border-color: var(--red); }
+
+.hv-input:disabled,
+.hv-select:disabled,
+.hv-textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.hv-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.hv-check input { width: 16px; height: 16px; accent-color: var(--honey); margin-top: 2px; }
+
+/* Field + trailing button on one line (search boxes, the recall box). */
+.hv-input-group { display: flex; gap: 8px; align-items: stretch; }
+.hv-input-group .hv-input { flex: 1; }
+
+/* ------------------------------------------------------------------- buttons */
+
+/* hive8.css defines .hv-btn, .hv-btn-secondary and .hv-btn-danger. These are
+   the states and sizes it implies but never wrote down. */
+.hv-btn:disabled,
+.hv-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 3px 3px 0 #00000040;
+}
+.hv-btn:focus-visible { outline: 2px solid var(--honey); outline-offset: 3px; }
+.hv-btn-sm { font-size: 10px; padding: 5px 9px; box-shadow: 2px 2px 0 #00000040; }
+.hv-btn-block { width: 100%; }
+/* Ghost: a button that must not compete with the primary action next to it —
+   revoke links in a table row, "cancel" in a modal footer. */
+.hv-btn-ghost {
+  background: none;
+  color: var(--text-dim);
+  border: 2px solid var(--border);
+  box-shadow: none;
+}
+.hv-btn-ghost:hover { color: var(--text); border-color: var(--honey); transform: none; box-shadow: none; }
+.hv-btn-ghost:active { transform: translate(1px, 1px); }
+
+/* -------------------------------------------------------------------- tables */
+
+/* Wrap every table in .hv-table-wrap: a fleet table is wider than a phone and
+   the alternative to scrolling the wrapper is scrolling the whole page
+   sideways. */
+.hv-table-wrap { width: 100%; overflow-x: auto; }
+.hv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.hv-table th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+  background: var(--surface2);
+}
+.hv-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.hv-table tbody tr:last-child td { border-bottom: none; }
+.hv-table-num { text-align: right; font-variant-numeric: tabular-nums; }
+.hv-table-clickable tbody tr { cursor: pointer; }
+.hv-table-clickable tbody tr:hover td { background: var(--surface2); }
+/* The cell an empty table renders into — centred, muted, spanning every
+   column, so "no rows" never looks like "still loading". */
+.hv-table-empty { text-align: center; color: var(--text-dim); padding: 28px 12px; }
+
+/* -------------------------------------------------------------------- modals */
+
+.hv-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: #000000b0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.hv-modal {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  box-shadow: 6px 6px 0 #00000060;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.hv-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border);
+}
+.hv-modal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.hv-modal-body { padding: 16px; }
+.hv-modal-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.hv-modal-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.hv-modal-close:hover { color: var(--text); }
+
+/* -------------------------------------------------------------------- toasts */
+
+.hv-toast-host {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+  display: grid;
+  gap: 8px;
+  max-width: min(380px, calc(100vw - 40px));
+}
+.hv-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-left-width: 4px;
+  box-shadow: 4px 4px 0 #00000050;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.hv-toast-error { border-left-color: var(--red); }
+.hv-toast-success { border-left-color: var(--green); }
+.hv-toast-info { border-left-color: var(--cyan); }
+.hv-toast-message { flex: 1; }
+.hv-toast-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+.hv-toast-close:hover { color: var(--text); }
+
+/* ------------------------------------------------------------------- spinner */
+
+/* Square, stepped and honey-on-border — a smooth circular spinner would be the
+   one un-pixelated thing on the page. */
+.hv-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--border);
+  border-top-color: var(--honey);
+  animation: hv-spin 0.8s steps(8) infinite;
+  vertical-align: -3px;
+}
+.hv-spinner-lg { width: 28px; height: 28px; border-width: 4px; }
+.hv-spinner-row { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 13px; }
+.hv-spinner-block { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 40px; color: var(--text-dim); }
+@keyframes hv-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .hv-spinner { animation: none; border-top-color: var(--honey); opacity: 0.7; }
+}
+
+/* -------------------------------------------------- empty and error states */
+
+.hv-empty {
+  text-align: center;
+  padding: 40px 24px;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+.hv-empty-icon { width: 48px; height: 48px; opacity: 0.6; image-rendering: pixelated; }
+.hv-empty-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.hv-empty-message { color: var(--text-dim); font-size: 13px; line-height: 1.6; max-width: 46ch; }
+.hv-empty-action { margin-top: 6px; }
+
+/* An error state is a *panel-level* failure, not a toast: it replaces the
+   content that could not load, so the pane never renders blank and silent. */
+.hv-error-state {
+  border: 2px solid var(--red);
+  background: var(--surface);
+  padding: 16px;
+  display: grid;
+  gap: 8px;
+}
+.hv-error-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--red);
+}
+.hv-error-message { font-size: 13px; line-height: 1.6; }
+/* The machine-readable half of the gateway's {error:{code,message}} envelope.
+   Shown, quietly, because "not_found" in a bug report is worth more than a
+   paraphrase of it. */
+.hv-error-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.hv-error-actions { display: flex; gap: 8px; margin-top: 4px; }
+
+/* ---------------------------------------------------------------- auth pages */
+
+/* The signed-out screens — sign in, sign up, the recovery landing, /welcome —
+   share one frame with no topbar and no nav, because there is nothing to
+   navigate to until there is a session. A centred column rather than a
+   viewport-centred box: the confirmation-pending and 409 states are several
+   lines tall, and vertical centring makes those jump around as they appear. */
+.hv-auth {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 8vh 20px 40px;
+}
+.hv-auth-inner {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+.hv-auth-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hv-auth-brand img { width: 32px; height: 32px; image-rendering: pixelated; }
+
+/* A failed sign-in, inline in the form rather than in a toast: it is about the
+   fields directly above it, and a toast that auto-dismisses would take the
+   account_exists explanation (§4.1) away mid-read. */
+.hv-auth-error {
+  border: 2px solid var(--red);
+  border-left-width: 4px;
+  background: var(--surface2);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.hv-auth-notice {
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--cyan);
+  background: var(--surface2);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hv-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0;
+  color: var(--text-dim);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hv-auth-divider::before,
+.hv-auth-divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--border);
+}
+
+.hv-auth-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  font-size: 13px;
+}
+
+/* A button that must read as a link — mode switching and "forgot password" are
+   in-page state changes, not navigation, so <a href> would be a lie to anyone
+   middle-clicking or reading the accessibility tree. */
+.hv-linkish {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--honey);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hv-linkish:hover { color: var(--text); }
+.hv-linkish:focus-visible { outline: 2px solid var(--honey); outline-offset: 3px; }
+
+/* --------------------------------------------------------------- responsive */
+
+@media (max-width: 720px) {
+  .hv-topbar { flex-wrap: wrap; gap: 10px 14px; padding: 10px 14px; }
+  .hv-nav { order: 3; width: 100%; }
+  .hv-nav-item { flex: 1; text-align: center; padding: 8px 6px; }
+  .hv-topbar-actions { margin-left: auto; }
+  /* The email is the first thing to go: the org chip names the tenant, which
+     is the fact that changes what a click does. */
+  .hv-account-email { display: none; }
+  .hv-page { padding: 16px 14px 48px; }
+  .hv-subnav { padding: 0 14px; }
+  .hv-toast-host { left: 14px; right: 14px; bottom: 14px; max-width: none; }
+  .hv-auth { padding: 4vh 14px 32px; }
+}

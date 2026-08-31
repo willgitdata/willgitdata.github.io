@@ -1,0 +1,197 @@
+/* HIVE-8 — Apoideia's design system.
+   Typography note: an earlier pass leaned on bitmap-pixel display faces
+   ("Press Start 2P"). With no reachable font CDN in this environment those
+   silently fell back to Courier New, which read as a typewriter, not a game.
+   The system now uses the platform's own geometric/UI sans for display and
+   text (crisp and native on macOS, Windows, and Linux with zero network) and
+   keeps the arcade character where it belongs — in the chrome: stepped pixel
+   borders, segmented meters, crispEdges sprites, dithered rules. Result reads
+   sharp at every size instead of blurry-retro at small ones. */
+
+:root {
+  --bg: #0b0b12;
+  --surface: #14141f;
+  --surface2: #1b1b29;
+  --border: #2a2a3d;
+  --honey: #ffb02e;
+  --comb: #ffd23f;
+  --green: #3ddc84;
+  --red: #ff5d5d;
+  --cyan: #4dd7ff;
+  --text: #ececf4;
+  --text-dim: #9494ab;
+  --font-display: "Avenir Next", "Futura", "Segoe UI Variable Display", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+:root[data-theme="light"],
+.hive8-light {
+  --bg: #faf7f0;
+  --surface: #ffffff;
+  --surface2: #f2ede1;
+  --border: #ddd4c0;
+  --honey: #d98c00;
+  --comb: #b8860b;
+  --green: #1f9d5c;
+  --red: #d13c3c;
+  --cyan: #0086a8;
+  --text: #201c14;
+  --text-dim: #6b6355;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #faf7f0;
+    --surface: #ffffff;
+    --surface2: #f2ede1;
+    --border: #ddd4c0;
+    --honey: #d98c00;
+    --comb: #b8860b;
+    --green: #1f9d5c;
+    --red: #d13c3c;
+    --cyan: #0086a8;
+    --text: #201c14;
+    --text-dim: #6b6355;
+  }
+}
+
+
+* { box-sizing: border-box; }
+
+body.hive8 {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  margin: 0;
+  image-rendering: pixelated;
+}
+
+.hive8 h1, .hive8 h2, .hive8 h3, .hive8 .hv-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+.hive8 h1 { font-size: 34px; letter-spacing: -0.01em; }
+.hive8 h2 { font-size: 21px; }
+.hive8 h3 { font-size: 15px; letter-spacing: 0.04em; }
+.hive8 p, .hive8 li { line-height: 1.65; }
+
+/* The link colour deliberately skips anything wearing a button class.
+   `.hive8 a` is (0,1,1) and `.hv-btn` is (0,1,0), so the generic rule won on
+   specificity and painted every <a class="hv-btn"> honey-on-honey: same
+   colour as its own background, in both themes. Fifteen buttons across the
+   marketing site were invisible rectangles, the hero's "Get started — free"
+   among them — the primary call to action on the page, unreadable, while the
+   two ghost buttons beside it rendered fine and made the row look intentional.
+   Only the colour is scoped out: buttons still want text-decoration: none.
+
+   The exclusion is wrapped in :where() so it contributes NO specificity: the
+   rule has to stay exactly as strong as the plain `.hive8 a` it replaces.
+   A bare :not([class*="hv-btn"]) reads the same and is not — it scores (0,2,1)
+   and quietly outranks `.hive8 .brand` at (0,2,0), which turned the wordmark
+   in the nav from ink to honey on every page. */
+.hive8 a { text-decoration: none; }
+.hive8 a:not(:where([class*="hv-btn"])) { color: var(--honey); }
+.hive8 a:hover:not(:where([class*="hv-btn"])) { text-decoration: underline; }
+
+/* Pixel-corner border: stepped edges via clip-path, no image asset needed */
+.hv-pixel-border {
+  clip-path: polygon(
+    0 4px, 4px 4px, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+    100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+    4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+  );
+}
+
+.hv-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  padding: 16px;
+}
+
+.hv-btn {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--honey);
+  color: #14140a;
+  border: 2px solid #00000030;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #00000040;
+}
+.hive8-light .hv-btn { color: #fffaf0; }
+.hv-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #00000040; }
+.hv-btn:active { transform: translate(3px, 3px); box-shadow: none; }
+.hv-btn.hv-btn-secondary { background: var(--surface2); color: var(--text); }
+.hv-btn.hv-btn-danger { background: var(--red); color: #14140a; }
+
+.hv-input {
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 2px solid var(--border);
+  padding: 8px 10px;
+  width: 100%;
+}
+.hv-input:focus { outline: 2px solid var(--honey); outline-offset: 1px; }
+
+.hv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  border-radius: 2px;
+}
+.hv-chip.hv-active { color: var(--green); border-color: var(--green); }
+.hv-chip.hv-paused { color: var(--comb); border-color: var(--comb); }
+.hv-chip.hv-demo { color: var(--cyan); border-color: var(--cyan); }
+
+/* Segmented "HP bar" style meter — 10 discrete cells */
+.hv-meter { display: flex; gap: 2px; height: 14px; }
+.hv-meter .hv-cell { flex: 1; background: var(--surface2); border: 1px solid var(--border); }
+.hv-meter .hv-cell.hv-filled { background: var(--honey); }
+.hv-meter.hv-danger .hv-cell.hv-filled { background: var(--red); }
+
+.hv-status-dot { width: 8px; height: 8px; display: inline-block; background: var(--text-dim); }
+.hv-status-dot.hv-running { background: var(--green); animation: hv-blink 1s steps(2) infinite; }
+.hv-status-dot.hv-paused { background: var(--comb); }
+.hv-status-dot.hv-error { background: var(--red); }
+@keyframes hv-blink { 50% { opacity: 0.3; } }
+@media (prefers-reduced-motion: reduce) { .hv-status-dot.hv-running { animation: none; } }
+
+.hv-badge-measured { color: var(--green); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.hv-badge-demo { color: var(--cyan); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+
+.hv-kpi { font-family: var(--font-display); font-weight: 700; font-size: 30px; color: var(--honey); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.hv-kpi-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+
+.hv-code {
+  font-family: var(--font-mono);
+  background: #050508;
+  color: var(--green);
+  border: 2px solid var(--border);
+  padding: 14px;
+  overflow-x: auto;
+  white-space: pre;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.hive8-light .hv-code { background: #1a1712; }
+
+.hv-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='2' height='2' fill='white'/%3E%3Crect x='2' y='2' width='2' height='2' fill='white'/%3E%3C/svg%3E");
+}

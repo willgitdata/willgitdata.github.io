@@ -98,7 +98,6 @@
     <nav>
       <a href="/apoidea/performance.html">Performance</a>
       <a href="#compare">Compare</a>
-      <a href="#pricing">Pricing</a>
       <!-- The account entry points. The signed-out pair is what the HTML ships,
            so it is correct with no JavaScript at all; session.js swaps in the
            signed-in link if GET /auth/me says there is a session, and does
@@ -233,50 +232,6 @@ await run.finish("success");                       // routes to Diaz: recalled, 
      ladder to sit at the bottom of. The parenthetical stays: a reader who is
      evaluating us is better served by knowing there is no hosted tier than by
      discovering it after signing up. -->
-<section id="pricing">
-  <div class="wrap">
-    <h2>Pricing <span class="muted" style="font-size:12px;">(v0.1 — one plan, free, and no hosted tier yet)</span></h2>
-    <div class="pricing-grid">
-      <div class="hv-card">
-        <h3>Watch the demo</h3>
-        <div class="price">Free</div>
-        <p class="muted" style="font-size:13px;">
-          The demo video above walks through the two areas the product actually has:
-        </p>
-        <ul>
-          <li><b>Developer</b> — API keys and the reference</li>
-          <li><b>Fleet</b> — agents, memories, runs, and their traces</li>
-        </ul>
-        </div>
-      <div class="hv-card">
-        <h3>Self-host</h3>
-        <div class="price">Free</div>
-        <p class="muted" style="font-size:13px;">
-          Apache-2.0. Run the whole stack inside your own perimeter with one command — no account
-          with us, and no credential of yours held anywhere but your own deployment:
-        </p>
-        <ul>
-          <li>Your Postgres, your object store, your network</li>
-          <li>The model call happens in your process, with your key</li>
-        </ul>
-        </div>
-    </div>
-    <p class="muted pricing-note">
-      What is deliberately not here: a paid tier, a usage meter, a hosted gateway you can rent, and
-      an enterprise column. None of them exist in v0.1, so none of them are on this page. The two
-      cards above are the whole offer.
-    </p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap" style="text-align:center;">
-    <h2>Try it now</h2>
-    <pre class="hv-code" style="display:inline-block; text-align:left;">git clone &lt;repo&gt; && cd apoideia
-pnpm demo</pre>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <nav>
