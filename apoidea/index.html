@@ -81,12 +81,7 @@
   .comic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .comic .panel { padding: 16px 12px; text-align: center; font-size: 13px; line-height: 1.55; }
   .comic .panel .num { font-family: var(--font-display); font-weight: 700; color: var(--honey); font-size: 12px; letter-spacing: 0.08em; margin-bottom: 8px; }
-  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .price { font-family: var(--font-display); font-weight: 700; font-size: 28px; color: var(--honey); margin: 10px 0; }
-  .pricing-grid .hv-card { display: flex; flex-direction: column; }
-  .pricing-grid .hv-card ul { margin: 4px 0 16px; padding-left: 18px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
-  .pricing-grid .hv-card .hv-btn { align-self: flex-start; margin-top: auto; }
-  .pricing-note { font-size: 12.5px; margin-top: 18px; max-width: 720px; line-height: 1.6; }
 </style>
 </head>
 <body class="hive8">
@@ -226,12 +221,6 @@ await run.finish("success");                       // routes to Diaz: recalled, 
   </div>
 </section>
 
-<!-- Pricing, written against what exists rather than against what a pricing
-     page usually contains. There are two ways to use v0.1 and both of them
-     cost nothing, so the section says that plainly instead of inventing a
-     ladder to sit at the bottom of. The parenthetical stays: a reader who is
-     evaluating us is better served by knowing there is no hosted tier than by
-     discovering it after signing up. -->
 <footer>
   <div class="wrap">
     <nav>
