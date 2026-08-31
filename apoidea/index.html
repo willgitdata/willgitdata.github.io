@@ -96,7 +96,6 @@
   <div class="wrap">
     <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
     <nav>
-      <a href="/apoidea/docs/0-to-1.html">Docs</a>
       <a href="/apoidea/performance.html">Performance</a>
       <a href="#compare">Compare</a>
       <a href="#pricing">Pricing</a>
@@ -107,12 +106,7 @@
            The href is the console's own /auth route (see the W4 seam in
            apps/console/src/App.tsx) and is rewritten per deployment by
            console-link.js — never hardcode a console URL past this default. -->
-      <span class="nav-account">
-        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
-        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
-        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
-      </span>
-    </nav>
+      </nav>
   </div>
 </header>
 
@@ -120,18 +114,14 @@
   <h1>Your agents forget. Apoideia is the memory &amp; learning runtime that fixes that — durably, explainably, inside your perimeter.</h1>
   <p class="sub">Built for finance, healthcare, legal, insurance, and anyone running a large fleet of agents. Wrap your existing LLM client, add durable memory and a self-improving learning loop in under 20 lines.</p>
   <div class="demo-cta-row">
-    <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started — free</a>
-    <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open the console &rarr;</a>
     <button class="hv-btn hv-btn-secondary" data-open-demo>▶ How it works</button>
-    <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/0-to-1.html">Set it up: 0 &rarr; 1</a>
-    <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/quickstart.html">Read the docs</a>
-  </div>
-  <p class="hero-signin" data-signed-out>
-    Email and a password — that is the whole signup.
-    Already have an account? <a data-console-link href="http://localhost:5173/auth">Sign in</a>.
-  </p>
-  <div id="demo-live-banner" class="demo-live-banner"><span class="dot"></span> This exact demo is running live on this machine right now — <a data-console-link href="http://localhost:5173/">open the console</a> to see the real thing.</div>
-  <div class="metrics" id="headline-metrics">
+    </div>
+  <section id="demo-video" style="margin:2.5rem auto;">
+  <video controls preload="metadata" poster="/apoidea/apoidea/demo/poster.jpg" style="width:100%;max-width:960px;border-radius:8px;display:block;margin:0 auto;">
+    <source src="/apoidea/apoidea/demo/demo.mp4" type="video/mp4">
+  </video>
+</section>
+<div class="metrics" id="headline-metrics">
     <div class="m hv-card" data-slot="tokens"></div>
     <div class="m hv-card" data-slot="cost"></div>
     <div class="m hv-card" data-slot="accuracy"></div>
@@ -247,19 +237,16 @@ await run.finish("success");                       // routes to Diaz: recalled, 
     <h2>Pricing <span class="muted" style="font-size:12px;">(v0.1 — one plan, free, and no hosted tier yet)</span></h2>
     <div class="pricing-grid">
       <div class="hv-card">
-        <h3>Create an account</h3>
+        <h3>Watch the demo</h3>
         <div class="price">Free</div>
         <p class="muted" style="font-size:13px;">
-          Sign up with an email address on the console for the gateway you are pointed at, and get
-          the two areas the product actually has:
+          The demo video above walks through the two areas the product actually has:
         </p>
         <ul>
           <li><b>Developer</b> — API keys and the reference</li>
           <li><b>Fleet</b> — agents, memories, runs, and their traces</li>
         </ul>
-        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
-        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open the console</a>
-      </div>
+        </div>
       <div class="hv-card">
         <h3>Self-host</h3>
         <div class="price">Free</div>
@@ -271,8 +258,7 @@ await run.finish("success");                       // routes to Diaz: recalled, 
           <li>Your Postgres, your object store, your network</li>
           <li>The model call happens in your process, with your key</li>
         </ul>
-        <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/quickstart.html">Read the quickstart</a>
-      </div>
+        </div>
     </div>
     <p class="muted pricing-note">
       What is deliberately not here: a paid tier, a usage meter, a hosted gateway you can rent, and
@@ -293,13 +279,8 @@ pnpm demo</pre>
 <footer>
   <div class="wrap">
     <nav>
-      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
-      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
-      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
       <a href="/apoidea/performance.html">Performance</a>
-      <a href="/apoidea/terms.html">Terms</a>
-      <a href="/apoidea/privacy.html">Privacy</a>
-    </nav>
+      </nav>
     <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
   </div>
 </footer>

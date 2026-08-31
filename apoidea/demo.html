@@ -9,14 +9,15 @@
   <link rel="stylesheet" href="/apoidea/hive8/hive8.css">
 </head>
 <body>
-  <main>
+  <main style="max-width:1000px;margin:0 auto;padding:2rem;">
     <h1>Apoideia in action</h1>
-    <p>The live console needs a running gateway, Postgres, and the memory engine —
-       more than a static page can host. Below is the real console running the
-       PACE care-coordination pack: eight agents, 32 memories, 24 runs, and 20 learned skills.</p>
-    <figure><img src="/apoidea/demo/fleet.png" alt="Apoideia console: fleet of eight PACE care agents"><figcaption>Fleet — the PACE care-coordination agent pack</figcaption></figure>
-    <figure><img src="/apoidea/demo/recall.png" alt="Apoideia console: recall results with trace panel"><figcaption>Recall — memories injected with an explainable trace</figcaption></figure>
-    <figure><img src="/apoidea/demo/skills.png" alt="Apoideia console: skill log of learned lessons"><figcaption>Skill log — lessons the agents have learned</figcaption></figure>
+    <p>The real console running the PACE care-coordination pack: eight agents,
+       32 memories, 24 runs, and 20 learned skills — sign-in, recall with an
+       explainable trace, and the skill log.</p>
+    <video controls preload="metadata" poster="/apoidea/demo/poster.jpg" style="width:100%;max-width:960px;border-radius:8px;">
+      <source src="/apoidea/demo/demo.mp4" type="video/mp4">
+      Your browser does not support embedded video.
+    </video>
     <p><a href="https://github.com/willgitdata/apoidea">Source on GitHub</a></p>
     <p><a href="/apoidea/">← Back to the Apoideia site</a></p>
   </main>
