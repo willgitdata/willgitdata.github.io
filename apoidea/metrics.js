@@ -70,7 +70,7 @@
 
   /** Tokens per task, both arms, from the live run. */
   function tokens(d) {
-    const a = d.baseline, b = d.apoideia, c = d.config;
+    const a = d.baseline, b = d.Apoidea, c = d.config;
     const delta = (d.deltas || {}).tokens_pct;
     if (!usable([delta, a.tokens_per_task, b.tokens_per_task, (c || {}).completed_task_pairs], [(c || {}).model])) {
       return absent('tokens');
@@ -89,17 +89,17 @@
   function accuracy(d) {
     const kd = (d.by_dependence || {}).knowledge_dependent;
     const model = (d.config || {}).model;
-    if (!kd || !kd.baseline || !kd.apoideia) return absent('accuracy');
-    if (!usable([kd.baseline.accuracy, kd.apoideia.accuracy, kd.baseline.tasks], [model])) {
+    if (!kd || !kd.baseline || !kd.Apoidea) return absent('accuracy');
+    if (!usable([kd.baseline.accuracy, kd.Apoidea.accuracy, kd.baseline.tasks], [model])) {
       return absent('accuracy');
     }
     // Same function the performance page uses, so the p-value on the landing
     // page can never disagree with the one in the breakdown.
     const sig = root.ApoideaPaired.paired(d, 'knowledge_dependent');
     return measured(
-      `${pct(kd.baseline.accuracy)} → ${pct(kd.apoideia.accuracy)}`,
+      `${pct(kd.baseline.accuracy)} → ${pct(kd.Apoidea.accuracy)}`,
       SLOT.accuracy.label,
-      `+${((kd.apoideia.accuracy - kd.baseline.accuracy) * 100).toFixed(0)} points across ${kd.baseline.tasks} tasks` +
+      `+${((kd.Apoidea.accuracy - kd.baseline.accuracy) * 100).toFixed(0)} points across ${kd.baseline.tasks} tasks` +
         (sig && finite(sig.p_value) ? `, McNemar exact <b>p&nbsp;=&nbsp;${sig.p_value.toFixed(3)}</b>.` : '.'),
       `live · ${model} · paired test`,
     );
@@ -134,7 +134,7 @@
     const perCorrect = (s) => (usable([s.correct, s.tokens_in, s.tokens_out]) && s.correct
       ? (s.tokens_in / 1e6 * price.input + s.tokens_out / 1e6 * price.output) / s.correct
       : null);
-    const ca = perCorrect(d.baseline), cb = perCorrect(d.apoideia);
+    const ca = perCorrect(d.baseline), cb = perCorrect(d.Apoidea);
     if (!ca || !cb) return absent('cost');
     return measured(
       signed((cb - ca) / ca * 100),
@@ -147,11 +147,11 @@
   /** The external workload — a different file, so a different function. */
   function external(x) {
     const model = (x.config || {}).model;
-    if (!usable([x.baseline.accuracy, x.apoideia.accuracy, x.baseline.tasks], [model])) {
+    if (!usable([x.baseline.accuracy, x.Apoidea.accuracy, x.baseline.tasks], [model])) {
       return absent('external');
     }
     return measured(
-      `${pct(x.baseline.accuracy)} → ${pct(x.apoideia.accuracy)}`,
+      `${pct(x.baseline.accuracy)} → ${pct(x.Apoidea.accuracy)}`,
       SLOT.external.label,
       `<b>CUAD</b> — real commercial contracts annotated by lawyers (The Atticus Project, CC BY 4.0), ${x.baseline.tasks} held-out tasks.`,
       `external · ${model}`,
@@ -159,7 +159,7 @@
   }
 
   /** Does this file carry a run at all? Both callers ask the same question. */
-  const hasRun = (d) => Boolean(d && d.baseline && d.baseline.tasks && d.apoideia);
+  const hasRun = (d) => Boolean(d && d.baseline && d.baseline.tasks && d.Apoidea);
 
   root.ApoideaMetrics = {
     pct, signed, num, measured, unmeasured, absent, finite, usable,

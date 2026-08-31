@@ -89,7 +89,7 @@
 
 <header class="site-nav">
   <div class="wrap">
-    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEA</a>
     <nav>
       <a href="/apoidea/performance.html">Performance</a>
       <a href="#compare">Compare</a>
@@ -140,10 +140,10 @@
     </div>
     <pre class="hv-code lang-block active" data-lang="python">pip install -e sdks/python
 
-from apoideia import Apoidea
+from Apoidea import Apoidea
 from anthropic import Anthropic
 
-apo = Apoidea()                                   # APOIDEIA_API_KEY
+apo = Apoidea()                                   # APOIDEA_API_KEY
 agent = apo.agent("claims-triage")
 client = agent.wrap(Anthropic())                   # memory + tracing, one line
 
@@ -160,10 +160,10 @@ with agent.run() as run:
     run.finish(outcome="success")                  # routes to Diaz: recalled, not told</pre>
     <pre class="hv-code lang-block" data-lang="ts">npm install ./sdks/typescript
 
-import { Apoidea } from "apoideia";
+import { Apoidea } from "Apoidea";
 import Anthropic from "@anthropic-ai/sdk";
 
-const apo = new Apoidea();                        // APOIDEIA_API_KEY
+const apo = new Apoidea();                        // APOIDEA_API_KEY
 const agent = await apo.agent("claims-triage");
 const client = agent.wrap(new Anthropic());        // memory + tracing, one line
 

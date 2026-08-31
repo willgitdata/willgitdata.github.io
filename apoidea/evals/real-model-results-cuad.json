@@ -51,7 +51,7 @@
     "forecast_usd": 3.6,
     "forecast_prompt_tokens": {
       "baseline": 581796,
-      "apoideia": 387864
+      "Apoidea": 387864
     },
     "forecast_output_tokens": 90463,
     "shapes_not_in_stub_results": 0,
@@ -101,7 +101,7 @@
     "tokens_per_task": 22177.846153846152,
     "wall_ms": 944597.4623329821
   },
-  "apoideia": {
+  "Apoidea": {
     "tasks": 13,
     "correct": 13,
     "accuracy": 1.0,
@@ -135,7 +135,7 @@
       },
       "balanced_accuracy": 0.8888888888888888
     },
-    "apoideia": {
+    "Apoidea": {
       "per_class": {
         "ABSENT": {
           "n": 9,

@@ -103,6 +103,6 @@
   // Browsers run the rewrite immediately; node loads this file for its tests and
   // has no document to rewrite.
   if (typeof document !== 'undefined' && document) {
-    apply(document, (root.APOIDEIA_CONFIG || {}).consoleOrigin);
+    apply(document, (root.APOIDEA_CONFIG || {}).consoleOrigin);
   }
 })(typeof window !== 'undefined' ? window : globalThis);

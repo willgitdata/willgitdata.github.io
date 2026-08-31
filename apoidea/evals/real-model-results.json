@@ -41,7 +41,7 @@
     "forecast_usd": 20.39,
     "forecast_prompt_tokens": {
       "baseline": 5560141,
-      "apoideia": 1570343
+      "Apoidea": 1570343
     },
     "forecast_output_tokens": 869979,
     "shapes_not_in_stub_results": 0,
@@ -572,7 +572,7 @@
     "tokens_per_task": 73447.87777777777,
     "wall_ms": 6708848.343330987
   },
-  "apoideia": {
+  "Apoidea": {
     "tasks": 90,
     "correct": 46,
     "accuracy": 0.5111111111111111,
@@ -607,7 +607,7 @@
         "tokens_per_task": 120220.54,
         "wall_ms": 5519324.948705003
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 50,
         "correct": 30,
         "accuracy": 0.6,
@@ -637,7 +637,7 @@
         "tokens_per_task": 14982.05,
         "wall_ms": 1189523.3946259832
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 40,
         "correct": 16,
         "accuracy": 0.4,
@@ -656,7 +656,7 @@
   "recall_precision_at_5": 0.86,
   "class_breakdown": {
     "baseline": null,
-    "apoideia": null
+    "Apoidea": null
   },
   "unparseable_answers": 0,
   "misses": [
@@ -1324,7 +1324,7 @@
       "answer_tail": "length. This is a known, negotiable position \u2014 not a novel policy question \u2014 so the correct action is to reject the current indemnification cap and counter with a materially higher, fixed cap tied to aggregate fees paid under the agreement (2x fees), which aligns the indemnity backstop with the liability structure in D7 rather than leaving the carve-outs effectively unprotected.\n\nThe D2 seat gap and D9 assignment breadth are noted for redline but do not change the bottom-line determination \u2014 they are correctable in the same countersigned round.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7008",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1337,7 +1337,7 @@
       "answer_tail": " figure. These source records conflict, and the discrepancy materially affects whether the SI-7 $25,000 sub-limit (D11) is breached. This is a genuine factual gap in the record \u2014 not something I can resolve by assumption \u2014 and it must be closed before any indemnity figure is finalized.\n\nEscalation here reflects both the mandatory routing rule (a firm position I do hold, requiring transfer to Recovery desk) and the unresolved depreciation conflict (a factual reconciliation gap that affects the payable amount). Neither can be finalized as an approve or deny at this desk.\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5218",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1350,7 +1350,7 @@
       "answer_tail": "No network-adequacy exception memo is present in the record, and this is the sole gating requirement for an OON request. Clinical merits (conservative therapy, imaging) don't cure this pathway defect.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3113",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1363,7 +1363,7 @@
       "answer_tail": "of a thin record where I should proceed on available evidence \u2014 it is a case where the firm's own governing document exists, was specifically identified as controlling, and was withheld or unavailable despite direct request. Given the mandatory nature of the PEP-driven EDD trigger and my inability to confirm the actual screening result, I cannot certify standard-tier clearance, and I cannot independently resolve the PEP question without the document. This is precisely the situation where escalation \u2014 not further self-determination \u2014 is the correct action.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7009",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1376,7 +1376,7 @@
       "answer_tail": "ding subrogation flag routes to the Recovery desk, regardless of amount or type. That rule supersedes normal payment processing from this desk \u2014 coverage is confirmed (D2: sudden/accidental failed coupling, not wear-and-tear excluded) and exposure is quantified ($21,500 net), but disposition authority belongs to Recovery desk, a position this desk does not hold.\n\nThis is not a case of a thin record \u2014 the record is complete and the governing document (D7) is present and read. The correct action is transfer to the desk the firm has designated for matters in this posture.\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "CTL-1023",
       "family": "control_unaided",
       "shape": "long_context",
@@ -1389,7 +1389,7 @@
       "answer_tail": "The termination clause (30 days' notice, no work-in-progress payment) fails to conform to our playbook standard (90 days' notice + payment for work in progress). This is a clear, on-point conflict with a firm-held position, requiring redline rather than approval.\n\nDETERMINATION: NO"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9103",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1402,7 +1402,7 @@
       "answer_tail": "to attached processor terms not included here. There is no location commitment on the face of the document that would trigger the infrastructure sign-off gate, and no other listed determination fits this gap (missing attachment) rather than a substantive residency term. This is a document-completeness issue that falls outside the specialist's authority to resolve by inference \u2014 the underlying processor terms/DPA must be located and reviewed before any of the substantive determinations (accept, reject, hold for sign-off) could be responsibly made.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "CTL-1016",
       "family": "control_unaided",
       "shape": "long_context",
@@ -1415,7 +1415,7 @@
       "answer_tail": "Determination based on the contract review: CTL-1016-D5's termination-for-convenience clause (30 days' notice, no work-in-progress payment) conflicts with the firm's governing playbook position (90 days' notice + payment for work in progress). This is a clean, actionable conflict, not a gap requiring escalation.\n\nDETERMINATION: NO"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9116",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1428,7 +1428,7 @@
       "answer_tail": "Termination notice (30 days vs. required 90) and indemnity cap (1x vs. required 2x fallback) both deviate from playbook. Of these, the indemnity cap is the harder-line, non-negotiable floor \u2014 uncapped/under-capped indemnity is never accepted below our 2x fallback, whereas the notice period is a fixable amendment. The controlling deficiency to lead with is the indemnity cap.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9114",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1441,7 +1441,7 @@
       "answer_tail": "The dominant deviation requiring action is the indemnification cap at 1x fees, against our fallback floor of 2x fees paid in the preceding 12 months. The termination notice deviation (30 vs 90 days) is also non-compliant, but the indemnity cap is the more fundamental rejection point \u2014 a cap below our floor is not accepted as-is, and the mutual structure is otherwise fine once corrected.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7022",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1454,7 +1454,7 @@
       "answer_tail": "ts on file to override it (contradicting D1's unverified, unsubstantiated rider claim, which is disregarded). Nothing in the produced file overcomes this exclusion, and prior determinations on this same file were consistent and adverse (H1 withdrawn, H2 denied), supporting no departure from established handling.\n\nThe exposure reconciliation issue (rework) concerns quantum only, not coverage \u2014 since the exclusion bars payment regardless of the exact dollar figure, the reconciliation defect does not change the outcome, though it should still be corrected for the file record.\n\nDETERMINATION: DENY"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3116",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1467,7 +1467,7 @@
       "answer_tail": "\nBecause the governing determinant (D8) remains unconfirmed, and the file additionally shows an unresolved open recovery and a flagged inconsistency in prior determinations (H1), I cannot confirm this file qualifies for standard due diligence, nor can I certify that PEP status is clear. This is not a case of a thin record where I should proceed on available evidence \u2014 it is a case where the firm holds a specific document (D8) that governs the outcome and that document has not been made available or confirmed despite being squarely in scope for this queue.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "CTL-1017",
       "family": "control_unaided",
       "shape": "long_context",
@@ -1480,7 +1480,7 @@
       "answer_tail": "CTL-1017-D1's 30-day termination-for-convenience notice conflicts with the firm's required 90-day standard, and lacks the required payment-for-work-in-progress provision. This clause is not approved as drafted.\n\nDETERMINATION: NO"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5203",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1493,7 +1493,7 @@
       "answer_tail": "Diagnosis/indication is not on file, which is required to complete standard medical-necessity review for this in-network infusion request. The record lacks this element, so adjudication cannot be finalized.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5201",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1506,7 +1506,7 @@
       "answer_tail": "Based on the record: conservative therapy trial documented (6 weeks), no prior imaging on file, in-network outpatient site \u2014 the PA-114 precondition is satisfied and the request supports medical necessity.\n\nDETERMINATION: APPROVE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3115",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1519,7 +1519,7 @@
       "answer_tail": "and none substitutes for D4.\n\nThis is not a case of a thin record \u2014 D4 was explicitly listed as an available document on this file (search_corpus results), meaning the firm holds the determinative evidence but it has not been surfaced to me. Deciding ONBOARD or DECLINE without reading the one document that governs the outcome would mean guessing at PEP status, which is impermissible given the mandatory-EDD rule. The correct action is to escalate so that D4 is properly read and the PEP determination is made against it before any onboarding decision issues.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7003",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1532,7 +1532,7 @@
       "answer_tail": "rm holds a defined position for this exact fact pattern \u2014 pending subrogation flag present \u2014 and that position is to route to Recovery desk, not to approve or deny coverage at this desk.\n\nSince neither APPROVE nor DENY is the correct disposition (this desk is not adjudicating the claim on its merits), and the firm's own rule dictates transfer to a different desk, the correct action is ESCALATE.\n\n**Governs:** Standing rule \u2014 \"Any claim with a pending subrogation flag routes to the Recovery desk, regardless of amount or type,\" triggered by D3 (Subrogation referral memo).\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7024",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1545,7 +1545,7 @@
       "answer_tail": "reflect a pending flag). Exposure is quantified ($56,000 gross / $55,000 net of deductible) but quantum does not substitute for a coverage finding, particularly where an exclusion of record (faulty workmanship) is on file and prior determinations on this insured are documented as inconsistent (H1). This is a genuine gap the firm's standards do not let me paper over with the material in hand \u2014 the governing document itself lacks the substantive content needed to apply it. Escalating for a substantive transcript or supervisory review before any APPROVE/DENY is warranted.\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "OPS-2414",
       "family": "fleet_incident",
       "shape": "tool_loop",
@@ -1558,7 +1558,7 @@
       "answer_tail": "ascade is underway. All other records surfaced (cost anomaly, queue depth, deploy manifest, and the unrelated claims-file materials \u2014 POL, history, exposure computation) are either non-causal correlates or out-of-domain contamination, and none displace D11 as the governing document.\n\nThe correct remediation under D11 is to correct the retry/backoff/circuit-breaker configuration on `doc-extractor`, not to wait on a provider that is already confirmed healthy, and not to escalate, since the firm already holds a documented position on this exact failure pattern.\n\nDETERMINATION: ADJUST RETRY POLICY"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "OPS-2413",
       "family": "fleet_incident",
       "shape": "tool_loop",
@@ -1571,7 +1571,7 @@
       "answer_tail": "nfiguration, not an upstream outage.\n\n**Governs:** OPS-2413-D6 (Retry policy reference) \u2014 per standing fleet policy, timeout cascades are retry-policy problems; the upstream status page (D7) shows dependencies green despite its contradictory banner, corroborating that no genuine outage is occurring. The claims-domain artifacts (POL, H1/H2, exposure computation) are non-governing and excluded as out-of-scope for this technical incident.\n\n**Fix:** Correct intake-classifier's retry/backoff/circuit-breaker parameters against the D6 spec to eliminate the cascade.\n\nDETERMINATION: ADJUST RETRY POLICY"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3120",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1584,7 +1584,7 @@
       "answer_tail": "ord whether a related party is politically exposed. This is not a case of the record being merely \"thin\" on a peripheral point \u2014 it is the absence of the specific document the firm's own standard identifies as controlling the mandatory-EDD trigger. Proceeding to ONBOARD would risk clearing a file with an unconfirmed PEP status; DECLINE is not supported either, as there is no adverse finding of record \u2014 only an unread one. The correct action is to route this file for compliance review of the PEP screening result before any onboarding decision is finalized.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "CTL-1012",
       "family": "control_unaided",
       "shape": "single_shot",
@@ -1597,7 +1597,7 @@
       "answer_tail": "Missing required attestation means the submission cannot be processed as-is; this is a documentation deficiency, not an escalation-worthy policy gap.\n\nDETERMINATION: INCOMPLETE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9120",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1610,7 +1610,7 @@
       "answer_tail": "D3's termination-for-convenience clause (30 days, either party, no WIP payment) fails our playbook floor of 90 days' notice plus payment for work in progress. This is a known, established position \u2014 not a gap requiring escalation \u2014 so the correct action is to require the amendment directly.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3111",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1623,7 +1623,7 @@
       "answer_tail": "datory-EDD and risk-rating determinations respectively, and I have not been given their contents \u2014 this is not a thin record I can reason around, it's a missing governing document the firm holds but hasn't surfaced to me. Proceeding to ONBOARD without confirming PEP status and transaction pattern would violate the standard that EDD is mandatory whenever a related party is PEP, and that transaction pattern (not the SOF memo) governs cash-intensive risk. This must be escalated for retrieval/review of D1 and D2 before a final onboarding decision can be made.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5202",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1636,7 +1636,7 @@
       "answer_tail": "Based on the record: PA-5202 is an out-of-network request under an HMO-Select plan with no documented network-adequacy exception, in-network unavailability confirmation, or urgent/emergent designation. This missing documentation is the specific, identifiable gap preventing approval \u2014 it is a defined piece of information the requester can supply, not an open-ended record deficiency.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9110",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1649,7 +1649,7 @@
       "answer_tail": "at is a distinct issue from audit rights and doesn't change this determination.\n\nSince none of the substantive audit-rights options (accept as drafted, 90-day notice, annual limit, 2x fees cap, perpetual licence, infrastructure sign-off) apply to a non-existent clause, and this is not a case where the firm lacks a position on audit rights, the only honest determination is to escalate the gap for confirmation before the agreement is finalized \u2014 ensuring an audit clause consistent with our playbook is added rather than silently absent at signature.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9105",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1662,7 +1662,7 @@
       "answer_tail": "requency, notice, cost) and none exists here to test against that standard, none of the substantive clause-amendment options apply to a silent term. Manufacturing an \"accept\" determination on non-existent language would misstate the record.\n\nThis gap on a municipal counterparty document is significant enough that I will not silently treat it as resolved in our favor by omission \u2014 that determination properly belongs with supervising counsel to confirm whether an exhibit/side letter was intended to carry this term before the agreement is finalized.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3102",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1675,7 +1675,7 @@
       "answer_tail": "y exposed \u2014 overriding the transaction-based rating regardless of account size \u2014 was never substantively produced despite being correctly identified and repeatedly requested from the file. Without its finding, I cannot confirm whether EDD is mandatorily triggered or whether the file can proceed on the standard track. This is a genuine gap in the governing evidence I need, not a matter the firm has left me a default position on, so it must go to compliance for retrieval/resolution of the PEP screening content before onboarding or decline can be determined.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9118",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1688,7 +1688,7 @@
       "answer_tail": "The most material, clearly-evidenced defect in this record is the indemnification cap in D2, set at 1x fees paid against our documented floor of 2x fees paid. This is a firm playbook position, confirmed against the record, and the fix is unambiguous. The termination notice issue in D6 is also real but the indemnity cap is the higher-priority defect to lead with, and correcting it is the determinative action for this queue item.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3108",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1701,7 +1701,7 @@
       "answer_tail": "cline outright given no adverse finding has actually been confirmed. This is a genuine evidentiary gap on matters outside a specialist's authority to presume clean \u2014 sanctions and adverse media findings are compliance-owned determinations, not something to infer from absence.\n\nThis is escalation on the merits, not deflection: the firm's PEP policy point is resolved (negative), but the file cannot be cleared for onboarding without confirmed sanctions/adverse-media/jurisdiction-risk results, and those are compliance-domain findings I have not been provided.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5212",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1714,7 +1714,7 @@
       "answer_tail": "Based on the record as it stands: intake form version is unconfirmed (blocking procedural gate), and the out-of-network PPO-Standard coverage question remains unresolved on policy grounds. Neither gap is filled by anything in the fetched sections, and no additional record has been supplied to resolve them. This requires the outstanding items from the requester before adjudication can proceed on the merits.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5217",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1727,7 +1727,7 @@
       "answer_tail": "DETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7018",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1740,7 +1740,7 @@
       "answer_tail": "e/erroneous, and this is precisely the kind of unresolved routing-trigger conflict the firm's mandatory rule requires to be settled before disposition \u2014 not a case of thin records, but of two authoritative-seeming sources in direct conflict that I am not positioned to adjudicate alone.\n\nBecause a mandatory, type-agnostic routing rule may apply and its triggering fact is in dispute between file documents and system records, this must be escalated for confirmation of subrogation status before final disposition (payment release and/or Recovery desk transfer) is committed.\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9122",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1753,7 +1753,7 @@
       "answer_tail": "(1x vs. 2x) is a second deficiency, but since only one determination may be issued, the termination notice defect is the more fundamental threshold problem (it affects deal exit economics broadly), while the indemnity gap is a fixed, quantifiable shortfall directly tied to a bright-line playbook rule with a clear counter figure.\n\nGiven the instruction to select exactly one determination, the indemnification clause is the most direct, quantifiable, rule-based conflict (1x vs. required 2x fallback) and is the cleanest actionable counter position.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "OPS-2415",
       "family": "fleet_incident",
       "shape": "tool_loop",
@@ -1766,7 +1766,7 @@
       "answer_tail": "Timeout cascade on agent policy-checker is governed by OPS-2415-D7 (Retry policy reference). This fleet's established pattern holds that such cascades are retry-policy failures, not upstream outages \u2014 confirmed here by D8's own telemetry (all dependencies green, no incident in 19 days) contradicting its headline claim. The claims-adjudication data (POL, history, exposure) returned by subsequent tool calls is extraneous to this fleet-ops matter and does not alter the technical finding.\n\nDETERMINATION: ADJUST RETRY POLICY"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5208",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1779,7 +1779,7 @@
       "answer_tail": "The record contains conservative-therapy trial and imaging documentation but lacks the PA-114 attestation form itself, and the case-type/network-status conflicts remain unresolved. Given the clinical content present maps to the imaging-attestation pathway requirement, the correct procedural disposition is to return for that attestation rather than approve or route on an internally inconsistent file.\n\nDETERMINATION: RETURN FOR PA-114 ATTESTATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "INV-7021",
       "family": "insurance_investigation",
       "shape": "tool_loop",
@@ -1792,7 +1792,7 @@
       "answer_tail": "Notice timeline is governed by the Prior correspondence (D8), corroborated by the policy record (notice received Day 1 of the 30-day window), and confirmed compliant \u2014 no coverage deficiency. However, the active subrogation referral memo (D7) triggers the firm's unconditional routing rule: any claim with a pending subrogation flag routes to the Recovery desk regardless of amount or type. This is a known, firm-held rule, not a gap in the record, so the correct action is to route the matter rather than issue a merits-based APPROVE/DENY at this desk.\n\nDETERMINATION: ESCALATE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5207",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1805,7 +1805,7 @@
       "answer_tail": "DETERMINATION: ROUTE TO PHARMACY BENEFIT REVIEWER"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5222",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1818,7 +1818,7 @@
       "answer_tail": "Since this is out-of-network DME, the standard medical-necessity pathway does not apply; the request must proceed under the network-adequacy exception process. No network-adequacy exception memo is currently in the record, so the request cannot be approved outright on the merits \u2014 it requires that exception pathway to govern its adjudication.\n\nDETERMINATION: APPROVE VIA NETWORK-ADEQUACY EXCEPTION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9108",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1831,7 +1831,7 @@
       "answer_tail": "No data residency clause exists in this record, so infrastructure sign-off cannot be triggered on a nonexistent term. The relevant governing playbook position instead concerns Section D8 (Term and termination), which provides for termination for convenience on only 30 days' notice with no work-in-progress payment \u2014 falling short of our required floor of 90 days' notice and payment for work in progress. This is a concrete, present defect matching a firm position, not a matter requiring escalation.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "OPS-2420",
       "family": "fleet_incident",
       "shape": "tool_loop",
@@ -1844,7 +1844,7 @@
       "answer_tail": "the Retry Policy Reference (OPS-2420-D1). The upstream status page (D12) is internally contradictory but shows all dependencies green for the full window, consistent with the known pattern that these cascades are retry-policy failures, not genuine upstream outages. The insurance policy record, claims history, and exposure computation surfaced in this queue belong to an unrelated matter type and do not bear on this diagnosis. Remediation is to correct audit-tagger's retry configuration (backoff curve, attempt caps, timeout thresholds) against the D1 baseline.\n\nDETERMINATION: ADJUST RETRY POLICY"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "KYC-3118",
       "family": "finance_kyc",
       "shape": "tool_loop",
@@ -1857,7 +1857,7 @@
       "answer_tail": "KYC-3118-D7 (PEP screening result) is the controlling document under the standard that any politically-exposed related party mandates enhanced due diligence regardless of account size. Despite requests, D7's actual content was never produced \u2014 only irrelevant records (account opening boilerplate, an insurance policy, claims history, exposure computation) were returned. Without D7's content, I cannot confirm whether a PEP trigger is present, and I cannot lawfully clear the file on standard-tier review alone since the controlling document is unread.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9117",
       "family": "legal_contract",
       "shape": "long_context",
@@ -1870,7 +1870,7 @@
       "answer_tail": "Termination for convenience (D6) is the non-conforming clause requiring correction \u2014 30 days' notice with no work-in-progress payment fails our 90-day/WIP-payment standard. This is the controlling defect in the record.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "PA-5221",
       "family": "healthcare_prior_auth",
       "shape": "multi_turn",
@@ -1883,7 +1883,7 @@
       "answer_tail": "The request is out-of-network, which requires a network-adequacy exception memo before it can proceed \u2014 the standard medical-necessity pathway does not apply. No such memo is present in the record, so the request cannot be approved on medical-necessity grounds alone; it must be routed through the network-adequacy exception process.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
     },
     {
-      "arm": "apoideia",
+      "arm": "Apoidea",
       "task_id": "LEG-9121",
       "family": "legal_contract",
       "shape": "long_context",

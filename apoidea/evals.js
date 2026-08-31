@@ -75,10 +75,10 @@
             <div class="ev-meta">${meta} · ${v.baseline.tasks} runs</div>
           </td>
           <td class="ev-num">${pct(v.baseline.accuracy)}</td>
-          <td class="ev-num">${pct(v.apoideia.accuracy)}</td>
+          <td class="ev-num">${pct(v.Apoidea.accuracy)}</td>
           ${deltaCell(v.deltas.accuracy_points, false, ' pts')}
           <td class="ev-num">${num(v.baseline.tokens_per_task)}</td>
-          <td class="ev-num">${num(v.apoideia.tokens_per_task)}</td>
+          <td class="ev-num">${num(v.Apoidea.tokens_per_task)}</td>
           ${deltaCell(v.deltas.tokens_pct)}
           ${deltaCell(v.deltas.cost_per_correct_pct)}
           <td class="ev-num">${v.recall_precision === null || v.recall_precision === undefined
@@ -108,7 +108,7 @@
   }
 
   function render(d) {
-    const a = d.overall.baseline, b = d.overall.apoideia, dl = d.overall.deltas;
+    const a = d.overall.baseline, b = d.overall.Apoidea, dl = d.overall.deltas;
     const c = d.config, w = d.workload;
     const dep = d.by_dependence || {};
     const kd = dep.knowledge_dependent, nk = dep.no_knowledge_needed;
@@ -173,7 +173,7 @@
           <div class="ev-split-tag good">WHERE IT HELPS</div>
           <h4>Tasks that turn on institutional knowledge</h4>
           <p class="ev-split-stat">
-            <span>${pct(kd.baseline.accuracy)}</span> → <b>${pct(kd.apoideia.accuracy)}</b>
+            <span>${pct(kd.baseline.accuracy)}</span> → <b>${pct(kd.Apoidea.accuracy)}</b>
             <em>accuracy, ${num(kd.baseline.tasks)} runs</em>
           </p>
           <p class="bm-note">
@@ -186,7 +186,7 @@
           <div class="ev-split-tag bad">WHERE IT COSTS</div>
           <h4>Tasks no memory layer can help with</h4>
           <p class="ev-split-stat">
-            <span>${pct(nk.baseline.accuracy)}</span> → <b>${pct(nk.apoideia.accuracy)}</b>
+            <span>${pct(nk.baseline.accuracy)}</span> → <b>${pct(nk.Apoidea.accuracy)}</b>
             <em>accuracy, ${num(nk.baseline.tasks)} runs</em>
           </p>
           <p class="bm-note">
@@ -290,7 +290,7 @@
       return { correct, n, accuracy: correct / n, ci95: wilson(correct, n) };
     };
     return { dropped: dead.size, baseline: arm('baseline', d.baseline),
-             apoideia: arm('apoideia', d.apoideia) };
+             Apoidea: arm('Apoidea', d.Apoidea) };
   }
 
   function livePanel(o) {
@@ -333,7 +333,7 @@
   }
 
   function renderLive(d, target) {
-    const a = d.baseline, b = d.apoideia, dl = d.deltas, c = d.config, cost = d.cost;
+    const a = d.baseline, b = d.Apoidea, dl = d.deltas, c = d.config, cost = d.cost;
     const h = d.reply_health || {};
     const cb = d.class_breakdown || {};
     const dep = d.by_dependence || {};
@@ -406,8 +406,8 @@
           title: 'Accuracy where memory applies', unit: ' pts', lowerIsBetter: false,
           sub: `${num(kd.baseline.tasks)} tasks that turn on a fact existing only inside one firm.`,
           aLabel: pct(kd.baseline.accuracy), aVal: kd.baseline.accuracy,
-          bLabel: pct(kd.apoideia.accuracy), bVal: kd.apoideia.accuracy,
-          delta: (kd.apoideia.accuracy - kd.baseline.accuracy) * 100,
+          bLabel: pct(kd.Apoidea.accuracy), bVal: kd.Apoidea.accuracy,
+          delta: (kd.Apoidea.accuracy - kd.baseline.accuracy) * 100,
           note: mc ? `Both arms ran the same tasks, so the test is paired: of the
             ${mc.discordant_pairs} they disagreed on, memory won <b>${mc.memory_wins}</b> and lost
             ${mc.memory_loses}. McNemar exact <b>p&nbsp;=&nbsp;${mc.p_value.toFixed(3)}</b>${
@@ -436,7 +436,7 @@
       <p class="bm-note" style="max-width:820px;">
         <b>What is inside those numbers.</b> ${nk ? `The suite also carries ${num(nk.baseline.tasks)}
         tasks no memory layer can help with — decidable from the task itself, where the injected
-        block is pure overhead and costs ${Math.abs((nk.apoideia.accuracy - nk.baseline.accuracy) * 100).toFixed(1)}
+        block is pure overhead and costs ${Math.abs((nk.Apoidea.accuracy - nk.baseline.accuracy) * 100).toFixed(1)}
         points. They stay in the combined figure rather than being excluded from it: across all
         ${num(a.tasks)} tasks accuracy is ${pct(a.accuracy)} → ${pct(b.accuracy)}.` : ''}
         Recall surfaced the governing memory ${d.recall_precision_at_5 !== null
@@ -532,7 +532,7 @@
         const ns = per ? Object.values(per).map((v) => v.n) : null;
         const constant = ns ? Math.max(...ns) / ns.reduce((s, v) => s + v, 0) : null;
         box.insertAdjacentHTML('beforeend', card(
-          `${pct(x.baseline.accuracy)} → ${pct(x.apoideia.accuracy)}`,
+          `${pct(x.baseline.accuracy)} → ${pct(x.Apoidea.accuracy)}`,
           'On a workload we did not write',
           `<b>CUAD</b> — ${num(x.workload.contracts_loaded)} real commercial contracts annotated by
            lawyers under The Atticus Project (CC BY 4.0), ${num(x.baseline.tasks)} held-out tasks.

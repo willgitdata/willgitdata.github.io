@@ -64,7 +64,7 @@
       <div class="dw-col ${tone}">
         <div class="dw-col-head">
           <span class="dw-col-title">${title}</span>
-          <span class="dw-col-badge ${tone}">${tone === 'good' ? 'WITH APOIDEIA' : 'NO MEMORY'}</span>
+          <span class="dw-col-badge ${tone}">${tone === 'good' ? 'WITH APOIDEA' : 'NO MEMORY'}</span>
         </div>
 
         <div class="dw-knows ${knows ? 'has' : 'empty'}">
@@ -91,7 +91,7 @@
 
   function sideBySide(phase, notes, run = 0) {
     const b = wt.baseline[run];
-    const a = wt.apoideia[run];
+    const a = wt.Apoidea[run];
     const max = sum(wt.baseline[0].steps);
     return `
       <div class="dw-split">
@@ -105,7 +105,7 @@
 
   const scenes = () => {
     const b = wt.baseline[0];
-    const a = wt.apoideia[0];
+    const a = wt.Apoidea[0];
     const bTotal = sum(b.steps);
     const aTotal = sum(a.steps);
     const saved = Math.round((1 - aTotal / bTotal) * 100);
@@ -113,7 +113,7 @@
     // the last scene indexed [1] unconditionally. That threw a TypeError inside
     // a render function, which the modal displays as a blank panel — a scene
     // that silently disappears rather than an error anyone would notice.
-    const hasRerun = wt.baseline.length > 1 && wt.apoideia.length > 1;
+    const hasRerun = wt.baseline.length > 1 && wt.Apoidea.length > 1;
 
     return [
       {
@@ -177,7 +177,7 @@
               ${aggregate()}`;
           }
           const b2 = wt.baseline[1];
-          const a2 = wt.apoideia[1];
+          const a2 = wt.Apoidea[1];
           const same = sum(b2.steps) === bTotal;
           return `
             <div class="dw-rerun">
@@ -217,7 +217,7 @@
         <div class="dw-agg-head">ACROSS THE WHOLE SUITE — ${num(bench.config.task_runs_total)} TASK RUNS</div>
         <div class="dw-agg-row">
           <span>accuracy</span>
-          <b>${(o.baseline.accuracy * 100).toFixed(1)}% → ${(o.apoideia.accuracy * 100).toFixed(1)}%</b>
+          <b>${(o.baseline.accuracy * 100).toFixed(1)}% → ${(o.Apoidea.accuracy * 100).toFixed(1)}%</b>
         </div>
         <div class="dw-agg-row">
           <span>tokens per task</span><b>${sign(o.deltas.tokens_pct)}</b>
@@ -296,12 +296,12 @@ python examples/evals/capture_walkthrough.py</pre>
   ]).then(([w, b]) => {
     bench = b;
     // A capture file that exists but holds no runs is not a walkthrough. Every
-    // scene reads baseline[0] and apoideia[0], so the shape is checked once
+    // scene reads baseline[0] and Apoidea[0], so the shape is checked once
     // here rather than indexed on faith five times below — the failure mode
     // otherwise is a TypeError inside a .then(), which surfaces as an empty
     // modal and no error anywhere a reader would see it.
     if (w && w.task && Array.isArray(w.baseline) && w.baseline.length &&
-        Array.isArray(w.apoideia) && w.apoideia.length) {
+        Array.isArray(w.Apoidea) && w.Apoidea.length) {
       wt = w;
       built = scenes();
     }
@@ -316,7 +316,7 @@ python examples/evals/capture_walkthrough.py</pre>
   // a failed fetch. The gateway origin is a per-deployment value like the
   // console's, so it comes from /config.js.
   const banner = document.getElementById('demo-live-banner');
-  const gateway = ((window.APOIDEIA_CONFIG || {}).gatewayOrigin || '').replace(/\/+$/, '');
+  const gateway = ((window.APOIDEA_CONFIG || {}).gatewayOrigin || '').replace(/\/+$/, '');
   if (banner && gateway) {
     fetch(gateway + '/apoidea/v1/health', { signal: AbortSignal.timeout(1500) })
       .then((r) => (r.ok ? r.json() : null))

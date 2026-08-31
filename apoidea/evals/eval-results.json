@@ -58,7 +58,7 @@
       "cost_per_correct_usd": 0.012889471471471469,
       "wall_ms": 24480.200748424977
     },
-    "apoideia": {
+    "Apoidea": {
       "tasks": 510,
       "correct": 486,
       "accuracy": 0.9529411764705882,
@@ -100,7 +100,7 @@
         "cost_per_correct_usd": 0.00119639,
         "wall_ms": 1504.8509579501115
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 75,
         "correct": 75,
         "accuracy": 1.0,
@@ -141,7 +141,7 @@
         "cost_per_correct_usd": 0.017364733333333333,
         "wall_ms": 5063.263669027947
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 60,
         "correct": 60,
         "accuracy": 1.0,
@@ -182,7 +182,7 @@
         "cost_per_correct_usd": 0.048722135416666666,
         "wall_ms": 4712.661667901557
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 60,
         "correct": 60,
         "accuracy": 1.0,
@@ -223,7 +223,7 @@
         "cost_per_correct_usd": 0.0013083583333333333,
         "wall_ms": 2935.2625781903043
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 66,
         "correct": 51,
         "accuracy": 0.7727272727272727,
@@ -264,7 +264,7 @@
         "cost_per_correct_usd": 0.02061789236111111,
         "wall_ms": 6682.153047178872
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 72,
         "correct": 72,
         "accuracy": 1.0,
@@ -305,7 +305,7 @@
         "cost_per_correct_usd": 0.00022299999999999997,
         "wall_ms": 1645.6673298962414
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 111,
         "correct": 102,
         "accuracy": 0.918918918918919,
@@ -346,7 +346,7 @@
         "cost_per_correct_usd": 0.015271483333333334,
         "wall_ms": 1936.341498279944
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 66,
         "correct": 66,
         "accuracy": 1.0,
@@ -389,7 +389,7 @@
         "cost_per_correct_usd": 0.009070904166666668,
         "wall_ms": 2747.504083206877
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 96,
         "correct": 96,
         "accuracy": 1.0,
@@ -430,7 +430,7 @@
         "cost_per_correct_usd": 0.0013083583333333333,
         "wall_ms": 2935.2625781903043
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 66,
         "correct": 51,
         "accuracy": 0.7727272727272727,
@@ -471,7 +471,7 @@
         "cost_per_correct_usd": 0.00014925862068965518,
         "wall_ms": 2339.35570291942
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 156,
         "correct": 147,
         "accuracy": 0.9423076923076923,
@@ -512,7 +512,7 @@
         "cost_per_correct_usd": 0.02369040705128205,
         "wall_ms": 16458.078384108376
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 192,
         "correct": 192,
         "accuracy": 1.0,
@@ -555,7 +555,7 @@
         "cost_per_correct_usd": 0.017364733333333333,
         "wall_ms": 5063.263669027947
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 60,
         "correct": 60,
         "accuracy": 1.0,
@@ -596,7 +596,7 @@
         "cost_per_correct_usd": 0.048722135416666666,
         "wall_ms": 4712.661667901557
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 60,
         "correct": 60,
         "accuracy": 1.0,
@@ -637,7 +637,7 @@
         "cost_per_correct_usd": 0.0013083583333333333,
         "wall_ms": 2935.2625781903043
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 66,
         "correct": 51,
         "accuracy": 0.7727272727272727,
@@ -678,7 +678,7 @@
         "cost_per_correct_usd": 0.013103984649122805,
         "wall_ms": 8327.820377075113
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 183,
         "correct": 174,
         "accuracy": 0.9508196721311475,
@@ -719,7 +719,7 @@
         "cost_per_correct_usd": 0.015271483333333334,
         "wall_ms": 1936.341498279944
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 66,
         "correct": 66,
         "accuracy": 1.0,
@@ -760,7 +760,7 @@
         "cost_per_correct_usd": 0.00119639,
         "wall_ms": 1504.8509579501115
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 75,
         "correct": 75,
         "accuracy": 1.0,
@@ -803,7 +803,7 @@
         "cost_per_correct_usd": 0.0364525625,
         "wall_ms": 18177.766290144064
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 285,
         "correct": 261,
         "accuracy": 0.9157894736842105,
@@ -844,7 +844,7 @@
         "cost_per_correct_usd": 0.0015791877777777779,
         "wall_ms": 6302.4344582809135
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 225,
         "correct": 225,
         "accuracy": 1.0,
@@ -888,7 +888,7 @@
         "cost_per_correct_usd": 0.012949459459459462,
         "wall_ms": 8213.78691663267
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 170,
         "correct": 162,
         "accuracy": 0.9529411764705882,
@@ -929,7 +929,7 @@
         "cost_per_correct_usd": 0.012936664414414416,
         "wall_ms": 8402.117665216792
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 170,
         "correct": 162,
         "accuracy": 0.9529411764705882,
@@ -970,7 +970,7 @@
         "cost_per_correct_usd": 0.01278229054054054,
         "wall_ms": 7864.296166575514
       },
-      "apoideia": {
+      "Apoidea": {
         "tasks": 170,
         "correct": 162,
         "accuracy": 0.9529411764705882,

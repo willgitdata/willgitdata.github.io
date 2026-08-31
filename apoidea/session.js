@@ -72,6 +72,6 @@
   root.ApoideaSession = { normalizeOrigin, apply, check };
 
   if (typeof document !== 'undefined' && document) {
-    check(document, root.APOIDEIA_CONFIG);
+    check(document, root.APOIDEA_CONFIG);
   }
 })(typeof window !== 'undefined' ? window : globalThis);

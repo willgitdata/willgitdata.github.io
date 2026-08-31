@@ -27,7 +27,7 @@ window.ApoideaPaired = (function () {
     const wrong = (arm) => new Set(misses
       .filter((m) => m.arm === arm && inSplit(m)).map((m) => m.task_id));
 
-    const a = wrong('baseline'), b = wrong('apoideia');
+    const a = wrong('baseline'), b = wrong('Apoidea');
     const wins = [...a].filter((t) => !b.has(t)).length;
     const loses = [...b].filter((t) => !a.has(t)).length;
     const n = wins + loses;
