@@ -1,0 +1,188 @@
+{
+  "generated_at": "2026-07-27T17:53:55.139279+00:00",
+  "what_this_is": "The deterministic suite's workload, run against a live frontier model through the same SDK and gateway path. A stratified sample, not the whole suite, because every call costs money at list price. Reported with confidence intervals because a sample this size does not support a point estimate. Published alongside the deterministic results, not instead of them: that suite measures the memory layer, this one measures what the memory layer is worth with a real model in the loop.",
+  "config": {
+    "model": "claude-opus-5",
+    "effort": "low",
+    "prompt_caching": true,
+    "max_tokens": 8192,
+    "seed": 11,
+    "sampled_tasks": 80,
+    "completed_task_pairs": 13,
+    "suite_size": 200,
+    "governing_memories": 10,
+    "distractor_memories": 0,
+    "budget_usd": 4.5,
+    "grading": "closed-set; both backends graded through examples/evals/grade.py"
+  },
+  "workload": {
+    "dataset": "CUAD v1 (The Atticus Project), CC BY 4.0",
+    "citation": "Hendrycks et al., NeurIPS 2021 Datasets and Benchmarks",
+    "authored_by_us": false,
+    "contracts_loaded": 60,
+    "contracts_evaluated": 20,
+    "categories_tracked": 10,
+    "tasks": 200,
+    "base_rate_present": 0.16,
+    "majority_class_baseline": 0.84,
+    "natural_base_rate_present": 0.1867,
+    "label_balance": "The label mix is CUAD's own and is deliberately not levelled. Clause presence is genuinely rare at this contract length, so a constant ABSENT scores the majority_class_baseline above without reading a word \u2014 read every accuracy figure against that number, not against zero. Levelling the set to 50/50 was tried and reverted: arm B's memories are the true base rates of the memory split, and a re-cut exam would leave them pointing the wrong way on the very questions asked, so arm B would lose for a reason we manufactured. The skew is answered in reporting instead \u2014 the run also reports balanced accuracy, the mean of the two per-class recalls, where chance is 50% whatever the mix.",
+    "what_arm_b_is_being_given": "A correct prior, and that is part of the finding rather than a flaw in it. A firm that has reviewed forty agreements knows a Change of Control clause is rare; that is institutional knowledge in the ordinary sense. But it means some of any gain here is a base rate rather than comprehension, so balanced accuracy and the per-class recalls are the honest place to look.",
+    "max_contract_chars": 18000,
+    "contract_length_note": "Only contracts that fit whole under 18,000 characters are used. Truncating longer ones kept CUAD's label while deleting the clause it refers to, which made most PRESENT tasks unreadable. The cost of the rule is a bias toward shorter agreements; the benefit is that the answer really is in the text the model reads.",
+    "task": "presence/absence of a clause category in a real commercial contract",
+    "not_a_claim_about": "CUAD leaderboard performance. CUAD's own task is span extraction; this uses its annotations for a binary determination because that is gradable without inventing a grader, which is the point of using an external set.",
+    "leakage_control": "Arm B's memories are distilled only from contracts disjoint from the evaluated set, and are base rates rather than quoted text. Both properties are asserted in build_external_suite, not just intended.",
+    "sampled_tasks": 80,
+    "sampled_label_counts": {
+      "ABSENT": 67,
+      "PRESENT": 13
+    },
+    "sampled_majority_class_baseline": 0.8375
+  },
+  "stratification": {
+    "cuad_contract_review/long_context": 80
+  },
+  "forecast": {
+    "available": true,
+    "basis": "calibrated from a previous live run",
+    "prompt_sizing": "the sampled tasks' own corpora",
+    "cache_hit_share": 0.804,
+    "forecast_usd": 3.6,
+    "forecast_prompt_tokens": {
+      "baseline": 581796,
+      "apoideia": 387864
+    },
+    "forecast_output_tokens": 90463,
+    "shapes_not_in_stub_results": 0,
+    "calibration": {
+      "from_run": "2026-07-27T17:21:08.785539+00:00",
+      "from_task_pairs": 22,
+      "cache_hit_share": 0.8038666773694783,
+      "output_per_prompt_token": 0.09329363736963116
+    },
+    "note": "output and cache rates measured from the previous live run in real-model-results.json, not assumed"
+  },
+  "cost": {
+    "calls": 97,
+    "prompt_tokens": 401702,
+    "input_tokens_uncached": 2800,
+    "cache_write_tokens": 182451,
+    "cache_read_tokens": 216451,
+    "output_tokens": 100647,
+    "usd": 3.778719,
+    "usd_without_caching": 4.524685,
+    "caching_discount_pct": 16.5
+  },
+  "reply_health": {
+    "empty_replies": 0,
+    "truncated_replies": 0,
+    "retried_empty": 0
+  },
+  "price_per_1m_usd": {
+    "input": 5.0,
+    "output": 25.0,
+    "cache_write": 6.25,
+    "cache_read": 0.5
+  },
+  "stopped_early": "budget guard: $3.78 of $4.50 spent; $0.72 left is under the $0.75 needed to cover another call the size of the largest seen so far",
+  "failed_tasks": [],
+  "baseline": {
+    "tasks": 13,
+    "correct": 11,
+    "accuracy": 0.8461538461538461,
+    "accuracy_ci95": [
+      0.5776,
+      0.9567
+    ],
+    "steps_per_task": 4.0,
+    "tokens_in": 225197,
+    "tokens_out": 63115,
+    "tokens_per_task": 22177.846153846152,
+    "wall_ms": 944597.4623329821
+  },
+  "apoideia": {
+    "tasks": 13,
+    "correct": 13,
+    "accuracy": 1.0,
+    "accuracy_ci95": [
+      0.7719,
+      1.0
+    ],
+    "steps_per_task": 3.0,
+    "tokens_in": 151532,
+    "tokens_out": 30119,
+    "tokens_per_task": 13973.153846153846,
+    "wall_ms": 464802.2793760174
+  },
+  "deltas": {
+    "accuracy_points": 15.384615384615385,
+    "tokens_pct": -36.99499153694608,
+    "steps_pct": -25.0
+  },
+  "recall_precision_at_5": 1.0,
+  "class_breakdown": {
+    "baseline": {
+      "per_class": {
+        "ABSENT": {
+          "n": 9,
+          "recall": 0.7777777777777778
+        },
+        "PRESENT": {
+          "n": 4,
+          "recall": 1.0
+        }
+      },
+      "balanced_accuracy": 0.8888888888888888
+    },
+    "apoideia": {
+      "per_class": {
+        "ABSENT": {
+          "n": 9,
+          "recall": 1.0
+        },
+        "PRESENT": {
+          "n": 4,
+          "recall": 1.0
+        }
+      },
+      "balanced_accuracy": 1.0
+    }
+  },
+  "unparseable_answers": 0,
+  "misses": [
+    {
+      "arm": "baseline",
+      "task_id": "CUAD-5a21b831-uncapped-liability",
+      "family": "cuad_contract_review",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ABSENT",
+      "fallback": "PRESENT",
+      "determination": "PRESENT",
+      "kind": "no memory to draw on",
+      "answer_tail": "analytic point above \u2014 conflating \"no cap stated\" with \"no liability language at all\" \u2014 and not on deference to the review outcome. Had the instrument been a bare fee-and-benefits schedule with no indemnity, ABSENT would have been correct and I would hold that line.\n\n*Collateral, outside this category:* Indemnification and Governing Law (Florida; arbitration, jury-trial waiver) are also PRESENT if on the review sheet. Clause (iv)'s exposure for \"any changes in company value or brand value\" warrants a risk annotation as grossly disproportionate to a $250,000 sponsorship.\n\nDETERMINATION: PRESENT"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "CUAD-d4591607-exclusivity",
+      "family": "cuad_contract_review",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ABSENT",
+      "fallback": "PRESENT",
+      "determination": "PRESENT",
+      "kind": "no memory to draw on",
+      "answer_tail": "ation preserved for the file.** The operative words of \u00a7 2(a) are redacted, and this determination rests on the syntactic position of that redaction and the function of the \"notwithstanding\" carve-out rather than on legible text. That is a structural inference, and it is the weakest link in the analysis. If the unredacted July 1, 2017 base Agreement shows \u00a7 2(a) to be merely a permissive approved-facility list with Premier retaining alternate-supplier rights, this tag should revert to ABSENT. I recommend the base Agreement be pulled before the tag is treated as settled.\n\nDETERMINATION: PRESENT"
+    }
+  ],
+  "caveats": [
+    "A sample, not the suite. Accuracy is reported with a 95% Wilson interval; at this sample size the interval is wide and the point estimate should not be quoted without it.",
+    "One pass per task, not n repeats. Sampling noise from the model is inside these numbers and is not separated out \u2014 breadth across families and shapes was chosen over repeats, because a narrow sample of a wide workload is the larger error.",
+    "MEASURED: token counts are the provider's own usage figures, including tokens served from cache, which the model still read. Recall runs through the real gateway against the same store of hundreds of memories the deterministic suite uses.",
+    "MODELLED: unchanged from the deterministic suite \u2014 how many documents an uninformed agent reads before finding the governing one, and that missing knowledge costs bounded rework. See driver.py.",
+    "Prompt caching lowers what this run cost us; it does not lower the token counts, which are reported in full. `cost.usd_without_caching` is the undiscounted figure."
+  ]
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy — Apoideia</title>
+<meta name="description" content="What this site collects (nothing), what a gateway deployment stores, and why Apoideia holds no model-provider credentials." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/privacy.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Privacy — Apoideia" />
+<meta property="og:description" content="What this site collects (nothing), what a gateway deployment stores, and why Apoideia holds no model-provider credentials." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/privacy.html" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Privacy — Apoideia" />
+<meta name="twitter:description" content="What this site collects (nothing), what a gateway deployment stores, and why Apoideia holds no model-provider credentials." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+<style>
+  .todo { border: 2px dashed var(--comb); padding: 14px 16px; margin: 0 0 28px; font-size: 13px; line-height: 1.65; }
+  .todo b { color: var(--comb); }
+  .content table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 8px; }
+  .content th, .content td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .content th { color: var(--text-dim); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+</style>
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html">Docs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/#compare">Compare</a>
+      <a href="/apoidea/#pricing">Pricing</a>
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side">
+    <div class="side-head">Legal</div>
+    <a href="/apoidea/terms.html">Terms</a>
+    <a href="/apoidea/privacy.html" class="active">Privacy</a>
+    <div class="side-head">Docs</div>
+    <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+    <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+    <a href="/apoidea/">&larr; Home</a>
+  </nav>
+  <div class="content">
+    <h1>Privacy</h1>
+
+    <div class="todo">
+      <b>TODO — for a human before launch.</b> Two facts on this page are not the build agent's to
+      decide and are left blank on purpose: the <b>legal entity acting as data controller</b> and a
+      <b>contact address for privacy requests</b>. Everything else below was written by reading the
+      code it describes, and the claims marked "verified" were checked against the source rather
+      than recalled. Effective date: <b>TODO</b>.
+    </div>
+
+    <p>Two different things carry a privacy story and they are not the same, so they are separate
+      below: <b>this website</b>, and <b>a gateway deployment you sign into</b>.</p>
+
+    <h2>This website</h2>
+    <p>It is a set of static files served by a 200-line node process with no dependencies. It has
+      no analytics, no tag manager, no advertising pixel, no A/B framework and no embedded
+      third-party script of any kind — a Content-Security-Policy served with every response
+      forbids one from loading even if someone added it. It sets no cookies and reads none.</p>
+    <p>The pages make exactly three kinds of request, all of them optional and all of them visible
+      in the source of <code>apps/site</code>:</p>
+    <ul>
+      <li><code>/evals/*.json</code> on this same origin — the measurement files every number on
+        the site is rendered from.</li>
+      <li><code>GET /auth/me</code> on the gateway origin, to decide whether the nav should say
+        "Sign in" or "Open console". Your browser attaches the gateway's own session cookie if you
+        already have one; the site itself cannot read that cookie (it is <code>httpOnly</code>) and
+        learns only yes or no. If the gateway is unreachable the page carries on unchanged.</li>
+      <li><code>GET /v1/health</code> on the gateway origin, for the "running live on this machine"
+        banner. Same fail-soft rule.</li>
+    </ul>
+    <p>The site server writes no access log — it logs one line, at startup, saying which port it
+      bound. Whatever proxy or platform fronts it in a given deployment may keep logs of its own,
+      and those are that operator's.</p>
+
+    <h2>A gateway deployment</h2>
+    <p>This is where anything personal lives, and <b>it lives wherever the operator runs it</b> —
+      its own Postgres and its own object store. If you self-host, that is your infrastructure and
+      no copy of it goes anywhere else. Apoideia's database is never a shared, vendor-hosted one:
+      the gateway opens a connection to exactly one database, the one named by its own
+      <code>DATABASE_URL</code>.</p>
+    <table>
+      <thead><tr><th>What</th><th>Why it exists</th></tr></thead>
+      <tbody>
+        <tr><td>Email address</td><td>Identifies the account and appears as the actor in that organisation's audit log.</td></tr>
+        <tr><td>Password, as a salted scrypt hash</td><td>Sign-in. The password itself is never stored.</td></tr>
+        <tr><td>Session record</td><td>Keeps you signed in; expires, and is deleted on sign-out.</td></tr>
+        <tr><td>API keys, as salted hashes plus a short lookup prefix</td><td>Authenticating your SDK. The key itself is shown once and then unrecoverable.</td></tr>
+        <tr><td>Agents, memories, lessons</td><td>The product. Whatever your agents write is what is stored — that content is yours and chosen by you.</td></tr>
+        <tr><td>Runs and trace events</td><td>The observability surface: steps, token counts, errors, and which memories were recalled.</td></tr>
+        <tr><td>Audit events</td><td>Who did what in the organisation — signups, key creation, key revocation.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>We hold no model-provider credentials</h2>
+    <p><b>Verified against the source, not asserted.</b> There is no call to any model provider's
+      API anywhere in this repository's application code; the gateway carries no environment
+      variable for an Anthropic or OpenAI key and no code that would read one; and the gateway
+      makes exactly one outbound call in its entire surface — to the memory engine at
+      <code>APOIDEIA_MEMORY_URL</code>.</p>
+    <p>The reason is structural rather than a policy we maintain: the model call happens inside
+      <em>your</em> process. <code>agent.wrap(client)</code> proxies the client you constructed,
+      holding the key you configured, and the request goes from your machine to your provider. A
+      credential store for provider keys would be a secret we held and never used, so there is not
+      one.</p>
+
+    <h2>Sign-in and third parties</h2>
+    <p>A deployment can be configured to verify sign-in through an external identity provider — in
+      the v0.1 default hosted configuration, Supabase Auth. Where it is, that provider handles the
+      password and the gateway receives only a signed token naming your user id; the gateway trusts
+      that token's subject claim and nothing else in it. A self-hosted deployment with no such
+      provider configured keeps the email and password hash in its own Postgres and talks to no
+      third party at all.</p>
+    <p>Email is the only sign-in method in v0.1. There is no GitHub or Google sign-in, so no
+      account of yours anywhere else is involved.</p>
+
+    <h2>Access, export and deletion</h2>
+    <p>v0.1 has no self-serve account deletion — that is a known gap rather than a policy. What
+      exists today:</p>
+    <ul>
+      <li>An agent's memories, lessons and runs can be exported over the API
+        (<code>GET /v1/agents/:slug/export</code>).</li>
+      <li>Individual memories can be listed and deleted, and an agent can be deleted outright.</li>
+      <li>API keys can be revoked at any time, immediately.</li>
+      <li>If you self-host, deleting a row, a database or the whole deployment is entirely in your
+        hands and needs nobody's cooperation.</li>
+      <li>If someone else operates the deployment you use, your request goes to them — they are the
+        only party who can act on it.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>This is developer infrastructure. It is not directed at children and no account is intended
+      for anyone under 16.</p>
+
+    <h2>Changes</h2>
+    <p>This page will change as the product does. Material changes will be dated at the top rather
+      than applied quietly.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/">Home</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+</body>
+</html>

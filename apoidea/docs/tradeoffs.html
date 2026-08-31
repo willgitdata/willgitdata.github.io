@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tradeoffs — Apoideia Docs</title>
+<meta name="description" content="What Apoideia v0.1 does not do yet, and why: post-run learning, no token compression, retrieval limits, single region, recall latency budget." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/docs/tradeoffs.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Tradeoffs — what Apoideia v0.1 does not do yet" />
+<meta property="og:description" content="The credibility page: post-run learning, no token compression, retrieval limits, single region, recall latency budget." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/docs/tradeoffs.html" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tradeoffs — what Apoideia v0.1 does not do yet" />
+<meta name="twitter:description" content="The credibility page: post-run learning, no token compression, retrieval limits, single region, recall latency budget." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html" aria-current="page">Docs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/#compare">Compare</a>
+      <a href="/apoidea/#pricing">Pricing</a>
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side">
+    <div class="side-head">Docs</div>
+    <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+    <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+    <a href="/apoidea/docs/tradeoffs.html" class="active">Tradeoffs</a>
+    <div class="side-head">More</div>
+    <a href="/apoidea/performance.html">Performance</a>
+    <a href="/apoidea/">&larr; Home</a>
+  </nav>
+  <div class="content">
+    <h1>Tradeoffs</h1>
+    <p>What v0.1 doesn't do yet, and why — the credibility page. If it's not here or in the README status line, assume it works as described.</p>
+
+    <h2>Learning is post-run, not mid-run</h2>
+    <p>The distiller mines <em>finished</em> runs on an interval (default 30s). A run in progress streams its error and tool-call events to the console live feed as they happen, but there's no automatic mid-run correction and no pitfall-warning callback yet — the SDK doesn't inspect a run's own errors against known lessons while it's still open. That's the single biggest gap against hosted runtimes that intervene inside a call.</p>
+
+    <h2>No token compression</h2>
+    <p>Injected memory/lesson content is capped by the SDK (<code>APOIDEIA_INJECT_MAX_TOKENS</code>, default 1500) but the cap is a blind character-prefix cut, not value-aware — it can slice a memory mid-word rather than dropping the lowest-value content first. It's never summarized or compressed either. Injection adds tokens to a call — the console's savings panel shows that overhead rather than hiding it.</p>
+
+    <h2>Retrieval backend, honestly</h2>
+    <p>The memory engine's built-in lexical/adaptive retriever serves recall by default. It scores IDF-weighted token overlap against the agent's own store, so a term shared by every memory contributes nothing and a rare one dominates — and the trace carries the per-token weights, so a ranking can be inspected rather than trusted.</p>
+    <p>Measured: <b>85.3% precision@5</b> against a 270-memory store, across the eval suite. The 15% it misses are the queries a token-overlap retriever structurally cannot serve — a claim reading "policy inception 2017" against a rule phrased "written before 2019" shares no terms at all. Those show up directly as an accuracy ceiling on the page (prior authorization, our weakest family, is recall-bound at 58.3%). Semantic matching is the fix, and it exists: the retrieval engine integration (vector/hybrid/rerank routing with an explainable strategy trace) is real, wired, and tested — but its local embedding model downloads from Hugging Face on first use, so it's off by default in network-restricted environments. Set <code>APOIDEIA_RETRIEVER=engine</code> where that's reachable.</p>
+
+    <h2>Single region, no HA</h2>
+    <p>v0.1 is one gateway process, one Postgres, one memory-engine instance. Horizontal scaling needs the Postgres LISTEN/NOTIFY bridge noted in the architecture doc in place of the current in-process event bus — straightforward, not yet built.</p>
+
+    <h2>No orchestration</h2>
+    <p>Apoideia is deliberately not an agent framework or orchestrator. Bring your own agent loop in whatever framework you like; Apoideia is the memory/learning/observability layer underneath it.</p>
+
+    <h2>Recall latency budget</h2>
+    <p>The SDK gives recall 500ms before failing soft and skipping injection. On a cold cache or a loaded gateway that can mean an occasional call runs without injected context rather than blocking your latency-sensitive path. The Python SDK logs that at <code>DEBUG</code> on the <code>apoideia</code> logger; the TypeScript SDK does not log it at all, so there it is currently indistinguishable from memory having had nothing to say.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/">Home</a>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+</body>
+</html>

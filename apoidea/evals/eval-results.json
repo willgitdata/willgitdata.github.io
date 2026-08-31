@@ -1,0 +1,1025 @@
+{
+  "generated_at": "2026-07-29T00:37:45.888376+00:00",
+  "suite_version": "2",
+  "what_this_is": "A controlled A/B across the whole suite: the same agent, the same tasks, the same SDK and gateway, run once with an empty memory and once with the firm's knowledge in memory. Four shapes of agent work across five regulated verticals, including a control set where no institutional knowledge exists and memory can only add cost. Not a public benchmark, and not a measurement of any language model's quality.",
+  "price_assumption": "$0.25/1M input, $2.00/1M output \u2014 a published list price used only to convert measured tokens into dollars. Swap it and every token count still holds.",
+  "config": {
+    "seeds": [
+      11,
+      23,
+      37
+    ],
+    "tasks_per_seed": 170,
+    "task_runs_total": 1020,
+    "governing_memories": 30,
+    "distractor_memories": 240,
+    "recall_top_k": 5
+  },
+  "workload": {
+    "families": [
+      "control_unaided",
+      "finance_kyc",
+      "fleet_incident",
+      "healthcare_prior_auth",
+      "insurance_investigation",
+      "insurance_triage",
+      "legal_contract"
+    ],
+    "verticals": [
+      "finance",
+      "fleet_ops",
+      "healthcare",
+      "insurance",
+      "legal",
+      "mixed"
+    ],
+    "shapes": [
+      "long_context",
+      "multi_turn",
+      "single_shot",
+      "tool_loop"
+    ],
+    "knowledge_dependent": 95,
+    "not_knowledge_dependent": 75
+  },
+  "overall": {
+    "baseline": {
+      "tasks": 510,
+      "correct": 333,
+      "accuracy": 0.6529411764705882,
+      "steps_total": 3782,
+      "steps_per_task": 7.415686274509804,
+      "tokens_in": 16680424,
+      "tokens_out": 61044,
+      "tokens_total": 16741468,
+      "tokens_per_task": 32826.407843137255,
+      "cost_usd": 4.292193999999999,
+      "cost_per_task_usd": 0.008416066666666666,
+      "cost_per_correct_usd": 0.012889471471471469,
+      "wall_ms": 24480.200748424977
+    },
+    "apoideia": {
+      "tasks": 510,
+      "correct": 486,
+      "accuracy": 0.9529411764705882,
+      "steps_total": 2299,
+      "steps_per_task": 4.507843137254902,
+      "tokens_in": 4708693,
+      "tokens_out": 38247,
+      "tokens_total": 4746940,
+      "tokens_per_task": 9307.725490196079,
+      "cost_usd": 1.2536672500000001,
+      "cost_per_task_usd": 0.002458171078431373,
+      "cost_per_correct_usd": 0.002579562242798354,
+      "wall_ms": 16166.517748613842
+    },
+    "deltas": {
+      "accuracy_points": 29.999999999999993,
+      "accuracy_relative_pct": 45.94594594594594,
+      "tokens_pct": -71.64561674041965,
+      "steps_pct": -39.21205711263882,
+      "cost_pct": -70.79192482912,
+      "cost_per_correct_pct": -79.98705960513779
+    }
+  },
+  "recall_precision_at_5": 0.8526315789473684,
+  "by_family": {
+    "control_unaided": {
+      "baseline": {
+        "tasks": 75,
+        "correct": 75,
+        "accuracy": 1.0,
+        "steps_total": 135,
+        "steps_per_task": 1.8,
+        "tokens_in": 337749,
+        "tokens_out": 2646,
+        "tokens_total": 340395,
+        "tokens_per_task": 4538.6,
+        "cost_usd": 0.08972925000000001,
+        "cost_per_task_usd": 0.00119639,
+        "cost_per_correct_usd": 0.00119639,
+        "wall_ms": 1504.8509579501115
+      },
+      "apoideia": {
+        "tasks": 75,
+        "correct": 75,
+        "accuracy": 1.0,
+        "steps_total": 135,
+        "steps_per_task": 1.8,
+        "tokens_in": 365004,
+        "tokens_out": 2646,
+        "tokens_total": 367650,
+        "tokens_per_task": 4902.0,
+        "cost_usd": 0.096543,
+        "cost_per_task_usd": 0.00128724,
+        "cost_per_correct_usd": 0.00128724,
+        "wall_ms": 1611.2020802102052
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": 8.00687436654475,
+        "steps_pct": 0.0,
+        "cost_pct": 7.5936776469211456,
+        "cost_per_correct_pct": 7.59367764692115
+      },
+      "recall_precision": null
+    },
+    "finance_kyc": {
+      "baseline": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 852,
+        "steps_per_task": 14.2,
+        "tokens_in": 4062896,
+        "tokens_out": 13080,
+        "tokens_total": 4075976,
+        "tokens_per_task": 67932.93333333333,
+        "cost_usd": 1.041884,
+        "cost_per_task_usd": 0.017364733333333333,
+        "cost_per_correct_usd": 0.017364733333333333,
+        "wall_ms": 5063.263669027947
+      },
+      "apoideia": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 420,
+        "steps_per_task": 7.0,
+        "tokens_in": 446692,
+        "tokens_out": 6528,
+        "tokens_total": 453220,
+        "tokens_per_task": 7553.666666666667,
+        "cost_usd": 0.12472899999999999,
+        "cost_per_task_usd": 0.0020788166666666666,
+        "cost_per_correct_usd": 0.0020788166666666666,
+        "wall_ms": 2641.006379039027
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": -88.88069998449451,
+        "steps_pct": -50.70422535211267,
+        "cost_pct": -88.02851373089518,
+        "cost_per_correct_pct": -88.02851373089518
+      },
+      "recall_precision": 1.0
+    },
+    "fleet_incident": {
+      "baseline": {
+        "tasks": 60,
+        "correct": 24,
+        "accuracy": 0.4,
+        "steps_total": 888,
+        "steps_per_task": 14.8,
+        "tokens_in": 4565773,
+        "tokens_out": 13944,
+        "tokens_total": 4579717,
+        "tokens_per_task": 76328.61666666667,
+        "cost_usd": 1.16933125,
+        "cost_per_task_usd": 0.019488854166666666,
+        "cost_per_correct_usd": 0.048722135416666666,
+        "wall_ms": 4712.661667901557
+      },
+      "apoideia": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 420,
+        "steps_per_task": 7.0,
+        "tokens_in": 489220,
+        "tokens_out": 6753,
+        "tokens_total": 495973,
+        "tokens_per_task": 8266.216666666667,
+        "cost_usd": 0.135811,
+        "cost_per_task_usd": 0.0022635166666666665,
+        "cost_per_correct_usd": 0.0022635166666666665,
+        "wall_ms": 2435.2555442019366
+      },
+      "deltas": {
+        "accuracy_points": 60.0,
+        "accuracy_relative_pct": 149.99999999999997,
+        "tokens_pct": -89.17022602051613,
+        "steps_pct": -52.702702702702695,
+        "cost_pct": -88.38558364022172,
+        "cost_per_correct_pct": -95.35423345608869
+      },
+      "recall_precision": 1.0
+    },
+    "healthcare_prior_auth": {
+      "baseline": {
+        "tasks": 66,
+        "correct": 30,
+        "accuracy": 0.45454545454545453,
+        "steps_total": 401,
+        "steps_per_task": 6.075757575757576,
+        "tokens_in": 105979,
+        "tokens_out": 6378,
+        "tokens_total": 112357,
+        "tokens_per_task": 1702.378787878788,
+        "cost_usd": 0.03925075,
+        "cost_per_task_usd": 0.0005947083333333334,
+        "cost_per_correct_usd": 0.0013083583333333333,
+        "wall_ms": 2935.2625781903043
+      },
+      "apoideia": {
+        "tasks": 66,
+        "correct": 51,
+        "accuracy": 0.7727272727272727,
+        "steps_total": 359,
+        "steps_per_task": 5.4393939393939394,
+        "tokens_in": 153095,
+        "tokens_out": 5673,
+        "tokens_total": 158768,
+        "tokens_per_task": 2405.5757575757575,
+        "cost_usd": 0.049619750000000004,
+        "cost_per_task_usd": 0.000751814393939394,
+        "cost_per_correct_usd": 0.000972936274509804,
+        "wall_ms": 2683.548457978759
+      },
+      "deltas": {
+        "accuracy_points": 31.818181818181817,
+        "accuracy_relative_pct": 70.0,
+        "tokens_pct": 41.30672766271795,
+        "steps_pct": -10.473815461346634,
+        "cost_pct": 26.41732960516679,
+        "cost_per_correct_pct": -25.636864938137183
+      },
+      "recall_precision": 0.5833333333333334
+    },
+    "insurance_investigation": {
+      "baseline": {
+        "tasks": 72,
+        "correct": 72,
+        "accuracy": 1.0,
+        "steps_total": 1161,
+        "steps_per_task": 16.125,
+        "tokens_in": 5795945,
+        "tokens_out": 17751,
+        "tokens_total": 5813696,
+        "tokens_per_task": 80745.77777777778,
+        "cost_usd": 1.4844882499999998,
+        "cost_per_task_usd": 0.02061789236111111,
+        "cost_per_correct_usd": 0.02061789236111111,
+        "wall_ms": 6682.153047178872
+      },
+      "apoideia": {
+        "tasks": 72,
+        "correct": 72,
+        "accuracy": 1.0,
+        "steps_total": 656,
+        "steps_per_task": 9.11111111111111,
+        "tokens_in": 1774097,
+        "tokens_out": 10068,
+        "tokens_total": 1784165,
+        "tokens_per_task": 24780.069444444445,
+        "cost_usd": 0.46366025,
+        "cost_per_task_usd": 0.006439725694444444,
+        "cost_per_correct_usd": 0.006439725694444444,
+        "wall_ms": 3475.9244580636732
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": -69.31100284569402,
+        "steps_pct": -43.49698535745048,
+        "cost_pct": -68.76632401772126,
+        "cost_per_correct_pct": -68.76632401772126
+      },
+      "recall_precision": 0.75
+    },
+    "insurance_triage": {
+      "baseline": {
+        "tasks": 111,
+        "correct": 42,
+        "accuracy": 0.3783783783783784,
+        "steps_total": 111,
+        "steps_per_task": 1.0,
+        "tokens_in": 17232,
+        "tokens_out": 2529,
+        "tokens_total": 19761,
+        "tokens_per_task": 178.02702702702703,
+        "cost_usd": 0.009366,
+        "cost_per_task_usd": 8.437837837837838e-05,
+        "cost_per_correct_usd": 0.00022299999999999997,
+        "wall_ms": 1645.6673298962414
+      },
+      "apoideia": {
+        "tasks": 111,
+        "correct": 102,
+        "accuracy": 0.918918918918919,
+        "steps_total": 111,
+        "steps_per_task": 1.0,
+        "tokens_in": 33228,
+        "tokens_out": 2466,
+        "tokens_total": 35694,
+        "tokens_per_task": 321.56756756756755,
+        "cost_usd": 0.013239,
+        "cost_per_task_usd": 0.00011927027027027028,
+        "cost_per_correct_usd": 0.00012979411764705884,
+        "wall_ms": 1629.3544560903683
+      },
+      "deltas": {
+        "accuracy_points": 54.054054054054056,
+        "accuracy_relative_pct": 142.85714285714286,
+        "tokens_pct": 80.62851070289965,
+        "steps_pct": 0.0,
+        "cost_pct": 41.351697629724555,
+        "cost_per_correct_pct": -41.79635979952518
+      },
+      "recall_precision": 0.8695652173913043
+    },
+    "legal_contract": {
+      "baseline": {
+        "tasks": 66,
+        "correct": 30,
+        "accuracy": 0.45454545454545453,
+        "steps_total": 234,
+        "steps_per_task": 3.5454545454545454,
+        "tokens_in": 1794850,
+        "tokens_out": 4716,
+        "tokens_total": 1799566,
+        "tokens_per_task": 27266.151515151516,
+        "cost_usd": 0.4581445,
+        "cost_per_task_usd": 0.0069415833333333335,
+        "cost_per_correct_usd": 0.015271483333333334,
+        "wall_ms": 1936.341498279944
+      },
+      "apoideia": {
+        "tasks": 66,
+        "correct": 66,
+        "accuracy": 1.0,
+        "steps_total": 198,
+        "steps_per_task": 3.0,
+        "tokens_in": 1447357,
+        "tokens_out": 4113,
+        "tokens_total": 1451470,
+        "tokens_per_task": 21991.969696969696,
+        "cost_usd": 0.37006525,
+        "cost_per_task_usd": 0.005607049242424242,
+        "cost_per_correct_usd": 0.005607049242424242,
+        "wall_ms": 1690.2263730298728
+      },
+      "deltas": {
+        "accuracy_points": 54.54545454545454,
+        "accuracy_relative_pct": 120.0,
+        "tokens_pct": -19.34333055859024,
+        "steps_pct": -15.384615384615385,
+        "cost_pct": -19.22521169630979,
+        "cost_per_correct_pct": -63.28418713468628
+      },
+      "recall_precision": 1.0
+    }
+  },
+  "by_shape": {
+    "long_context": {
+      "baseline": {
+        "tasks": 96,
+        "correct": 60,
+        "accuracy": 0.625,
+        "steps_total": 324,
+        "steps_per_task": 3.375,
+        "tokens_in": 2125369,
+        "tokens_out": 6456,
+        "tokens_total": 2131825,
+        "tokens_per_task": 22206.510416666668,
+        "cost_usd": 0.54425425,
+        "cost_per_task_usd": 0.005669315104166667,
+        "cost_per_correct_usd": 0.009070904166666668,
+        "wall_ms": 2747.504083206877
+      },
+      "apoideia": {
+        "tasks": 96,
+        "correct": 96,
+        "accuracy": 1.0,
+        "steps_total": 288,
+        "steps_per_task": 3.0,
+        "tokens_in": 1796612,
+        "tokens_out": 5853,
+        "tokens_total": 1802465,
+        "tokens_per_task": 18775.677083333332,
+        "cost_usd": 0.460859,
+        "cost_per_task_usd": 0.004800614583333334,
+        "cost_per_correct_usd": 0.004800614583333334,
+        "wall_ms": 2523.695706273429
+      },
+      "deltas": {
+        "accuracy_points": 37.5,
+        "accuracy_relative_pct": 60.0,
+        "tokens_pct": -15.449673401897435,
+        "steps_pct": -11.11111111111111,
+        "cost_pct": -15.322847731551938,
+        "cost_per_correct_pct": -47.07677983221996
+      },
+      "recall_precision": 1.0
+    },
+    "multi_turn": {
+      "baseline": {
+        "tasks": 66,
+        "correct": 30,
+        "accuracy": 0.45454545454545453,
+        "steps_total": 401,
+        "steps_per_task": 6.075757575757576,
+        "tokens_in": 105979,
+        "tokens_out": 6378,
+        "tokens_total": 112357,
+        "tokens_per_task": 1702.378787878788,
+        "cost_usd": 0.03925075,
+        "cost_per_task_usd": 0.0005947083333333334,
+        "cost_per_correct_usd": 0.0013083583333333333,
+        "wall_ms": 2935.2625781903043
+      },
+      "apoideia": {
+        "tasks": 66,
+        "correct": 51,
+        "accuracy": 0.7727272727272727,
+        "steps_total": 359,
+        "steps_per_task": 5.4393939393939394,
+        "tokens_in": 153095,
+        "tokens_out": 5673,
+        "tokens_total": 158768,
+        "tokens_per_task": 2405.5757575757575,
+        "cost_usd": 0.049619750000000004,
+        "cost_per_task_usd": 0.000751814393939394,
+        "cost_per_correct_usd": 0.000972936274509804,
+        "wall_ms": 2683.548457978759
+      },
+      "deltas": {
+        "accuracy_points": 31.818181818181817,
+        "accuracy_relative_pct": 70.0,
+        "tokens_pct": 41.30672766271795,
+        "steps_pct": -10.473815461346634,
+        "cost_pct": 26.41732960516679,
+        "cost_per_correct_pct": -25.636864938137183
+      },
+      "recall_precision": 0.5833333333333334
+    },
+    "single_shot": {
+      "baseline": {
+        "tasks": 156,
+        "correct": 87,
+        "accuracy": 0.5576923076923077,
+        "steps_total": 156,
+        "steps_per_task": 1.0,
+        "tokens_in": 24462,
+        "tokens_out": 3435,
+        "tokens_total": 27897,
+        "tokens_per_task": 178.82692307692307,
+        "cost_usd": 0.0129855,
+        "cost_per_task_usd": 8.324038461538462e-05,
+        "cost_per_correct_usd": 0.00014925862068965518,
+        "wall_ms": 2339.35570291942
+      },
+      "apoideia": {
+        "tasks": 156,
+        "correct": 147,
+        "accuracy": 0.9423076923076923,
+        "steps_total": 156,
+        "steps_per_task": 1.0,
+        "tokens_in": 48977,
+        "tokens_out": 3372,
+        "tokens_total": 52349,
+        "tokens_per_task": 335.5705128205128,
+        "cost_usd": 0.018988249999999998,
+        "cost_per_task_usd": 0.00012171955128205128,
+        "cost_per_correct_usd": 0.00012917176870748298,
+        "wall_ms": 2407.087203057017
+      },
+      "deltas": {
+        "accuracy_points": 38.46153846153846,
+        "accuracy_relative_pct": 68.9655172413793,
+        "tokens_pct": 87.65100189984587,
+        "steps_pct": 0.0,
+        "cost_pct": 46.22656039428591,
+        "cost_per_correct_pct": -13.457749970728747
+      },
+      "recall_precision": 0.8695652173913043
+    },
+    "tool_loop": {
+      "baseline": {
+        "tasks": 192,
+        "correct": 156,
+        "accuracy": 0.8125,
+        "steps_total": 2901,
+        "steps_per_task": 15.109375,
+        "tokens_in": 14424614,
+        "tokens_out": 44775,
+        "tokens_total": 14469389,
+        "tokens_per_task": 75361.40104166667,
+        "cost_usd": 3.6957035,
+        "cost_per_task_usd": 0.019248455729166666,
+        "cost_per_correct_usd": 0.02369040705128205,
+        "wall_ms": 16458.078384108376
+      },
+      "apoideia": {
+        "tasks": 192,
+        "correct": 192,
+        "accuracy": 1.0,
+        "steps_total": 1496,
+        "steps_per_task": 7.791666666666667,
+        "tokens_in": 2710009,
+        "tokens_out": 23349,
+        "tokens_total": 2733358,
+        "tokens_per_task": 14236.239583333334,
+        "cost_usd": 0.72420025,
+        "cost_per_task_usd": 0.003771876302083333,
+        "cost_per_correct_usd": 0.003771876302083333,
+        "wall_ms": 8552.186381304637
+      },
+      "deltas": {
+        "accuracy_points": 18.75,
+        "accuracy_relative_pct": 23.076923076923077,
+        "tokens_pct": -81.10937510906646,
+        "steps_pct": -48.43157531885557,
+        "cost_pct": -80.40426538546721,
+        "cost_per_correct_pct": -84.0784656256921
+      },
+      "recall_precision": 0.875
+    }
+  },
+  "by_vertical": {
+    "finance": {
+      "baseline": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 852,
+        "steps_per_task": 14.2,
+        "tokens_in": 4062896,
+        "tokens_out": 13080,
+        "tokens_total": 4075976,
+        "tokens_per_task": 67932.93333333333,
+        "cost_usd": 1.041884,
+        "cost_per_task_usd": 0.017364733333333333,
+        "cost_per_correct_usd": 0.017364733333333333,
+        "wall_ms": 5063.263669027947
+      },
+      "apoideia": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 420,
+        "steps_per_task": 7.0,
+        "tokens_in": 446692,
+        "tokens_out": 6528,
+        "tokens_total": 453220,
+        "tokens_per_task": 7553.666666666667,
+        "cost_usd": 0.12472899999999999,
+        "cost_per_task_usd": 0.0020788166666666666,
+        "cost_per_correct_usd": 0.0020788166666666666,
+        "wall_ms": 2641.006379039027
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": -88.88069998449451,
+        "steps_pct": -50.70422535211267,
+        "cost_pct": -88.02851373089518,
+        "cost_per_correct_pct": -88.02851373089518
+      },
+      "recall_precision": 1.0
+    },
+    "fleet_ops": {
+      "baseline": {
+        "tasks": 60,
+        "correct": 24,
+        "accuracy": 0.4,
+        "steps_total": 888,
+        "steps_per_task": 14.8,
+        "tokens_in": 4565773,
+        "tokens_out": 13944,
+        "tokens_total": 4579717,
+        "tokens_per_task": 76328.61666666667,
+        "cost_usd": 1.16933125,
+        "cost_per_task_usd": 0.019488854166666666,
+        "cost_per_correct_usd": 0.048722135416666666,
+        "wall_ms": 4712.661667901557
+      },
+      "apoideia": {
+        "tasks": 60,
+        "correct": 60,
+        "accuracy": 1.0,
+        "steps_total": 420,
+        "steps_per_task": 7.0,
+        "tokens_in": 489220,
+        "tokens_out": 6753,
+        "tokens_total": 495973,
+        "tokens_per_task": 8266.216666666667,
+        "cost_usd": 0.135811,
+        "cost_per_task_usd": 0.0022635166666666665,
+        "cost_per_correct_usd": 0.0022635166666666665,
+        "wall_ms": 2435.2555442019366
+      },
+      "deltas": {
+        "accuracy_points": 60.0,
+        "accuracy_relative_pct": 149.99999999999997,
+        "tokens_pct": -89.17022602051613,
+        "steps_pct": -52.702702702702695,
+        "cost_pct": -88.38558364022172,
+        "cost_per_correct_pct": -95.35423345608869
+      },
+      "recall_precision": 1.0
+    },
+    "healthcare": {
+      "baseline": {
+        "tasks": 66,
+        "correct": 30,
+        "accuracy": 0.45454545454545453,
+        "steps_total": 401,
+        "steps_per_task": 6.075757575757576,
+        "tokens_in": 105979,
+        "tokens_out": 6378,
+        "tokens_total": 112357,
+        "tokens_per_task": 1702.378787878788,
+        "cost_usd": 0.03925075,
+        "cost_per_task_usd": 0.0005947083333333334,
+        "cost_per_correct_usd": 0.0013083583333333333,
+        "wall_ms": 2935.2625781903043
+      },
+      "apoideia": {
+        "tasks": 66,
+        "correct": 51,
+        "accuracy": 0.7727272727272727,
+        "steps_total": 359,
+        "steps_per_task": 5.4393939393939394,
+        "tokens_in": 153095,
+        "tokens_out": 5673,
+        "tokens_total": 158768,
+        "tokens_per_task": 2405.5757575757575,
+        "cost_usd": 0.049619750000000004,
+        "cost_per_task_usd": 0.000751814393939394,
+        "cost_per_correct_usd": 0.000972936274509804,
+        "wall_ms": 2683.548457978759
+      },
+      "deltas": {
+        "accuracy_points": 31.818181818181817,
+        "accuracy_relative_pct": 70.0,
+        "tokens_pct": 41.30672766271795,
+        "steps_pct": -10.473815461346634,
+        "cost_pct": 26.41732960516679,
+        "cost_per_correct_pct": -25.636864938137183
+      },
+      "recall_precision": 0.5833333333333334
+    },
+    "insurance": {
+      "baseline": {
+        "tasks": 183,
+        "correct": 114,
+        "accuracy": 0.6229508196721312,
+        "steps_total": 1272,
+        "steps_per_task": 6.950819672131147,
+        "tokens_in": 5813177,
+        "tokens_out": 20280,
+        "tokens_total": 5833457,
+        "tokens_per_task": 31876.814207650274,
+        "cost_usd": 1.4938542499999998,
+        "cost_per_task_usd": 0.008163137978142075,
+        "cost_per_correct_usd": 0.013103984649122805,
+        "wall_ms": 8327.820377075113
+      },
+      "apoideia": {
+        "tasks": 183,
+        "correct": 174,
+        "accuracy": 0.9508196721311475,
+        "steps_total": 767,
+        "steps_per_task": 4.191256830601093,
+        "tokens_in": 1807325,
+        "tokens_out": 12534,
+        "tokens_total": 1819859,
+        "tokens_per_task": 9944.584699453551,
+        "cost_usd": 0.47689925,
+        "cost_per_task_usd": 0.002606006830601093,
+        "cost_per_correct_usd": 0.0027408002873563217,
+        "wall_ms": 5105.278914154042
+      },
+      "deltas": {
+        "accuracy_points": 32.78688524590163,
+        "accuracy_relative_pct": 52.63157894736841,
+        "tokens_pct": -68.80307851759258,
+        "steps_pct": -39.70125786163522,
+        "cost_pct": -68.07591838360402,
+        "cost_per_correct_pct": -79.0842223892578
+      },
+      "recall_precision": 0.8085106382978723
+    },
+    "legal": {
+      "baseline": {
+        "tasks": 66,
+        "correct": 30,
+        "accuracy": 0.45454545454545453,
+        "steps_total": 234,
+        "steps_per_task": 3.5454545454545454,
+        "tokens_in": 1794850,
+        "tokens_out": 4716,
+        "tokens_total": 1799566,
+        "tokens_per_task": 27266.151515151516,
+        "cost_usd": 0.4581445,
+        "cost_per_task_usd": 0.0069415833333333335,
+        "cost_per_correct_usd": 0.015271483333333334,
+        "wall_ms": 1936.341498279944
+      },
+      "apoideia": {
+        "tasks": 66,
+        "correct": 66,
+        "accuracy": 1.0,
+        "steps_total": 198,
+        "steps_per_task": 3.0,
+        "tokens_in": 1447357,
+        "tokens_out": 4113,
+        "tokens_total": 1451470,
+        "tokens_per_task": 21991.969696969696,
+        "cost_usd": 0.37006525,
+        "cost_per_task_usd": 0.005607049242424242,
+        "cost_per_correct_usd": 0.005607049242424242,
+        "wall_ms": 1690.2263730298728
+      },
+      "deltas": {
+        "accuracy_points": 54.54545454545454,
+        "accuracy_relative_pct": 120.0,
+        "tokens_pct": -19.34333055859024,
+        "steps_pct": -15.384615384615385,
+        "cost_pct": -19.22521169630979,
+        "cost_per_correct_pct": -63.28418713468628
+      },
+      "recall_precision": 1.0
+    },
+    "mixed": {
+      "baseline": {
+        "tasks": 75,
+        "correct": 75,
+        "accuracy": 1.0,
+        "steps_total": 135,
+        "steps_per_task": 1.8,
+        "tokens_in": 337749,
+        "tokens_out": 2646,
+        "tokens_total": 340395,
+        "tokens_per_task": 4538.6,
+        "cost_usd": 0.08972925000000001,
+        "cost_per_task_usd": 0.00119639,
+        "cost_per_correct_usd": 0.00119639,
+        "wall_ms": 1504.8509579501115
+      },
+      "apoideia": {
+        "tasks": 75,
+        "correct": 75,
+        "accuracy": 1.0,
+        "steps_total": 135,
+        "steps_per_task": 1.8,
+        "tokens_in": 365004,
+        "tokens_out": 2646,
+        "tokens_total": 367650,
+        "tokens_per_task": 4902.0,
+        "cost_usd": 0.096543,
+        "cost_per_task_usd": 0.00128724,
+        "cost_per_correct_usd": 0.00128724,
+        "wall_ms": 1611.2020802102052
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": 8.00687436654475,
+        "steps_pct": 0.0,
+        "cost_pct": 7.5936776469211456,
+        "cost_per_correct_pct": 7.59367764692115
+      },
+      "recall_precision": null
+    }
+  },
+  "by_dependence": {
+    "knowledge_dependent": {
+      "baseline": {
+        "tasks": 285,
+        "correct": 108,
+        "accuracy": 0.37894736842105264,
+        "steps_total": 3036,
+        "steps_per_task": 10.652631578947368,
+        "tokens_in": 15362019,
+        "tokens_out": 48186,
+        "tokens_total": 15410205,
+        "tokens_per_task": 54070.89473684211,
+        "cost_usd": 3.93687675,
+        "cost_per_task_usd": 0.013813602631578948,
+        "cost_per_correct_usd": 0.0364525625,
+        "wall_ms": 18177.766290144064
+      },
+      "apoideia": {
+        "tasks": 285,
+        "correct": 261,
+        "accuracy": 0.9157894736842105,
+        "steps_total": 1553,
+        "steps_per_task": 5.4491228070175435,
+        "tokens_in": 3250767,
+        "tokens_out": 25389,
+        "tokens_total": 3276156,
+        "tokens_per_task": 11495.284210526315,
+        "cost_usd": 0.86346975,
+        "cost_per_task_usd": 0.003029718421052632,
+        "cost_per_correct_usd": 0.003308313218390805,
+        "wall_ms": 9914.207415014971
+      },
+      "deltas": {
+        "accuracy_points": 53.68421052631578,
+        "accuracy_relative_pct": 141.66666666666663,
+        "tokens_pct": -78.74034771114337,
+        "steps_pct": -48.847167325428195,
+        "cost_pct": -78.06713786506016,
+        "cost_per_correct_pct": -90.92433290968006
+      },
+      "recall_precision": 0.8526315789473684
+    },
+    "no_knowledge_needed": {
+      "baseline": {
+        "tasks": 225,
+        "correct": 225,
+        "accuracy": 1.0,
+        "steps_total": 746,
+        "steps_per_task": 3.3155555555555556,
+        "tokens_in": 1318405,
+        "tokens_out": 12858,
+        "tokens_total": 1331263,
+        "tokens_per_task": 5916.724444444444,
+        "cost_usd": 0.35531725000000003,
+        "cost_per_task_usd": 0.0015791877777777779,
+        "cost_per_correct_usd": 0.0015791877777777779,
+        "wall_ms": 6302.4344582809135
+      },
+      "apoideia": {
+        "tasks": 225,
+        "correct": 225,
+        "accuracy": 1.0,
+        "steps_total": 746,
+        "steps_per_task": 3.3155555555555556,
+        "tokens_in": 1457926,
+        "tokens_out": 12858,
+        "tokens_total": 1470784,
+        "tokens_per_task": 6536.817777777777,
+        "cost_usd": 0.39019750000000003,
+        "cost_per_task_usd": 0.0017342111111111112,
+        "cost_per_correct_usd": 0.0017342111111111112,
+        "wall_ms": 6252.310333598871
+      },
+      "deltas": {
+        "accuracy_points": 0.0,
+        "accuracy_relative_pct": 0.0,
+        "tokens_pct": 10.480348360917414,
+        "steps_pct": 0.0,
+        "cost_pct": 9.816649768622266,
+        "cost_per_correct_pct": 9.81664976862227
+      },
+      "recall_precision": null
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 11,
+      "baseline": {
+        "tasks": 170,
+        "correct": 111,
+        "accuracy": 0.6529411764705882,
+        "steps_total": 1259,
+        "steps_per_task": 7.405882352941177,
+        "tokens_in": 5586864,
+        "tokens_out": 20337,
+        "tokens_total": 5607201,
+        "tokens_per_task": 32983.535294117646,
+        "cost_usd": 1.4373900000000002,
+        "cost_per_task_usd": 0.008455235294117649,
+        "cost_per_correct_usd": 0.012949459459459462,
+        "wall_ms": 8213.78691663267
+      },
+      "apoideia": {
+        "tasks": 170,
+        "correct": 162,
+        "accuracy": 0.9529411764705882,
+        "steps_total": 764,
+        "steps_per_task": 4.4941176470588236,
+        "tokens_in": 1592960,
+        "tokens_out": 12728,
+        "tokens_total": 1605688,
+        "tokens_per_task": 9445.223529411765,
+        "cost_usd": 0.42369599999999996,
+        "cost_per_task_usd": 0.002492329411764706,
+        "cost_per_correct_usd": 0.002615407407407407,
+        "wall_ms": 4656.963451183401
+      },
+      "deltas": {
+        "accuracy_points": 29.999999999999993,
+        "accuracy_relative_pct": 45.94594594594594,
+        "tokens_pct": -71.36382305538895,
+        "steps_pct": -39.316918189038915,
+        "cost_pct": -70.52324003923779,
+        "cost_per_correct_pct": -79.80296076762589
+      }
+    },
+    {
+      "seed": 23,
+      "baseline": {
+        "tasks": 170,
+        "correct": 111,
+        "accuracy": 0.6529411764705882,
+        "steps_total": 1262,
+        "steps_per_task": 7.423529411764706,
+        "tokens_in": 5580967,
+        "tokens_out": 20364,
+        "tokens_total": 5601331,
+        "tokens_per_task": 32949.00588235294,
+        "cost_usd": 1.4359697500000002,
+        "cost_per_task_usd": 0.008446880882352943,
+        "cost_per_correct_usd": 0.012936664414414416,
+        "wall_ms": 8402.117665216792
+      },
+      "apoideia": {
+        "tasks": 170,
+        "correct": 162,
+        "accuracy": 0.9529411764705882,
+        "steps_total": 770,
+        "steps_per_task": 4.529411764705882,
+        "tokens_in": 1588931,
+        "tokens_out": 12800,
+        "tokens_total": 1601731,
+        "tokens_per_task": 9421.947058823529,
+        "cost_usd": 0.42283275000000003,
+        "cost_per_task_usd": 0.0024872514705882357,
+        "cost_per_correct_usd": 0.002610078703703704,
+        "wall_ms": 5883.127754088491
+      },
+      "deltas": {
+        "accuracy_points": 29.999999999999993,
+        "accuracy_relative_pct": 45.94594594594594,
+        "tokens_pct": -71.40445726203289,
+        "steps_pct": -38.985736925515056,
+        "cost_pct": -70.55420213413271,
+        "cost_per_correct_pct": -79.82417553635018
+      }
+    },
+    {
+      "seed": 37,
+      "baseline": {
+        "tasks": 170,
+        "correct": 111,
+        "accuracy": 0.6529411764705882,
+        "steps_total": 1261,
+        "steps_per_task": 7.41764705882353,
+        "tokens_in": 5512593,
+        "tokens_out": 20343,
+        "tokens_total": 5532936,
+        "tokens_per_task": 32546.682352941178,
+        "cost_usd": 1.41883425,
+        "cost_per_task_usd": 0.008346083823529412,
+        "cost_per_correct_usd": 0.01278229054054054,
+        "wall_ms": 7864.296166575514
+      },
+      "apoideia": {
+        "tasks": 170,
+        "correct": 162,
+        "accuracy": 0.9529411764705882,
+        "steps_total": 765,
+        "steps_per_task": 4.5,
+        "tokens_in": 1526802,
+        "tokens_out": 12719,
+        "tokens_total": 1539521,
+        "tokens_per_task": 9056.005882352942,
+        "cost_usd": 0.4071385,
+        "cost_per_task_usd": 0.0023949323529411765,
+        "cost_per_correct_usd": 0.0025132006172839507,
+        "wall_ms": 5626.42654334195
+      },
+      "deltas": {
+        "accuracy_points": 29.999999999999993,
+        "accuracy_relative_pct": 45.94594594594594,
+        "tokens_pct": -72.17533331309092,
+        "steps_pct": -39.33386201427439,
+        "cost_pct": -71.3047172352937,
+        "cost_per_correct_pct": -80.33841736492344
+      }
+    }
+  ],
+  "stability": {
+    "accuracy_points": {
+      "mean": 29.999999999999993,
+      "min": 29.999999999999993,
+      "max": 29.999999999999993,
+      "stdev": 0.0
+    },
+    "tokens_pct": {
+      "mean": -71.64787121017092,
+      "min": -72.17533331309092,
+      "max": -71.36382305538895,
+      "stdev": 0.3733407623070246
+    },
+    "cost_pct": {
+      "mean": -70.7940531362214,
+      "min": -71.3047172352937,
+      "max": -70.52324003923779,
+      "stdev": 0.361315217311293
+    }
+  },
+  "caveats": [
+    "Deterministic stub model, not a live LLM. A real model would add sampling noise larger than the effect being measured; the stub isolates the memory layer and makes every number reproducible. It is not a strawman: it answers knowledge-free tasks correctly in both arms, so injected context can only hurt on those.",
+    "MEASURED: every token count is the real size of the real prompt the pipeline assembled, including the accumulating transcript and the block the SDK injected. Recall is a real call through the gateway against a store of hundreds of memories, and when it ranks the wrong memory first the task fails and is counted as a failure.",
+    "MODELLED: how many documents an agent that does not know the answer reads before finding it (in-order scan, no backtracking or re-reading \u2014 favourable to the baseline), and that missing knowledge costs a bounded amount of rework rather than an unbounded amount (also favourable to the baseline).",
+    "Synthetic workload, authored alongside the product. It demonstrates a mechanism \u2014 what carrying knowledge between runs does to accuracy and cost \u2014 not a market-wide claim. 44% of the suite is tasks no memory layer can help with, and they are in the headline aggregate rather than excluded from it.",
+    "Both arms run identical inputs through identical SDK and gateway code, with no privileged channel by which the informed arm learns anything the wrapper did not put in the prompt."
+  ]
+}

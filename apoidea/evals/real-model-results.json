@@ -1,0 +1,1906 @@
+{
+  "generated_at": "2026-07-27T22:15:14.980980+00:00",
+  "what_this_is": "The deterministic suite's workload, run against a live frontier model through the same SDK and gateway path. A stratified sample, not the whole suite, because every call costs money at list price. Reported with confidence intervals because a sample this size does not support a point estimate. Published alongside the deterministic results, not instead of them: that suite measures the memory layer, this one measures what the memory layer is worth with a real model in the loop.",
+  "config": {
+    "model": "claude-sonnet-5",
+    "effort": "low",
+    "prompt_caching": true,
+    "max_tokens": 16384,
+    "seed": 11,
+    "sampled_tasks": 170,
+    "completed_task_pairs": 90,
+    "suite_size": 170,
+    "governing_memories": 30,
+    "distractor_memories": 240,
+    "budget_usd": 26.0,
+    "grading": "closed-set; both backends graded through examples/evals/grade.py",
+    "code_version": {
+      "commit": "0b57dd83d2b84e9cb9a9fcf3865a74809b386c9d",
+      "dirty": true
+    }
+  },
+  "workload": {
+    "workload": "synthetic",
+    "authored_by_us": true
+  },
+  "stratification": {
+    "control_unaided/long_context": 10,
+    "control_unaided/single_shot": 15,
+    "finance_kyc/tool_loop": 20,
+    "fleet_incident/tool_loop": 20,
+    "healthcare_prior_auth/multi_turn": 22,
+    "insurance_investigation/tool_loop": 24,
+    "insurance_triage/single_shot": 37,
+    "legal_contract/long_context": 22
+  },
+  "forecast": {
+    "available": true,
+    "basis": "calibrated from a previous live run",
+    "prompt_sizing": "the deterministic suite's measured per-shape token counts",
+    "cache_hit_share": 0.73,
+    "forecast_usd": 20.39,
+    "forecast_prompt_tokens": {
+      "baseline": 5560141,
+      "apoideia": 1570343
+    },
+    "forecast_output_tokens": 869979,
+    "shapes_not_in_stub_results": 0,
+    "calibration": {
+      "from_run": "2026-07-27T19:22:12.186875+00:00",
+      "from_task_pairs": 8,
+      "cache_hit_share": 0.7297029229067393,
+      "output_per_prompt_token": 0.1220084879169503
+    },
+    "note": "output and cache rates measured from the previous live run in real-model-results.json, not assumed"
+  },
+  "cost": {
+    "calls": 1115,
+    "prompt_tokens": 8094373,
+    "input_tokens_uncached": 78573,
+    "cache_write_tokens": 1338885,
+    "cache_read_tokens": 6676915,
+    "output_tokens": 740805,
+    "usd": 18.371687,
+    "usd_without_caching": 35.395194,
+    "caching_discount_pct": 48.1
+  },
+  "reply_health": {
+    "empty_replies": 0,
+    "truncated_replies": 0,
+    "retried_empty": 0
+  },
+  "price_per_1m_usd": {
+    "input": 3.0,
+    "output": 15.0,
+    "cache_write": 3.75,
+    "cache_read": 0.3
+  },
+  "stopped_early": null,
+  "failed_tasks": [
+    {
+      "task_id": "INV-7014",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5205",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7012",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5211",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7020",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2403",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4816",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4836",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1024",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5210",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9107",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1019",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7005",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2416",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4824",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2417",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7023",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1002",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9106",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3105",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7011",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1001",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7002",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9113",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4834",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4819",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4808",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4804",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2418",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5213",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2412",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9115",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1018",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4822",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3112",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3103",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7006",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9119",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4811",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1006",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1021",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4835",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5215",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7015",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4825",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9101",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1022",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4802",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9111",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5219",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4803",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3104",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7016",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1010",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3114",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4818",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7007",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5220",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2409",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1008",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1009",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2411",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4807",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "INV-7019",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5216",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9112",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1020",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2404",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2405",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "PA-5214",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1004",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9104",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "LEG-9102",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4827",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4820",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "OPS-2419",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3106",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "CTL-1007",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "KYC-3119",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    },
+    {
+      "task_id": "TRI-4806",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "error": "ConnectError: [Errno 61] Connection refused"
+    }
+  ],
+  "baseline": {
+    "tasks": 90,
+    "correct": 39,
+    "accuracy": 0.43333333333333335,
+    "accuracy_ci95": [
+      0.3358,
+      0.5364
+    ],
+    "steps_per_task": 7.533333333333333,
+    "tokens_in": 6120686,
+    "tokens_out": 489623,
+    "tokens_per_task": 73447.87777777777,
+    "wall_ms": 6708848.343330987
+  },
+  "apoideia": {
+    "tasks": 90,
+    "correct": 46,
+    "accuracy": 0.5111111111111111,
+    "accuracy_ci95": [
+      0.4095,
+      0.6118
+    ],
+    "steps_per_task": 4.688888888888889,
+    "tokens_in": 1831349,
+    "tokens_out": 238993,
+    "tokens_per_task": 23003.8,
+    "wall_ms": 3341093.584791903
+  },
+  "deltas": {
+    "accuracy_points": 7.777777777777772,
+    "tokens_pct": -68.68010254891261,
+    "steps_pct": -37.75811209439527
+  },
+  "by_dependence": {
+    "knowledge_dependent": {
+      "baseline": {
+        "tasks": 50,
+        "correct": 20,
+        "accuracy": 0.4,
+        "accuracy_ci95": [
+          0.2761,
+          0.5382
+        ],
+        "steps_per_task": 10.82,
+        "tokens_in": 5605638,
+        "tokens_out": 405389,
+        "tokens_per_task": 120220.54,
+        "wall_ms": 5519324.948705003
+      },
+      "apoideia": {
+        "tasks": 50,
+        "correct": 30,
+        "accuracy": 0.6,
+        "accuracy_ci95": [
+          0.4618,
+          0.7239
+        ],
+        "steps_per_task": 5.7,
+        "tokens_in": 1337393,
+        "tokens_out": 174392,
+        "tokens_per_task": 30235.7,
+        "wall_ms": 2411142.26404301
+      }
+    },
+    "no_knowledge_needed": {
+      "baseline": {
+        "tasks": 40,
+        "correct": 19,
+        "accuracy": 0.475,
+        "accuracy_ci95": [
+          0.3294,
+          0.625
+        ],
+        "steps_per_task": 3.425,
+        "tokens_in": 515048,
+        "tokens_out": 84234,
+        "tokens_per_task": 14982.05,
+        "wall_ms": 1189523.3946259832
+      },
+      "apoideia": {
+        "tasks": 40,
+        "correct": 16,
+        "accuracy": 0.4,
+        "accuracy_ci95": [
+          0.2635,
+          0.554
+        ],
+        "steps_per_task": 3.425,
+        "tokens_in": 493956,
+        "tokens_out": 64601,
+        "tokens_per_task": 13963.925,
+        "wall_ms": 929951.3207488926
+      }
+    }
+  },
+  "recall_precision_at_5": 0.86,
+  "class_breakdown": {
+    "baseline": null,
+    "apoideia": null
+  },
+  "unparseable_answers": 0,
+  "misses": [
+    {
+      "arm": "baseline",
+      "task_id": "PA-5218",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Given the unresolved mismatch between the clinical narrative (spine surgery) and the coded service line (office site, 17 units), the file cannot be finalized as-is. This is a defined administrative gap requiring correction/confirmation of the service-line data before authorization can issue \u2014 the correct disposition is to pend for that specific missing information rather than approve against a mismatched record.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3113",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ich is in evidence; the file is simply incomplete on the required verifying documents.\n\nGiven the governing standard requires verified confirmation of identity, ownership, and clean screening before ONBOARD can be issued, and that confirmation was never actually produced despite repeated requests \u2014 only an unresolved activity discrepancy and irrelevant records \u2014 the file cannot be cleared on the evidence in front of me. The correct action is to escalate for the missing governing documents to be sourced/resolved rather than approve on an incomplete record.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9109",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "REJECT \u2014 OFFER PERPETUAL LICENCE",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "no memory to draw on",
+      "answer_tail": "ly a contract-assignment/novation provision mislabeled similarly [LEG-9109-D1]. This is a genuine gap the firm must resolve as a matter of position (whether to demand assignment language, a license-back, or accept a counter-structure), not a factual question I can settle by re-reading the file. That determination \u2014 what IP posture we take on a materially missing clause, given the D8 infringement carve-out signaling real IP exposure \u2014 sits with supervising counsel's authority over deal terms, not with specialist-level reconciliation of the record.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7009",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "no memory to draw on",
+      "answer_tail": " the system affirmatively asserting an inconsistency with a prior paid claim (H1, $72,000, closed five weeks before this policy's inception) that directly bears on whether the current \"not wear-related\" finding holds up if the same system/component failed before. That determination requires the H1/H2 file contents, which were never produced despite request.\n\nPer standing instruction, escalation is correct here precisely because the firm holds a position (the inconsistency flag, the unresolved recovery) not yet disclosed to me \u2014 this is not a case of a merely thin file.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9116",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The material deviations identified \u2014 an unspecified arbitration seat (D6) and a live counterparty redline on indemnification that undercuts the D5 carve-out structure (D9) \u2014 both point to the same remedy: reject the indemnification cap as proposed and counter on liability terms consistent with our standard form's carve-out framework, rather than accept a flat fees-based cap.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9114",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The material deviation is D1's indemnification cap \u2014 flat mutual cap at 12 months' fees with no carve-outs falls below our standard form's protection level. Consistent with my earlier flag, the correct counter is to reject the flat cap and push for a higher, carve-out-consistent cap.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2401",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ADJUST RETRY POLICY",
+      "fallback": "ESCALATE TO PLATFORM ON-CALL",
+      "determination": "REVERT THE CONFIG CHANGE",
+      "kind": "no memory to draw on",
+      "answer_tail": "s the dominant explanation for D10's ToolTimeout majority (883/1204), with rollback confirmed available per D1. External causes are excluded on reconciled evidence: no rate-limiting (D3), no upstream instability (D8), no dependency advisory (D9), no competing deploy (D7).\n\nOther candidate findings in the record (context accumulation per D12, cost concentration per D11, the D5/D10 timing conflict, the D3/D10 rate-limit conflict) remain unreconciled to a specific agent or timeline and do not displace this as the actionable, source-confirmed determination.\n\nDETERMINATION: REVERT THE CONFIG CHANGE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3109",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DECLINE",
+      "fallback": "DECLINE",
+      "determination": "ONBOARD",
+      "kind": "no memory to draw on",
+      "answer_tail": " show no conflicts. The Beneficial Ownership Identification Requirement, Nominee Documentation Standard (satisfied in substance by D9's look-through disclosure), Source of Funds Standard, and EDD Screening Requirements are all met on the face of the file.\n\nThe insurance-policy, claims-history, and exposure-computation items introduced afterward do not govern this file \u2014 they belong to an unrelated record series misrouted under the same identifier and contain no CDD/EDD content. They do not create a conflict requiring escalation; they simply don't pertain to this matter.\n\nDETERMINATION: ONBOARD"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3116",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ions/PEP/adverse media screening) have not been produced or verified, which is precisely the situation that warrants escalation rather than a self-certified determination.\n\n**Determination:** This file cannot be onboarded or declined on the current record \u2014 the specific documents that govern the EDD-trigger question (D5, D6, D8) remain unread, and an unresolved discrepancy flag (H1) is unaddressed. This is escalated to Compliance for resolution of the outstanding screening documentation and the flagged inconsistency before any onboarding decision is made.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5203",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "PA-5203 remains deficient on threshold clinical documentation \u2014 diagnosis/ICD-10, imaging/endoscopic confirmation, adequacy of the conservative therapy trial, TB/hepatitis screening, and dosing/weight basis for the 13 units are all unresolved. These are documentation gaps, not benefit exclusions or policy ambiguities, and the firm's criteria are clear on what is required. This is properly resolved by pending the case for the missing information rather than denying outright at this stage or escalating.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5201",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "RETURN FOR PA-114 ATTESTATION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "APPROVE",
+      "kind": "no memory to draw on",
+      "answer_tail": "Based on the clinical record \u2014 Section 3 documents a 6-week failed trial of conservative therapy, satisfying Criterion 2 of the governing lumbar-spine advanced-imaging necessity standard \u2014 medical necessity is established. The unit-count discrepancy in Section 2 is a billing/administrative matter, not a basis for clinical denial or pend.\n\nDETERMINATION: APPROVE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3115",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "DECLINE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ram does not permit onboarding without documented screening results and UBO identification, regardless of stated risk tier.\n\nBecause the required verification artifacts were never produced (as opposed to being produced and showing a disqualifying condition, or the matter requiring a policy position outside my authority), the correct disposition is to decline this file as it stands \u2014 the record does not support onboarding, and there is no compliance-held position being sought. A future submission with the correct D1/D2/D4/D5/D6 content could be re-reviewed on its merits.\n\nDETERMINATION: DECLINE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7003",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "APPROVE",
+      "kind": "no memory to draw on",
+      "answer_tail": "g damage consistent with reported cause and no prior repair (D12).\n- Total reconciled exposure of $53,250 (compute_exposure) falls well within the $250,000 per-occurrence limit; deductible of $2,500 applied once yields total payable of $50,750.\n- No open recoveries or unresolved prior determinations from claim history (check_history) bear on coverage for this occurrence.\n- Claim was mis-tagged as \"theft-loss\" at intake; no document in the file supports a theft peril \u2014 recommend recategorization to water discharge, which does not affect the coverage determination itself.\n\nDETERMINATION: APPROVE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7024",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "no memory to draw on",
+      "answer_tail": "ule out the faulty-workmanship exclusion. I likewise cannot affirmatively deny, since denial requires evidence *of* faulty workmanship, which I also do not have.\n\n**This is not a \"thin record\" I should push through** \u2014 it's a specific, identified missing document (D3) that the firm holds and that is dispositive of the one live coverage question, compounded by an unresolved internal consistency flag (\"see H1\"). Both are matters for someone with access to the underlying engineering file and file-consistency history to resolve, not for determination on the current record.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5204",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ROUTE TO PHARMACY BENEFIT REVIEWER",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "Based on the complete record (member/plan, requested service, and clinical sections), the file affirmatively documents that conservative therapy trial is not documented and contains no evidence of TNF-inhibitor trial, intolerance, or contraindication, nor any out-of-network justification. These are the specific missing elements required under the PPO-Standard step-therapy protocol, and they must come from the requester as new submission \u2014 the record cannot be completed by further internal review.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2414",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ESCALATE TO PLATFORM ON-CALL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ned unrelated claims-file material (D-POL, H1\u2013H3, exposure computation) rather than the fault-trace documents needed to resolve causal locus.\n\nThis is precisely the condition under which escalation is the correct action: the firm's runbook test cannot be applied on the evidence actually in hand, and the one document meant to settle the question undercuts itself rather than resolving it. Continuing to assume \"upstream outage\" would mean overriding contradicted primary evidence with my own inference \u2014 not permissible under the reconciliation standard.\n\nDETERMINATION: ESCALATE TO PLATFORM ON-CALL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2413",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ESCALATE TO PLATFORM ON-CALL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ueue \u2014 I don't have a verified D9/D11/D3/D1 read against a trustworthy corpus to establish an alternate (agent-side) root cause either.\n\nThis is precisely the condition the standard reserves for escalation: not a thin record, but one where the foundational fact is contradicted and the evidentiary channel itself is unreliable \u2014 a position I cannot resolve with authority I hold as fleet-ops specialist of record. Fabricating a root cause (retry policy, config revert, throttling, transcript trim) from an unverified corpus would be worse than escalating.\n\nDETERMINATION: ESCALATE TO PLATFORM ON-CALL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3120",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "oarding cannot be certified without that confirmation. Equally, nothing confirms an adverse finding sufficient to decline outright \u2014 the activity-mismatch alone is not a proven red flag, only an unresolved inconsistency compounded by unexplained anomalous data on the file.\n\nGiven an unresolved document conflict, no confirmed clean screening, and unexplained adverse-looking financial data of uncertain relevance to this entity, this matter exceeds standard-tier CDD authority and requires review by Compliance before any onboarding or denial decision is made.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "CTL-1012",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "PENDED",
+      "fallback": "PENDED",
+      "determination": "INCOMPLETE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Missing required attestation means the submission lacks a necessary component, making it incomplete for approval.\n\nDETERMINATION: INCOMPLETE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2406",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "TRIM TRANSCRIPT ACCUMULATION",
+      "fallback": "ESCALATE TO PLATFORM ON-CALL",
+      "determination": "REVERT THE CONFIG CHANGE",
+      "kind": "no memory to draw on",
+      "answer_tail": "erved. The fastest, most targeted action that addresses the actual proximate cause, uses an available and confirmed remedy, and matches the scope of the fault (6 agents, one config change) is reversing that change.\n\nThis is governed by the standard fleet_ops remediation principle: **where an incident's proximate cause is a recent, scoped configuration change with rollback available, and no external/upstream cause is implicated, the correct remediation is to revert that change** rather than treat symptoms (queue, retries, transcript growth) individually.\n\nDETERMINATION: REVERT THE CONFIG CHANGE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3110",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ESCALATE TO COMPLIANCE",
+      "fallback": "ESCALATE TO COMPLIANCE",
+      "determination": "ONBOARD",
+      "kind": "no memory to draw on",
+      "answer_tail": "d specifies who must approve; it does not withhold the specialist's determination on the merits pending that approval. On the substance, the file supports onboarding.\n\nThe extraneous records (KYC-3110-POL, KYC-3110-H1/H2/H3, compute_exposure) were reviewed and correctly excluded as non-governing, unrelated record types (insurance claim data) that do not bear on this AML/KYC determination.\n\n**Determination on the merits:** the file satisfies the firm's cash-intensive EDD requirements. Sign-off routing is a procedural follow-on, not a barrier to stating the determination.\n\nDETERMINATION: ONBOARD"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5206",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "RETURN FOR PA-114 ATTESTATION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "Based on the record: imaging is not on file, conservative therapy trial is not documented, and no HMO-Select OON exception basis has been submitted. These are threshold requirements that must be satisfied before the request can be approved, and the deficiency is evidentiary rather than a policy gap requiring escalation.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9120",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "cedural/enforceability risk that our standard form does not permit to pass), and D7's indemnity terms are a counterparty-proposed deviation from default cap/mutuality that requires a business risk-tolerance decision I have not been delegated authority to make. Neither defect is resolvable by my confirming the record \u2014 the seat is simply missing from the document, and the indemnity cap is a negotiated position outside standard terms. This warrants escalation rather than acceptance in any form, and rather than a unilateral counter-offer on my part.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5202",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "e medical-necessity requirement (clinical documentation submitted is unresponsive to CTA chest vascular/pulmonary criteria). Neither deficiency is cured by an available option other than requesting the missing elements from the requester.\n\nSince outright denial is not among the listed determination options, the applicable disposition is to pend the case for the two specific missing elements identified: (1) in-network provider or documented network-adequacy exception basis, and (2) a qualifying vascular/pulmonary clinical indication for CTA chest.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9110",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ACCEPT WITH ANNUAL AUDIT LIMIT",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "no memory to draw on",
+      "answer_tail": "p.\n\nGiven the absence of any audit mechanism tied to the data-processing/sub-processing structure in D1 and the fee verification gap in D2, this is a substantive contractual gap in a live commercial agreement \u2014 not a matter I can resolve by picking among clause-amendment options that presuppose a clause already exists. This calls for supervising counsel to weigh in on whether to proceed without audit rights, insist on adding them pre-signature, or accept the risk as-is, since that is a risk-tolerance decision above a drafting-level determination.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3107",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ESCALATE TO COMPLIANCE",
+      "fallback": "ESCALATE TO COMPLIANCE",
+      "determination": "ONBOARD",
+      "kind": "no memory to draw on",
+      "answer_tail": "ownership disclosed and verified against the registry (D2, D12); source of funds documented and corroborated by consistent transaction projections (D5, D6); sanctions, PEP, and adverse media screening all clear (D7, D9, D10); questionnaire complete (D8); no adverse prior relationship history (D4). No enhanced-due-diligence trigger applies in substance, consistent with the onboarding analyst's original note (D3).\n\nThe claims/coverage materials (KYC-3107-POL, H1\u2013H3, exposure computation) belong to a separate matter and do not bear on, or alter, this KYC/AML determination.\n\nDETERMINATION: ONBOARD"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "TRI-4801",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "Adjuster Diaz",
+      "fallback": "General claims desk",
+      "determination": "Catastrophe desk",
+      "kind": "no memory to draw on",
+      "answer_tail": "Hail damage to a roof under an HO-3 policy in the West region is a weather-driven catastrophe peril claim. Given the size ($18k) and the nature (hail, roof, regional weather event), this routes to the desk handling catastrophe-related property claims rather than general claims or theft/water specialty desks, which govern unrelated perils.\n\nDETERMINATION: Catastrophe desk"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "TRI-4814",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "Legacy Book desk",
+      "fallback": "General claims desk",
+      "determination": "Property Theft desk",
+      "kind": "no memory to draw on",
+      "answer_tail": "d theft claim rather than a legacy-designated or catastrophe-designated matter. There is no indication of subrogation/recovery posture, litigation, bodily injury, water damage, auto glass, or fleet/commercial auto exposure \u2014 the fact pattern is a straightforward property theft loss. The firm's standard is to route theft-of-property claims to the desk specializing in that peril rather than to the general queue, regardless of policy age, unless the file shows legacy-book handling criteria (e.g., specific pre-migration policy flags), which are not present here.\n\nDETERMINATION: Property Theft desk"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9105",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ACCEPT WITH ANNUAL AUDIT LIMIT",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "HOLD FOR INFRASTRUCTURE SIGN-OFF",
+      "kind": "no memory to draw on",
+      "answer_tail": " all, there is no drafted term to accept, no notice period to amend, and no existing audit limit to cap or counter \u2014 those options presuppose language that isn't present in the record. Given a municipal authority counterparty, the safest course given the missing provision is to route this to the team responsible for confirming the infrastructure/public-sector compliance posture before any audit terms are added or the agreement is signed, since statutory audit obligations for municipal authorities may need to be reconciled with contract drafting.\n\nDETERMINATION: HOLD FOR INFRASTRUCTURE SIGN-OFF"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3102",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "no memory to draw on",
+      "answer_tail": "ile's substantive completeness; it's a structural approval gate, not a documentation gap. Additionally, an unresolved item remains for that reviewer: screening currency (dates) on the adverse media (D3) and PEP (D11) results should be confirmed before final approval.\n\nSeparately, unrelated claims/insurance materials (KYC-3102-POL, claims history, exposure computation) were introduced under this file number; I've excluded them as non-governing for this determination, and that mismatch itself is worth compliance's awareness in case of a queue-routing issue.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9118",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "fied arbitration seat (D5), an incomplete limitation-of-liability carve-out list (D7), and broadened assignment rights to \"successor\" without consent (D8) \u2014 collectively represent business risk decisions that exceed standard drafting-level correction. D5's seat gap is a fixable defect, but D2 and D8 in particular reflect negotiated positions that depart from our standard risk allocation and require a decision on acceptable exposure, not just a legal cleanup. That determination belongs to supervising counsel, not to a unilateral fix at this level.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3117",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ptional supplements. At the same time, I have no affirmative evidence of a hit or adverse finding either \u2014 the record is simply silent on the governing question, not adverse.\n\nThis is not a case of thin evidence I should fill in myself, and it is not a case where I hold a final answer the firm needs to bless \u2014 it is a case where the firm's own screening outputs, already indexed to this file, were withheld from the record I was given. That gap on gating screening items is precisely the situation where escalation is the correct action rather than a default.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3108",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "no memory to draw on",
+      "answer_tail": "f D1 or a status explanation for the open recovery, neither of which is in the record. This is not a gap I can fill by further reading the existing file; it requires the business/compliance function that holds the history record to reconcile it against the relationship review.\n\nThat is a genuine escalation, not a data request dressed up as one: the firm holds information (the prior-matter history and open recovery) that conflicts with a document I'm required to rely on, and only Compliance/the record owner can authoritatively resolve which figure governs.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5212",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "RETURN FOR PA-114 ATTESTATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "Given the network/site inconsistency identified \u2014 OON request without a network-gap justification, and site-of-care coded outpatient against a home-infusion category \u2014 the correct disposition among the listed options is to require the network-adequacy attestation before this can proceed.\n\nDETERMINATION: RETURN FOR PA-114 ATTESTATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5217",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": " medical necessity is well-documented, but the plan is EPO-Core, the service is OON inpatient, and no network-inadequacy, urgent-unavailability, or gap-exception documentation exists anywhere in the file. The governing EPO OON-exception requirement has not been satisfied, so this cannot be approved outright or under a default OON tier. The missing element is specifically a network-adequacy exception showing \u2014 this is the named mechanism that governs the gap here, and it must be affirmatively documented/adjudicated before coverage attaches.\n\nDETERMINATION: APPROVE VIA NETWORK-ADEQUACY EXCEPTION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7018",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "no memory to draw on",
+      "answer_tail": "owing no endorsements. I set it aside, but I never obtained confirmation of which is correct.\n\nThese are not \"thin record\" gaps I'm using as an excuse \u2014 they are specific, identified, unread documents already sitting in this queue that bear directly on quantum and on whether a prior coverage position exists. Issuing APPROVE at an unreconciled figure, or DENY without any denial basis in the record, would both be unsupported. This needs the remaining documents read and reconciled \u2014 a step within my own process I did not complete \u2014 before a payable determination is sound.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9122",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Given the review, D9's indemnification cap (prior-12-months fees, counterparty-proposed) is materially narrower than our standard D4 liability position (1x aggregate fees paid). The correct response is to reject the counterparty's proposed indemnification term and counter to align it with our standard cap.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5209",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ROUTE TO PHARMACY BENEFIT REVIEWER",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "Based on the record: EPO-Core out-of-network request with no network-adequacy exception documentation, and no face-to-face exam or step-therapy documentation per LCD L33789. Both deficiencies are evidentiary gaps that the requester must cure with a new submission, rather than a firm-policy gap requiring escalation.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5208",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "Based on the record as fetched: internally inconsistent network status, service details inconsistent with the drug class, clinical section apparently mismatched to this PA, and absence of required PCSK9-specific diagnosis, statin/ezetimibe trial history, LDL-C value, and out-of-network justification. This cannot be adjudicated on the merits in its current state and requires the requester to supply the corrected/missing detail identified above before a substantive determination can issue.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2407",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "THROTTLE THE IDENTIFIED AGENT",
+      "fallback": "ESCALATE TO PLATFORM ON-CALL",
+      "determination": "TRIM TRANSCRIPT ACCUMULATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "n the agent itself rather than in platform configuration. D6/D8/D11 confirm the timeout/retry deploy was an amplifier, not the root trigger; D2/D7/D10/D12 rule out upstream and dependency causes entirely.\n\nReverting deploy 4471 would remove the amplification but leave the underlying unbounded context growth in place \u2014 the next long-running session would reproduce the failure even under the old, more forgiving timeout/retry settings. The direct, controlling fix, per the causal chain established in D5, is to address the transcript accumulation itself.\n\nDETERMINATION: TRIM TRANSCRIPT ACCUMULATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7004",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ESCALATE",
+      "fallback": "ESCALATE",
+      "determination": "APPROVE",
+      "kind": "no memory to draw on",
+      "answer_tail": " timely notice (D7, within 30-day window) and full cooperation (D8). Quantum reconciled to source documents \u2014 Contractor B estimate $31,750 (D10) plus mitigation $4,120 (D1) = $35,870, less $10,000 deductible = **$25,870 net payable**, within the per-occurrence limit. The `compute_exposure` output was tested and rejected as unreconciled against the file (no supporting documents for its line items; conflicts with D5 on depreciation). History check (H1\u2013H4) shows no conflicting pattern; open subrogation referral (D3) against the installing contractor continues in parallel.\n\nDETERMINATION: APPROVE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "TRI-4813",
+      "family": "insurance_triage",
+      "shape": "single_shot",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "Legacy Book desk",
+      "fallback": "General claims desk",
+      "determination": "General claims desk",
+      "kind": "no memory to draw on",
+      "answer_tail": "osed-book/legacy-servicing policies with express handling protocols, not merely older policy inception dates). Absent such a designation, and absent any complexity markers (water, theft, fleet, auto, catastrophe-event, or bodily injury) that would route this to a specialty desk, this is a standard first-party property fire loss falling under standard adjuster intake.\n\nThis matter should be handled by the general property claims intake, as it is a routine, non-specialty fire damage claim with no complicating factors triggering a specialty desk's jurisdiction.\n\nDETERMINATION: General claims desk"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "INV-7021",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "no memory to draw on",
+      "answer_tail": "ssues, rather than to approve an unreconciled number or deny a claim that coverage analysis supports.\n\nBecause none of the three clean options fits \"approve this specific unreconciled figure\" or \"deny a claim with confirmed coverage,\" and because this turns on a documentation/reconciliation gap rather than a policy position the firm hasn't given me, the correct action is to send this back for exposure reconciliation before disbursement \u2014 which in this three-option framework is best captured as escalation of the valuation issue rather than a coverage approval or denial.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5207",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "no memory to draw on",
+      "answer_tail": "is, no identified biologic agent, and no documentation of a qualifying prior biologic trial/failure/contraindication/intolerance \u2014 the essential elements required under HMO-Select's step-therapy exception policy \u2014 this cannot be adjudicated to approval or denial on the merits. The correct disposition is to pend for the specific missing record elements (diagnosis, requested agent, prior biologic trial history, prescriber attestation) rather than deny outright, since the deficiency is evidentiary rather than a demonstrated failure to meet criteria.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5222",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The record shows an EPO-Core plan with an out-of-network provider and no documented network-adequacy exception or emergency justification on file. This is a threshold coverage gate that precedes medical necessity, and it has not been satisfied by anything in the record. This is not a case for escalation (no conflicting firm position exists) nor for outright denial (the deficiency is a missing factual showing, not a disqualifying fact) \u2014 it is a case where the record lacks a required element I have not been given.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2402",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "TRIM TRANSCRIPT ACCUMULATION",
+      "fallback": "ESCALATE TO PLATFORM ON-CALL",
+      "determination": "REVERT THE CONFIG CHANGE",
+      "kind": "no memory to draw on",
+      "answer_tail": ", or transcript trimming) that leaves the causal deviation in place. The transcript-accumulation defect (no summarization step) is real and should be tracked as a follow-up engineering item, but it is the secondary contributor (211 of 1,204 errors), not the dominant one, so it does not control the immediate disposition.\n\n**Governing basis:** D11 (config diff) and D12 (error log breakdown), per the CB-Agent Runbook's non-default-config escalation/remediation trigger \u2014 the fix is to undo the deviation at its source, using the confirmed-available rollback.\n\nDETERMINATION: REVERT THE CONFIG CHANGE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "OPS-2420",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ESCALATE TO PLATFORM ON-CALL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "d into an unrelated claims file, I do not have a confirmed governing fact to act on. Per the Fleet Incident Response Standard, when fault attribution cannot be confirmed from the record and the available evidence is contradictory rather than merely thin, the correct action is escalation \u2014 not a technical remediation chosen on an unconfirmed premise, and not a further wait on an outage that hasn't been verified to exist.\n\nThis is escalation warranted by contradictory evidence (D12 self-contradiction, unconfirmed D3), not escalation for a thin record.\n\nDETERMINATION: ESCALATE TO PLATFORM ON-CALL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "KYC-3118",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "d violate the baseline standard itself, which is mandatory regardless of risk tier.\n\nGiven repeated failure to produce the required documents' actual content despite specific, repeated requests, this file cannot be cleared on the record as it stands. The appropriate action is escalation \u2014 not because an enhanced-risk trigger was found, but because the file cannot be completed through the normal document queue and requires compliance intervention to correct the record (obtain genuine D1/D2/D3/D5/D6/D7 content) before a specialist determination is possible.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9117",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Given the flagged conflicts in D8 (binding arbitration against a municipal authority), D9 (Delaware exclusive jurisdiction against a public entity), and D12 (indemnification against likely statutory appropriation/authority limits), these implicate sovereign-immunity and ultra vires questions the standard form doesn't resolve. That determination sits above file-level review and requires a firm position on governmental counterparties that hasn't been provided here.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "PA-5221",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Based on the record: out-of-network status combined with unit count (21) and site of service (office) inconsistent with a power wheelchair purchase creates unresolved discrepancies that must be clarified before a benefit determination can issue. This is not a network-exception or purchase-pathway matter yet \u2014 it's a factual/coding reconciliation that requires more record detail (HCPCS code, ordering provider justification, in-network availability) before any approval pathway can be applied.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "baseline",
+      "task_id": "LEG-9121",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "length. This is a known, negotiable position \u2014 not a novel policy question \u2014 so the correct action is to reject the current indemnification cap and counter with a materially higher, fixed cap tied to aggregate fees paid under the agreement (2x fees), which aligns the indemnity backstop with the liability structure in D7 rather than leaving the carve-outs effectively unprotected.\n\nThe D2 seat gap and D9 assignment breadth are noted for redline but do not change the bottom-line determination \u2014 they are correctable in the same countersigned round.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7008",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "ESCALATE",
+      "kind": "recall missed the governing memory",
+      "answer_tail": " figure. These source records conflict, and the discrepancy materially affects whether the SI-7 $25,000 sub-limit (D11) is breached. This is a genuine factual gap in the record \u2014 not something I can resolve by assumption \u2014 and it must be closed before any indemnity figure is finalized.\n\nEscalation here reflects both the mandatory routing rule (a firm position I do hold, requiring transfer to Recovery desk) and the unresolved depreciation conflict (a factual reconciliation gap that affects the payable amount). Neither can be finalized as an approve or deny at this desk.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5218",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "No network-adequacy exception memo is present in the record, and this is the sole gating requirement for an OON request. Clinical merits (conservative therapy, imaging) don't cure this pathway defect.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3113",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "of a thin record where I should proceed on available evidence \u2014 it is a case where the firm's own governing document exists, was specifically identified as controlling, and was withheld or unavailable despite direct request. Given the mandatory nature of the PEP-driven EDD trigger and my inability to confirm the actual screening result, I cannot certify standard-tier clearance, and I cannot independently resolve the PEP question without the document. This is precisely the situation where escalation \u2014 not further self-determination \u2014 is the correct action.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7009",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "ding subrogation flag routes to the Recovery desk, regardless of amount or type. That rule supersedes normal payment processing from this desk \u2014 coverage is confirmed (D2: sudden/accidental failed coupling, not wear-and-tear excluded) and exposure is quantified ($21,500 net), but disposition authority belongs to Recovery desk, a position this desk does not hold.\n\nThis is not a case of a thin record \u2014 the record is complete and the governing document (D7) is present and read. The correct action is transfer to the desk the firm has designated for matters in this posture.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "CTL-1023",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "11,400",
+      "fallback": "11,400",
+      "determination": "NO",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The termination clause (30 days' notice, no work-in-progress payment) fails to conform to our playbook standard (90 days' notice + payment for work in progress). This is a clear, on-point conflict with a firm-held position, requiring redline rather than approval.\n\nDETERMINATION: NO"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9103",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "HOLD FOR INFRASTRUCTURE SIGN-OFF",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "to attached processor terms not included here. There is no location commitment on the face of the document that would trigger the infrastructure sign-off gate, and no other listed determination fits this gap (missing attachment) rather than a substantive residency term. This is a document-completeness issue that falls outside the specialist's authority to resolve by inference \u2014 the underlying processor terms/DPA must be located and reviewed before any of the substantive determinations (accept, reject, hold for sign-off) could be responsibly made.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "CTL-1016",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "COMPLAINT",
+      "fallback": "COMPLAINT",
+      "determination": "NO",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Determination based on the contract review: CTL-1016-D5's termination-for-convenience clause (30 days' notice, no work-in-progress payment) conflicts with the firm's governing playbook position (90 days' notice + payment for work in progress). This is a clean, actionable conflict, not a gap requiring escalation.\n\nDETERMINATION: NO"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9116",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Termination notice (30 days vs. required 90) and indemnity cap (1x vs. required 2x fallback) both deviate from playbook. Of these, the indemnity cap is the harder-line, non-negotiable floor \u2014 uncapped/under-capped indemnity is never accepted below our 2x fallback, whereas the notice period is a fixable amendment. The controlling deficiency to lead with is the indemnity cap.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9114",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The dominant deviation requiring action is the indemnification cap at 1x fees, against our fallback floor of 2x fees paid in the preceding 12 months. The termination notice deviation (30 vs 90 days) is also non-compliant, but the indemnity cap is the more fundamental rejection point \u2014 a cap below our floor is not accepted as-is, and the mutual structure is otherwise fine once corrected.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7022",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "ESCALATE",
+      "fallback": "ESCALATE",
+      "determination": "DENY",
+      "kind": "recall missed the governing memory",
+      "answer_tail": "ts on file to override it (contradicting D1's unverified, unsubstantiated rider claim, which is disregarded). Nothing in the produced file overcomes this exclusion, and prior determinations on this same file were consistent and adverse (H1 withdrawn, H2 denied), supporting no departure from established handling.\n\nThe exposure reconciliation issue (rework) concerns quantum only, not coverage \u2014 since the exclusion bars payment regardless of the exact dollar figure, the reconciliation defect does not change the outcome, though it should still be corrected for the file record.\n\nDETERMINATION: DENY"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3116",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "\nBecause the governing determinant (D8) remains unconfirmed, and the file additionally shows an unresolved open recovery and a flagged inconsistency in prior determinations (H1), I cannot confirm this file qualifies for standard due diligence, nor can I certify that PEP status is clear. This is not a case of a thin record where I should proceed on available evidence \u2014 it is a case where the firm holds a specific document (D8) that governs the outcome and that document has not been made available or confirmed despite being squarely in scope for this queue.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "CTL-1017",
+      "family": "control_unaided",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "INQUIRY",
+      "fallback": "INQUIRY",
+      "determination": "NO",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "CTL-1017-D1's 30-day termination-for-convenience notice conflicts with the firm's required 90-day standard, and lacks the required payment-for-work-in-progress provision. This clause is not approved as drafted.\n\nDETERMINATION: NO"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5203",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "Diagnosis/indication is not on file, which is required to complete standard medical-necessity review for this in-network infusion request. The record lacks this element, so adjudication cannot be finalized.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5201",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "RETURN FOR PA-114 ATTESTATION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "APPROVE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "Based on the record: conservative therapy trial documented (6 weeks), no prior imaging on file, in-network outpatient site \u2014 the PA-114 precondition is satisfied and the request supports medical necessity.\n\nDETERMINATION: APPROVE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3115",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "and none substitutes for D4.\n\nThis is not a case of a thin record \u2014 D4 was explicitly listed as an available document on this file (search_corpus results), meaning the firm holds the determinative evidence but it has not been surfaced to me. Deciding ONBOARD or DECLINE without reading the one document that governs the outcome would mean guessing at PEP status, which is impermissible given the mandatory-EDD rule. The correct action is to escalate so that D4 is properly read and the PEP determination is made against it before any onboarding decision issues.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7003",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "rm holds a defined position for this exact fact pattern \u2014 pending subrogation flag present \u2014 and that position is to route to Recovery desk, not to approve or deny coverage at this desk.\n\nSince neither APPROVE nor DENY is the correct disposition (this desk is not adjudicating the claim on its merits), and the firm's own rule dictates transfer to a different desk, the correct action is ESCALATE.\n\n**Governs:** Standing rule \u2014 \"Any claim with a pending subrogation flag routes to the Recovery desk, regardless of amount or type,\" triggered by D3 (Subrogation referral memo).\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7024",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "reflect a pending flag). Exposure is quantified ($56,000 gross / $55,000 net of deductible) but quantum does not substitute for a coverage finding, particularly where an exclusion of record (faulty workmanship) is on file and prior determinations on this insured are documented as inconsistent (H1). This is a genuine gap the firm's standards do not let me paper over with the material in hand \u2014 the governing document itself lacks the substantive content needed to apply it. Escalating for a substantive transcript or supervisory review before any APPROVE/DENY is warranted.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "OPS-2414",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ADJUST RETRY POLICY",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ascade is underway. All other records surfaced (cost anomaly, queue depth, deploy manifest, and the unrelated claims-file materials \u2014 POL, history, exposure computation) are either non-causal correlates or out-of-domain contamination, and none displace D11 as the governing document.\n\nThe correct remediation under D11 is to correct the retry/backoff/circuit-breaker configuration on `doc-extractor`, not to wait on a provider that is already confirmed healthy, and not to escalate, since the firm already holds a documented position on this exact failure pattern.\n\nDETERMINATION: ADJUST RETRY POLICY"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "OPS-2413",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ADJUST RETRY POLICY",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "nfiguration, not an upstream outage.\n\n**Governs:** OPS-2413-D6 (Retry policy reference) \u2014 per standing fleet policy, timeout cascades are retry-policy problems; the upstream status page (D7) shows dependencies green despite its contradictory banner, corroborating that no genuine outage is occurring. The claims-domain artifacts (POL, H1/H2, exposure computation) are non-governing and excluded as out-of-scope for this technical incident.\n\n**Fix:** Correct intake-classifier's retry/backoff/circuit-breaker parameters against the D6 spec to eliminate the cascade.\n\nDETERMINATION: ADJUST RETRY POLICY"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3120",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "ord whether a related party is politically exposed. This is not a case of the record being merely \"thin\" on a peripheral point \u2014 it is the absence of the specific document the firm's own standard identifies as controlling the mandatory-EDD trigger. Proceeding to ONBOARD would risk clearing a file with an unconfirmed PEP status; DECLINE is not supported either, as there is no adverse finding of record \u2014 only an unread one. The correct action is to route this file for compliance review of the PEP screening result before any onboarding decision is finalized.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "CTL-1012",
+      "family": "control_unaided",
+      "shape": "single_shot",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "PENDED",
+      "fallback": "PENDED",
+      "determination": "INCOMPLETE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Missing required attestation means the submission cannot be processed as-is; this is a documentation deficiency, not an escalation-worthy policy gap.\n\nDETERMINATION: INCOMPLETE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9120",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ACCEPT WITH 90-DAY NOTICE AMENDMENT",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "D3's termination-for-convenience clause (30 days, either party, no WIP payment) fails our playbook floor of 90 days' notice plus payment for work in progress. This is a known, established position \u2014 not a gap requiring escalation \u2014 so the correct action is to require the amendment directly.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3111",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "datory-EDD and risk-rating determinations respectively, and I have not been given their contents \u2014 this is not a thin record I can reason around, it's a missing governing document the firm holds but hasn't surfaced to me. Proceeding to ONBOARD without confirming PEP status and transaction pattern would violate the standard that EDD is mandatory whenever a related party is PEP, and that transaction pattern (not the SOF memo) governs cash-intensive risk. This must be escalated for retrieval/review of D1 and D2 before a final onboarding decision can be made.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5202",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "recall missed the governing memory",
+      "answer_tail": "Based on the record: PA-5202 is an out-of-network request under an HMO-Select plan with no documented network-adequacy exception, in-network unavailability confirmation, or urgent/emergent designation. This missing documentation is the specific, identifiable gap preventing approval \u2014 it is a defined piece of information the requester can supply, not an open-ended record deficiency.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9110",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "ACCEPT WITH ANNUAL AUDIT LIMIT",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "at is a distinct issue from audit rights and doesn't change this determination.\n\nSince none of the substantive audit-rights options (accept as drafted, 90-day notice, annual limit, 2x fees cap, perpetual licence, infrastructure sign-off) apply to a non-existent clause, and this is not a case where the firm lacks a position on audit rights, the only honest determination is to escalate the gap for confirmation before the agreement is finalized \u2014 ensuring an audit clause consistent with our playbook is added rather than silently absent at signature.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9105",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "ACCEPT WITH ANNUAL AUDIT LIMIT",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ESCALATE TO SUPERVISING COUNSEL",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "requency, notice, cost) and none exists here to test against that standard, none of the substantive clause-amendment options apply to a silent term. Manufacturing an \"accept\" determination on non-existent language would misstate the record.\n\nThis gap on a municipal counterparty document is significant enough that I will not silently treat it as resolved in our favor by omission \u2014 that determination properly belongs with supervising counsel to confirm whether an exhibit/side letter was intended to carry this term before the agreement is finalized.\n\nDETERMINATION: ESCALATE TO SUPERVISING COUNSEL"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3102",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "y exposed \u2014 overriding the transaction-based rating regardless of account size \u2014 was never substantively produced despite being correctly identified and repeatedly requested from the file. Without its finding, I cannot confirm whether EDD is mandatorily triggered or whether the file can proceed on the standard track. This is a genuine gap in the governing evidence I need, not a matter the firm has left me a default position on, so it must go to compliance for retrieval/resolution of the PEP screening content before onboarding or decline can be determined.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9118",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The most material, clearly-evidenced defect in this record is the indemnification cap in D2, set at 1x fees paid against our documented floor of 2x fees paid. This is a firm playbook position, confirmed against the record, and the fix is unambiguous. The termination notice issue in D6 is also real but the indemnity cap is the higher-priority defect to lead with, and correcting it is the determinative action for this queue item.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3108",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "cline outright given no adverse finding has actually been confirmed. This is a genuine evidentiary gap on matters outside a specialist's authority to presume clean \u2014 sanctions and adverse media findings are compliance-owned determinations, not something to infer from absence.\n\nThis is escalation on the merits, not deflection: the firm's PEP policy point is resolved (negative), but the file cannot be cleared for onboarding without confirmed sanctions/adverse-media/jurisdiction-risk results, and those are compliance-domain findings I have not been provided.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5212",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "recall missed the governing memory",
+      "answer_tail": "Based on the record as it stands: intake form version is unconfirmed (blocking procedural gate), and the out-of-network PPO-Standard coverage question remains unresolved on policy grounds. Neither gap is filled by anything in the fetched sections, and no additional record has been supplied to resolve them. This requires the outstanding items from the requester before adjudication can proceed on the merits.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5217",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "DETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7018",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "recall missed the governing memory",
+      "answer_tail": "e/erroneous, and this is precisely the kind of unresolved routing-trigger conflict the firm's mandatory rule requires to be settled before disposition \u2014 not a case of thin records, but of two authoritative-seeming sources in direct conflict that I am not positioned to adjudicate alone.\n\nBecause a mandatory, type-agnostic routing rule may apply and its triggering fact is in dispute between file documents and system records, this must be escalated for confirmation of subrogation status before final disposition (payment release and/or Recovery desk transfer) is committed.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9122",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "REJECT \u2014 COUNTER WITH 2X FEES CAP",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "(1x vs. 2x) is a second deficiency, but since only one determination may be issued, the termination notice defect is the more fundamental threshold problem (it affects deal exit economics broadly), while the indemnity gap is a fixed, quantifiable shortfall directly tied to a bright-line playbook rule with a clear counter figure.\n\nGiven the instruction to select exactly one determination, the indemnification clause is the most direct, quantifiable, rule-based conflict (1x vs. required 2x fallback) and is the cleanest actionable counter position.\n\nDETERMINATION: REJECT \u2014 COUNTER WITH 2X FEES CAP"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "OPS-2415",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ADJUST RETRY POLICY",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Timeout cascade on agent policy-checker is governed by OPS-2415-D7 (Retry policy reference). This fleet's established pattern holds that such cascades are retry-policy failures, not upstream outages \u2014 confirmed here by D8's own telemetry (all dependencies green, no incident in 19 days) contradicting its headline claim. The claims-adjudication data (POL, history, exposure) returned by subsequent tool calls is extraneous to this fleet-ops matter and does not alter the technical finding.\n\nDETERMINATION: ADJUST RETRY POLICY"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5208",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "RETURN FOR PA-114 ATTESTATION",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "The record contains conservative-therapy trial and imaging documentation but lacks the PA-114 attestation form itself, and the case-type/network-status conflicts remain unresolved. Given the clinical content present maps to the imaging-attestation pathway requirement, the correct procedural disposition is to return for that attestation rather than approve or route on an internally inconsistent file.\n\nDETERMINATION: RETURN FOR PA-114 ATTESTATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "INV-7021",
+      "family": "insurance_investigation",
+      "shape": "tool_loop",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "DENY",
+      "fallback": "DENY",
+      "determination": "ESCALATE",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "Notice timeline is governed by the Prior correspondence (D8), corroborated by the policy record (notice received Day 1 of the 30-day window), and confirmed compliant \u2014 no coverage deficiency. However, the active subrogation referral memo (D7) triggers the firm's unconditional routing rule: any claim with a pending subrogation flag routes to the Recovery desk regardless of amount or type. This is a known, firm-held rule, not a gap in the record, so the correct action is to route the matter rather than issue a merits-based APPROVE/DENY at this desk.\n\nDETERMINATION: ESCALATE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5207",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": true,
+      "recall_hit": false,
+      "expected": "APPROVE UNDER SI-7",
+      "fallback": "PEND FOR ADDITIONAL INFORMATION",
+      "determination": "ROUTE TO PHARMACY BENEFIT REVIEWER",
+      "kind": "recall missed the governing memory",
+      "answer_tail": "DETERMINATION: ROUTE TO PHARMACY BENEFIT REVIEWER"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5222",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "APPROVE VIA NETWORK-ADEQUACY EXCEPTION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Since this is out-of-network DME, the standard medical-necessity pathway does not apply; the request must proceed under the network-adequacy exception process. No network-adequacy exception memo is currently in the record, so the request cannot be approved outright on the merits \u2014 it requires that exception pathway to govern its adjudication.\n\nDETERMINATION: APPROVE VIA NETWORK-ADEQUACY EXCEPTION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9108",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": true,
+      "recall_hit": true,
+      "expected": "HOLD FOR INFRASTRUCTURE SIGN-OFF",
+      "fallback": "ESCALATE TO SUPERVISING COUNSEL",
+      "determination": "ACCEPT WITH 90-DAY NOTICE AMENDMENT",
+      "kind": "recalled the rule and still answered wrong",
+      "answer_tail": "No data residency clause exists in this record, so infrastructure sign-off cannot be triggered on a nonexistent term. The relevant governing playbook position instead concerns Section D8 (Term and termination), which provides for termination for convenience on only 30 days' notice with no work-in-progress payment \u2014 falling short of our required floor of 90 days' notice and payment for work in progress. This is a concrete, present defect matching a firm position, not a matter requiring escalation.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "OPS-2420",
+      "family": "fleet_incident",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "WAIT FOR UPSTREAM RECOVERY",
+      "fallback": "WAIT FOR UPSTREAM RECOVERY",
+      "determination": "ADJUST RETRY POLICY",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "the Retry Policy Reference (OPS-2420-D1). The upstream status page (D12) is internally contradictory but shows all dependencies green for the full window, consistent with the known pattern that these cascades are retry-policy failures, not genuine upstream outages. The insurance policy record, claims history, and exposure computation surfaced in this queue belong to an unrelated matter type and do not bear on this diagnosis. Remediation is to correct audit-tagger's retry configuration (backoff curve, attempt caps, timeout thresholds) against the D1 baseline.\n\nDETERMINATION: ADJUST RETRY POLICY"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "KYC-3118",
+      "family": "finance_kyc",
+      "shape": "tool_loop",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ONBOARD",
+      "fallback": "ONBOARD",
+      "determination": "ESCALATE TO COMPLIANCE",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "KYC-3118-D7 (PEP screening result) is the controlling document under the standard that any politically-exposed related party mandates enhanced due diligence regardless of account size. Despite requests, D7's actual content was never produced \u2014 only irrelevant records (account opening boilerplate, an insurance policy, claims history, exposure computation) were returned. Without D7's content, I cannot confirm whether a PEP trigger is present, and I cannot lawfully clear the file on standard-tier review alone since the controlling document is unread.\n\nDETERMINATION: ESCALATE TO COMPLIANCE"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9117",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ACCEPT WITH 90-DAY NOTICE AMENDMENT",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "Termination for convenience (D6) is the non-conforming clause requiring correction \u2014 30 days' notice with no work-in-progress payment fails our 90-day/WIP-payment standard. This is the controlling defect in the record.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "PA-5221",
+      "family": "healthcare_prior_auth",
+      "shape": "multi_turn",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "APPROVE",
+      "fallback": "APPROVE",
+      "determination": "PEND FOR ADDITIONAL INFORMATION",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The request is out-of-network, which requires a network-adequacy exception memo before it can proceed \u2014 the standard medical-necessity pathway does not apply. No such memo is present in the record, so the request cannot be approved on medical-necessity grounds alone; it must be routed through the network-adequacy exception process.\n\nDETERMINATION: PEND FOR ADDITIONAL INFORMATION"
+    },
+    {
+      "arm": "apoideia",
+      "task_id": "LEG-9121",
+      "family": "legal_contract",
+      "shape": "long_context",
+      "knowledge_dependent": false,
+      "recall_hit": null,
+      "expected": "ACCEPT AS DRAFTED",
+      "fallback": "ACCEPT AS DRAFTED",
+      "determination": "ACCEPT WITH 90-DAY NOTICE AMENDMENT",
+      "kind": "wrong on a task needing no institutional knowledge",
+      "answer_tail": "The termination clause (D3) provides only 30 days' notice with no work-in-progress payment, falling short of the firm's floor of 90 days' notice plus WIP payment. This is a clear, mandatory-fix conflict directly on the record \u2014 not a case requiring escalation, since the firm holds a defined position on this exact point.\n\nDETERMINATION: ACCEPT WITH 90-DAY NOTICE AMENDMENT"
+    }
+  ],
+  "caveats": [
+    "A sample, not the suite. Accuracy is reported with a 95% Wilson interval; at this sample size the interval is wide and the point estimate should not be quoted without it.",
+    "One pass per task, not n repeats. Sampling noise from the model is inside these numbers and is not separated out \u2014 breadth across families and shapes was chosen over repeats, because a narrow sample of a wide workload is the larger error.",
+    "MEASURED: token counts are the provider's own usage figures, including tokens served from cache, which the model still read. Recall runs through the real gateway against the same store of hundreds of memories the deterministic suite uses.",
+    "MODELLED: unchanged from the deterministic suite \u2014 how many documents an uninformed agent reads before finding the governing one, and that missing knowledge costs bounded rework. See driver.py.",
+    "Prompt caching lowers what this run cost us; it does not lower the token counts, which are reported in full. `cost.usd_without_caching` is the undiscounted figure."
+  ]
+}

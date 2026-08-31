@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apoideia — the memory &amp; learning runtime for AI agent fleets</title>
+<meta name="description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/" />
+
+<!-- Social cards. https://willgitdata.github.io/apoidea is substituted by server.mjs on the way out:
+     og:url and og:image have to be absolute to work at all, and this project
+     has no domain yet, so the deployment supplies it rather than the file
+     guessing one that would not resolve. -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Apoideia — the memory &amp; learning runtime for AI agent fleets" />
+<meta property="og:description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Apoideia — the memory &amp; learning runtime for AI agent fleets" />
+<meta name="twitter:description" content="Durable, explainable memory for AI agents in finance, healthcare, legal, and insurance. Self-hosted, one command." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+<link rel="stylesheet" href="/apoidea/demo-walkthrough.css" />
+<style>
+  /* Page-specific only — the nav, footer, frame and .muted live in site.css. */
+  .hero { padding: 72px 0 48px; text-align: center; }
+  .hero h1 { font-size: 40px; max-width: 780px; margin: 0 auto 20px; line-height: 1.2; letter-spacing: -0.015em; text-transform: none; }
+  .hero p.sub { color: var(--text-dim); max-width: 600px; margin: 0 auto 32px; font-size: 17px; line-height: 1.6; }
+  .hero .hero-signin { font-size: 12.5px; color: var(--text-dim); margin: 14px 0 0; }
+  /* Seven tiles, not a results section. The full breakdown lives on
+     /performance.html — this page shows what the numbers are, that page shows
+     why you should believe them. */
+  /* Five tiles on a 6-column grid: the top two (tokens, cost) span 3 each — one
+     even row of two — and the remaining three span 2 each — one even row of
+     three. Same tile height everywhere, no ragged last row. */
+  .metrics { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin: 8px 0 20px; text-align: left; }
+  .metrics .m { grid-column: span 2; padding: 20px; display: flex; flex-direction: column; gap: 7px; min-height: 150px; }
+  .metrics .m:nth-child(1), .metrics .m:nth-child(2) { grid-column: span 3; }
+  .metrics .m-n { font-family: var(--font-display); font-weight: 700; font-size: 27px; color: var(--honey); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  /* The four win tiles — tokens, cost, accuracy lift, external validation —
+     read green. Recall@5 (the fifth) is a neutral quality figure, not a
+     before/after win, so it stays honey. */
+  .metrics .m:nth-child(1) .m-n,
+  .metrics .m:nth-child(2) .m-n,
+  .metrics .m:nth-child(3) .m-n,
+  .metrics .m:nth-child(4) .m-n { color: var(--green); }
+  /* Only the top two get the larger figure. */
+  .metrics .m:nth-child(1) .m-n, .metrics .m:nth-child(2) .m-n { font-size: 34px; }
+  .metrics .m-n.m-none { font-size: 17px; color: var(--text-dim); }
+  .metrics .m-l { font-size: 13px; font-weight: 600; }
+  .metrics .m-d { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
+  .metrics .m-s { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.75; margin-top: auto; padding-top: 6px; }
+  @media (max-width: 720px) {
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .metrics .m, .metrics .m:nth-child(1), .metrics .m:nth-child(2) { grid-column: auto; }
+    .metrics .m:nth-child(1), .metrics .m:nth-child(2) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 480px) { .metrics { grid-template-columns: 1fr; } .metrics .m { grid-column: auto !important; } }
+  .tabs-code { display: flex; gap: 8px; margin-bottom: -2px; }
+  .tabs-code button { font-family: var(--font-body); font-size: 12px; padding: 6px 14px; background: var(--surface2); border: 2px solid var(--border); border-bottom: none; color: var(--text-dim); cursor: pointer; }
+  .tabs-code button.active { color: var(--honey); background: #050508; }
+  .lang-block { display: none; }
+  .lang-block.active { display: block; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cmp-table th, .cmp-table td { padding: 12px; border-bottom: 1px solid var(--border); text-align: left; }
+  .cmp-table th:not(:first-child), .cmp-table td:not(:first-child) { text-align: center; }
+  .cmp-yes { color: var(--green); }
+  .cmp-partial { color: var(--comb); }
+  .cmp-no { color: var(--text-dim); }
+  .comic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .comic .panel { padding: 16px 12px; text-align: center; font-size: 13px; line-height: 1.55; }
+  .comic .panel .num { font-family: var(--font-display); font-weight: 700; color: var(--honey); font-size: 12px; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .price { font-family: var(--font-display); font-weight: 700; font-size: 28px; color: var(--honey); margin: 10px 0; }
+  .pricing-grid .hv-card { display: flex; flex-direction: column; }
+  .pricing-grid .hv-card ul { margin: 4px 0 16px; padding-left: 18px; font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+  .pricing-grid .hv-card .hv-btn { align-self: flex-start; margin-top: auto; }
+  .pricing-note { font-size: 12.5px; margin-top: 18px; max-width: 720px; line-height: 1.6; }
+</style>
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html">Docs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="#compare">Compare</a>
+      <a href="#pricing">Pricing</a>
+      <!-- The account entry points. The signed-out pair is what the HTML ships,
+           so it is correct with no JavaScript at all; session.js swaps in the
+           signed-in link if GET /auth/me says there is a session, and does
+           nothing whatsoever if the gateway cannot be reached.
+           The href is the console's own /auth route (see the W4 seam in
+           apps/console/src/App.tsx) and is rewritten per deployment by
+           console-link.js — never hardcode a console URL past this default. -->
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <h1>Your agents forget. Apoideia is the memory &amp; learning runtime that fixes that — durably, explainably, inside your perimeter.</h1>
+  <p class="sub">Built for finance, healthcare, legal, insurance, and anyone running a large fleet of agents. Wrap your existing LLM client, add durable memory and a self-improving learning loop in under 20 lines.</p>
+  <div class="demo-cta-row">
+    <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started — free</a>
+    <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open the console &rarr;</a>
+    <button class="hv-btn hv-btn-secondary" data-open-demo>▶ How it works</button>
+    <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/0-to-1.html">Set it up: 0 &rarr; 1</a>
+    <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/quickstart.html">Read the docs</a>
+  </div>
+  <p class="hero-signin" data-signed-out>
+    Email and a password — that is the whole signup.
+    Already have an account? <a data-console-link href="http://localhost:5173/auth">Sign in</a>.
+  </p>
+  <div id="demo-live-banner" class="demo-live-banner"><span class="dot"></span> This exact demo is running live on this machine right now — <a data-console-link href="http://localhost:5173/">open the console</a> to see the real thing.</div>
+  <div class="metrics" id="headline-metrics">
+    <div class="m hv-card" data-slot="tokens"></div>
+    <div class="m hv-card" data-slot="cost"></div>
+    <div class="m hv-card" data-slot="accuracy"></div>
+    <div class="m hv-card" data-slot="external"></div>
+    <div class="m hv-card" data-slot="recall"></div>
+  </div>
+  <div class="muted" style="font-size:12px;">
+    Every figure is rendered from a run's own output file; none is typed by hand.
+    These five are the headline — the full method, every split, the confidence intervals, and the
+    one result where memory made things <em>worse</em> are all on
+    <a href="/apoidea/performance.html">the performance page</a>. Not a public benchmark.
+  </div>
+</div>
+
+<section id="quickstart">
+  <div class="wrap">
+    <h2>One wrapper. Memory, tracing, and learning — automatically.</h2>
+    <div class="tabs-code">
+      <button data-lang="python" class="active">Python</button>
+      <button data-lang="ts">TypeScript</button>
+    </div>
+    <pre class="hv-code lang-block active" data-lang="python">pip install -e sdks/python
+
+from apoideia import Apoideia
+from anthropic import Anthropic
+
+apo = Apoideia()                                   # APOIDEIA_API_KEY
+agent = apo.agent("claims-triage")
+client = agent.wrap(Anthropic())                   # memory + tracing, one line
+
+agent.remember("Adjuster Diaz handles all roof claims above $15k in region West.")
+
+with agent.run() as run:
+    resp = client.messages.create(
+        model="claude-sonnet-5",
+        max_tokens=1024,
+        messages=[{"role": "user",
+                   "content": "Triage claim #4821: hail damage, roof, $18k, policy HO-3."}],
+    )
+    print(next(b.text for b in resp.content if b.type == "text"))
+    run.finish(outcome="success")                  # routes to Diaz: recalled, not told</pre>
+    <pre class="hv-code lang-block" data-lang="ts">npm install ./sdks/typescript
+
+import { Apoideia } from "apoideia";
+import Anthropic from "@anthropic-ai/sdk";
+
+const apo = new Apoideia();                        // APOIDEIA_API_KEY
+const agent = await apo.agent("claims-triage");
+const client = agent.wrap(new Anthropic());        // memory + tracing, one line
+
+await agent.remember("Adjuster Diaz handles all roof claims above $15k in region West.");
+
+const run = await agent.run();
+const resp = await client.messages.create({
+  model: "claude-sonnet-5",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Triage claim #4821: hail damage, roof, $18k, policy HO-3." }],
+});
+console.log(resp.content.find((b) =&gt; b.type === "text").text);
+await run.finish("success");                       // routes to Diaz: recalled, not told</pre>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How the learning loop works</h2>
+    <div class="comic">
+      <div class="panel hv-card"><div class="num">01 FIND</div>Every run's tool calls, errors, and recalls are traced end to end.</div>
+      <div class="panel hv-card"><div class="num">02 DISTILL</div>Repeated failures and winning tool sequences become scored lessons.</div>
+      <div class="panel hv-card"><div class="num">03 INJECT</div>Active lessons are recalled and injected into future runs automatically.</div>
+      <div class="panel hv-card"><div class="num">04 IMPROVE</div>Outcomes score each lesson — bad advice gets muted, good advice compounds.</div>
+    </div>
+  </div>
+</section>
+
+<section id="verticals">
+  <div class="wrap">
+    <h2>Built for regulated fleets</h2>
+    <div class="grid-3">
+      <div class="hv-card"><h3>Finance</h3><p class="muted">Fraud-investigation agents that remember every prior case pattern per account, with an audit trail for every recall.</p></div>
+      <div class="hv-card"><h3>Healthcare</h3><p class="muted">PACE care-coordination agents that keep an interdisciplinary team on one individualized care plan — falls, wander risk, and hospital-avoidance rules that never get lost between shifts.</p></div>
+      <div class="hv-card"><h3>Legal</h3><p class="muted">Contract-analysis agents that recall firm-specific precedent and clause interpretations across matters.</p></div>
+      <div class="hv-card"><h3>Insurance</h3><p class="muted">Claims-triage agents that remember adjuster routing rules and learn from misroutes — the flagship demo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <h2>Apoideia vs. hosted black-box runtimes</h2>
+    <table class="cmp-table">
+      <thead><tr><th></th><th>Apoideia</th><th>Typical hosted runtime</th></tr></thead>
+      <tbody>
+        <tr><td>Durable memory across restarts</td><td class="cmp-yes">Yes — S3-CAS + event log</td><td class="cmp-partial">Sometimes</td></tr>
+        <tr><td>Explainable recall trace</td><td class="cmp-yes">Every recall, strategy + reasons</td><td class="cmp-no">Rarely surfaced</td></tr>
+        <tr><td>Self-hostable / your perimeter</td><td class="cmp-yes">docker compose up</td><td class="cmp-no">Hosted only</td></tr>
+        <tr><td>Automatic learning loop</td><td class="cmp-yes">Yes — scored lessons</td><td class="cmp-partial">Sometimes</td></tr>
+        <tr><td>Results you can re-run</td><td class="cmp-yes"><code>pnpm evals</code> — suite, arms, and results file all in the repo</td><td class="cmp-partial">Headline figures, method not runnable</td></tr>
+        <tr><td>Mid-run visibility</td><td class="cmp-yes">Live streaming feed today; in-call correction roadmapped</td><td class="cmp-partial">Sometimes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Pricing, written against what exists rather than against what a pricing
+     page usually contains. There are two ways to use v0.1 and both of them
+     cost nothing, so the section says that plainly instead of inventing a
+     ladder to sit at the bottom of. The parenthetical stays: a reader who is
+     evaluating us is better served by knowing there is no hosted tier than by
+     discovering it after signing up. -->
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing <span class="muted" style="font-size:12px;">(v0.1 — one plan, free, and no hosted tier yet)</span></h2>
+    <div class="pricing-grid">
+      <div class="hv-card">
+        <h3>Create an account</h3>
+        <div class="price">Free</div>
+        <p class="muted" style="font-size:13px;">
+          Sign up with an email address on the console for the gateway you are pointed at, and get
+          the two areas the product actually has:
+        </p>
+        <ul>
+          <li><b>Developer</b> — API keys and the reference</li>
+          <li><b>Fleet</b> — agents, memories, runs, and their traces</li>
+        </ul>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open the console</a>
+      </div>
+      <div class="hv-card">
+        <h3>Self-host</h3>
+        <div class="price">Free</div>
+        <p class="muted" style="font-size:13px;">
+          Apache-2.0. Run the whole stack inside your own perimeter with one command — no account
+          with us, and no credential of yours held anywhere but your own deployment:
+        </p>
+        <ul>
+          <li>Your Postgres, your object store, your network</li>
+          <li>The model call happens in your process, with your key</li>
+        </ul>
+        <a class="hv-btn hv-btn-secondary" href="/apoidea/docs/quickstart.html">Read the quickstart</a>
+      </div>
+    </div>
+    <p class="muted pricing-note">
+      What is deliberately not here: a paid tier, a usage meter, a hosted gateway you can rent, and
+      an enterprise column. None of them exist in v0.1, so none of them are on this page. The two
+      cards above are the whole offer.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center;">
+    <h2>Try it now</h2>
+    <pre class="hv-code" style="display:inline-block; text-align:left;">git clone &lt;repo&gt; && cd apoideia
+pnpm demo</pre>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<div class="hv-modal-backdrop" id="dw-backdrop">
+  <div class="hv-modal hv-pixel-border">
+    <div class="hv-modal-head">
+      <span id="dw-title">HOW IT WORKS</span>
+      <span class="close-x" id="dw-close">✕</span>
+    </div>
+    <div class="hv-modal-body" id="dw-body"></div>
+    <div class="dw-nav">
+      <button class="hv-btn hv-btn-secondary" id="dw-prev" style="font-size:10px; padding:6px 10px;">◀ Back</button>
+      <div class="dw-dots" id="dw-dots"></div>
+      <button class="hv-btn" id="dw-next" style="font-size:10px; padding:6px 10px;">Next ▶</button>
+    </div>
+  </div>
+</div>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+<script src="/apoidea/demo-walkthrough.js"></script>
+<script src="/apoidea/paired.js"></script>
+<script src="/apoidea/metrics.js"></script>
+<script>
+document.querySelectorAll('.tabs-code button').forEach((btn) => {
+  btn.onclick = () => {
+    document.querySelectorAll('.tabs-code button').forEach((b) => b.classList.remove('active'));
+    document.querySelectorAll('.lang-block').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.lang-block[data-lang="${btn.dataset.lang}"]`).classList.add('active');
+  };
+});
+</script>
+</body>
+</html>

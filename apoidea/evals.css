@@ -1,0 +1,171 @@
+/* Measured-results section. Bars are segmented cells so they read as game
+   meters rather than generic chart bars — same visual language as the console. */
+
+/* Four headline metrics. Auto-fit would put three on one row and strand the
+   fourth, so above tablet width it is an explicit 2x2 — even rows, and panels
+   wide enough for the note under each meter to read. */
+.bm-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 680px) { .bm-grid { grid-template-columns: repeat(2, 1fr); } }
+.bm-panel h3 { margin: 0 0 4px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.bm-panel h3 em { font-style: italic; text-transform: none; }
+.bm-sub { margin: 0 0 16px; font-size: 13px; color: var(--text-dim); }
+.bm-note { margin: 14px 0 0; font-size: 12px; color: var(--text-dim); line-height: 1.55; }
+.bm-note em { font-style: italic; }
+
+.bm-delta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.bm-delta.good { color: var(--green); }
+.bm-delta.bad { color: var(--comb); }
+.bm-delta.flat { color: var(--text-dim); }
+
+.bm-row { display: grid; grid-template-columns: 1fr; gap: 4px; margin-bottom: 14px; }
+.bm-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+.bm-track { display: flex; gap: 2px; height: 18px; }
+.bm-cell { flex: 1; background: var(--surface2); border: 1px solid var(--border); }
+.bm-cell.on.good { background: var(--green); border-color: var(--green); }
+.bm-cell.on.bad { background: var(--red); border-color: var(--red); }
+.bm-cell.on.flat { background: var(--text-dim); border-color: var(--text-dim); }
+.bm-value {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.bm-value.good { color: var(--green); }
+.bm-value.bad { color: var(--red); }
+.bm-value.flat { color: var(--text); }
+.bm-n { font-size: 12px; color: var(--text-dim); font-weight: 400; }
+
+.bm-method { margin-top: 20px; border: 2px solid var(--border); background: var(--surface); padding: 14px 16px; }
+.bm-method summary { cursor: pointer; font-size: 13px; color: var(--honey); font-weight: 600; }
+.bm-method p, .bm-method li { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+.bm-method ul { margin: 10px 0; padding-left: 18px; }
+.bm-method li { margin-bottom: 8px; }
+.bm-method code { font-family: var(--font-mono); color: var(--text); }
+.bm-method strong { color: var(--text); }
+
+/* --- suite scope strip: what the aggregate is actually built from --------- */
+.ev-scope {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 2px solid var(--border);
+  margin: 0 0 20px;
+}
+.ev-scope-item {
+  background: var(--surface);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ev-scope-item b {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--honey);
+  font-variant-numeric: tabular-nums;
+}
+.ev-scope-item span {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* --- helps / costs split -------------------------------------------------- */
+.ev-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 20px; }
+.ev-split-card h4 { margin: 8px 0 10px; font-size: 15px; }
+.ev-split-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.ev-split-tag.good { color: var(--green); }
+.ev-split-tag.bad { color: var(--comb); }
+.ev-split-stat {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ev-split-stat span { color: var(--text-dim); }
+.ev-split-stat b { color: var(--honey); }
+.ev-split-stat em { font-size: 11px; font-style: normal; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* --- per-family / per-shape tables ---------------------------------------- */
+.ev-table-wrap { margin-top: 24px; overflow-x: auto; border: 2px solid var(--border); }
+.ev-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px; }
+.ev-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--surface2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--honey);
+  border-bottom: 2px solid var(--border);
+}
+.ev-table th {
+  padding: 8px 10px;
+  text-align: right;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-weight: 600;
+  background: var(--surface);
+}
+.ev-table thead tr:first-child th { border-bottom: 1px solid var(--border); }
+.ev-table tr.ev-sub th { padding-top: 4px; padding-bottom: 8px; font-size: 10px; }
+.ev-table td { padding: 10px; border-top: 1px solid var(--border); background: var(--surface); }
+.ev-table td.ev-num, .ev-table th { text-align: right; }
+.ev-table td.ev-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ev-table td.ev-num.good { color: var(--green); }
+.ev-table td.ev-num.bad { color: var(--comb); }
+.ev-table td.ev-num.flat { color: var(--text-dim); }
+.ev-name { font-weight: 600; }
+.ev-na { color: var(--text-dim); opacity: 0.6; }
+.ev-meta { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.ev-table tr.ev-control td { background: var(--surface2); }
+.ev-table tr.ev-control .ev-name::after {
+  content: 'CONTROL';
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--comb);
+  border: 1px solid var(--comb);
+  padding: 1px 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* --- "what running this changed" ------------------------------------------ */
+.ev-found { margin-top: 20px; border-left: 3px solid var(--honey); }
+.ev-found h3 { margin: 0 0 10px; font-size: 15px; }
+.ev-found p, .ev-found li { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.ev-found ul { margin: 10px 0 0; padding-left: 18px; }
+.ev-found li { margin-bottom: 10px; }
+.ev-found b { color: var(--text); }
+.ev-found em { font-style: italic; }
+.ev-found code { font-family: var(--font-mono); font-size: 12px; color: var(--text); }
+
+/* --- footnote cards ------------------------------------------------------- */
+.ev-footnotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.ev-foot-n { font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--honey); font-variant-numeric: tabular-nums; }
+.ev-foot-l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 8px; }
+.ev-foot p { margin: 0; font-size: 12px; color: var(--text-dim); line-height: 1.55; }

@@ -1,0 +1,154 @@
+/* The "How it works" walkthrough — the same job run by two agents side by side,
+   staged from the real capture in examples/evals/walkthrough-data.json. */
+
+.demo-cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; }
+.demo-live-banner {
+  display: none;
+  align-items: center; gap: 8px; justify-content: center;
+  font-size: 13px; color: var(--green); margin-top: 14px;
+}
+.demo-live-banner.visible { display: flex; }
+.demo-live-banner .dot { width: 8px; height: 8px; background: var(--green); display: inline-block; animation: hv-blink 1s steps(2) infinite; }
+
+.hv-modal-backdrop {
+  display: none;
+  position: fixed; inset: 0; background: rgba(5, 5, 8, 0.86);
+  z-index: 100; align-items: center; justify-content: center; padding: 20px;
+}
+.hv-modal-backdrop.open { display: flex; }
+.hv-modal {
+  background: var(--surface); border: 2px solid var(--border);
+  /* Wide enough for two full agent columns to sit side by side without either
+     being squeezed — the comparison is the whole point of this modal. */
+  width: 100%; max-width: 1060px; max-height: 92vh; overflow-y: auto;
+}
+.hv-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 2px solid var(--border);
+  font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  position: sticky; top: 0; background: var(--surface); z-index: 2;
+}
+.hv-modal-head .close-x { cursor: pointer; color: var(--text-dim); font-size: 18px; line-height: 1; }
+.hv-modal-head .close-x:hover { color: var(--red); }
+.hv-modal-body { padding: 22px; min-height: 380px; }
+
+/* --- the assignment banner, shared by both agents ------------------------- */
+.dw-assignment {
+  border-left: 3px solid var(--honey); background: var(--surface2);
+  padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.5;
+}
+.dw-assignment-tag,
+.dw-assignment-sub { display: block; font-size: 10px; letter-spacing: 0.1em; color: var(--text-dim); }
+.dw-assignment-tag { color: var(--honey); font-weight: 700; margin-bottom: 5px; }
+.dw-assignment-sub { margin-top: 6px; letter-spacing: 0.04em; }
+
+/* --- the two columns ------------------------------------------------------ */
+.dw-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 780px) { .dw-split { grid-template-columns: 1fr; } }
+
+.dw-col { border: 2px solid var(--border); background: var(--bg); padding: 12px; display: flex; flex-direction: column; }
+.dw-col.bad { border-color: color-mix(in srgb, var(--red) 45%, var(--border)); }
+.dw-col.good { border-color: color-mix(in srgb, var(--green) 45%, var(--border)); }
+
+.dw-col-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.dw-col-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+.dw-col-badge {
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 6px; border: 1px solid currentColor; white-space: nowrap;
+}
+.dw-col-badge.bad { color: var(--red); }
+.dw-col-badge.good { color: var(--green); }
+
+/* --- what the agent starts with ------------------------------------------- */
+.dw-knows { border: 1px dashed var(--border); padding: 8px 10px; margin-bottom: 10px; min-height: 76px; }
+.dw-knows.has { border-style: solid; border-color: color-mix(in srgb, var(--honey) 50%, var(--border)); }
+.dw-knows-head { font-size: 9px; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 5px; }
+.dw-knows-body { font-size: 11.5px; line-height: 1.5; color: var(--text); }
+.dw-knows-body.none { color: var(--text-dim); font-style: italic; }
+.dw-recall { color: var(--honey); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; }
+
+/* --- the step tape -------------------------------------------------------- */
+.dw-steps { flex: 1; display: flex; flex-direction: column; gap: 1px; margin-bottom: 10px; }
+.dw-step {
+  display: grid; grid-template-columns: 16px 1fr auto; gap: 7px; align-items: baseline;
+  padding: 3px 5px; font-size: 11.5px;
+}
+.dw-step.past { color: var(--text-dim); opacity: 0.62; }
+.dw-step.now { background: var(--surface2); color: var(--text); }
+.dw-step.now.bad { background: color-mix(in srgb, var(--red) 16%, var(--surface2)); }
+.dw-step-icon { font-family: var(--font-mono); color: var(--text-dim); text-align: center; }
+.dw-step.now .dw-step-icon { color: var(--honey); }
+.dw-step.bad .dw-step-icon { color: var(--red); }
+.dw-step-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dw-step-tok { font-family: var(--font-mono); font-size: 10.5px; font-variant-numeric: tabular-nums; }
+
+/* --- running total -------------------------------------------------------- */
+.dw-meter { display: flex; gap: 1px; height: 12px; margin-bottom: 6px; }
+.dw-meter i { flex: 1; background: var(--surface2); border: 1px solid var(--border); }
+.dw-meter i.on.bad { background: var(--red); border-color: var(--red); }
+.dw-meter i.on.good { background: var(--green); border-color: var(--green); }
+.dw-tally-row { display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+.dw-tally-row b { font-family: var(--font-mono); font-size: 18px; font-variant-numeric: tabular-nums; }
+.dw-tally-row b.bad { color: var(--red); }
+.dw-tally-row b.good { color: var(--green); }
+.dw-tally-row span { font-size: 10px; letter-spacing: 0.06em; color: var(--text-dim); text-transform: uppercase; }
+.dw-tally-row em { margin-left: auto; font-style: normal; font-size: 10px; color: var(--text-dim); font-family: var(--font-mono); }
+.dw-col-note { margin: 10px 0 0; font-size: 11.5px; line-height: 1.55; color: var(--text-dim); }
+.dw-col-note code { font-family: var(--font-mono); color: var(--text); font-size: 11px; }
+
+/* --- the bill ------------------------------------------------------------- */
+.dw-verdict { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.dw-verdict-card { border: 2px solid var(--border); padding: 12px 20px; text-align: center; min-width: 170px; }
+.dw-verdict-card.bad { border-color: var(--red); }
+.dw-verdict-card.good { border-color: var(--green); }
+.dw-verdict-n { font-family: var(--font-mono); font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dw-verdict-card.bad .dw-verdict-n { color: var(--red); }
+.dw-verdict-card.good .dw-verdict-n { color: var(--green); }
+.dw-verdict-l { font-size: 10px; letter-spacing: 0.06em; color: var(--text-dim); text-transform: uppercase; margin-top: 3px; }
+.dw-verdict-vs { font-family: var(--font-mono); color: var(--text-dim); font-size: 13px; }
+
+/* --- run 2 ---------------------------------------------------------------- */
+.dw-rerun { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 780px) { .dw-rerun { grid-template-columns: 1fr; } }
+.dw-rerun-col { border: 2px solid var(--border); padding: 14px; }
+.dw-rerun-col.bad { border-color: color-mix(in srgb, var(--red) 45%, var(--border)); }
+.dw-rerun-col.good { border-color: color-mix(in srgb, var(--green) 45%, var(--border)); }
+.dw-rerun-head { font-family: var(--font-display); font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+.dw-rerun-n { font-family: var(--font-mono); font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dw-rerun-col.bad .dw-rerun-n { color: var(--red); }
+.dw-rerun-col.good .dw-rerun-n { color: var(--green); }
+.dw-rerun-l { font-size: 10px; letter-spacing: 0.06em; color: var(--text-dim); text-transform: uppercase; }
+.dw-rerun-tag {
+  display: inline-block; margin: 9px 0 8px; padding: 2px 7px;
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: 0.1em;
+  border: 1px solid currentColor;
+}
+.dw-rerun-tag.bad { color: var(--red); }
+.dw-rerun-tag.good { color: var(--green); }
+.dw-rerun-col p { margin: 0; font-size: 11.5px; line-height: 1.55; color: var(--text-dim); }
+
+/* --- the suite aggregate -------------------------------------------------- */
+.dw-agg { margin-top: 16px; border: 2px solid var(--border); background: var(--surface2); padding: 12px 14px; }
+.dw-agg-head { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--honey); margin-bottom: 8px; }
+.dw-agg-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 3px 0; font-size: 12.5px; }
+.dw-agg-row span { color: var(--text-dim); }
+.dw-agg-row span em { font-style: italic; }
+.dw-agg-row b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--green); }
+.dw-agg-row.muted b { color: var(--text-dim); font-size: 11.5px; }
+
+.dw-note { margin: 14px 0 0; font-size: 12px; line-height: 1.6; color: var(--text-dim); }
+.dw-note strong { color: var(--text); }
+.dw-note code { font-family: var(--font-mono); color: var(--text); }
+.dw-note a { color: var(--honey); }
+
+/* --- nav ------------------------------------------------------------------ */
+.dw-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 18px; border-top: 2px solid var(--border);
+  position: sticky; bottom: 0; background: var(--surface);
+}
+.dw-dots { display: flex; gap: 6px; }
+.dw-dots span { width: 9px; height: 9px; background: var(--surface2); border: 1px solid var(--border); cursor: pointer; }
+.dw-dots span.done { background: var(--text-dim); }
+.dw-dots span.on { background: var(--honey); border-color: var(--honey); }
+.dw-nav .hv-btn:disabled { opacity: 0.4; cursor: default; }

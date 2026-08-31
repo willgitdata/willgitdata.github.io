@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quickstart — Apoideia Docs</title>
+<meta name="description" content="Get an Apoideia gateway running, create an account, mint an API key, and wrap your existing LLM client with durable memory in under 20 lines." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/docs/quickstart.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Quickstart — Apoideia" />
+<meta property="og:description" content="Boot a gateway, sign up with email, mint an API key, and wrap your existing LLM client with durable memory." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/docs/quickstart.html" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Quickstart — Apoideia" />
+<meta name="twitter:description" content="Boot a gateway, sign up with email, mint an API key, and wrap your existing LLM client with durable memory." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<!-- Same top nav as every other page. The docs used to carry only a sidebar,
+     which meant a reader who arrived here from a search result had no way back
+     to the site and no way into the console. -->
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html" aria-current="page">Docs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/#compare">Compare</a>
+      <a href="/apoidea/#pricing">Pricing</a>
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side">
+    <div class="side-head">Docs</div>
+    <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+    <a href="/apoidea/docs/quickstart.html" class="active">Quickstart</a>
+    <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+    <div class="side-head">More</div>
+    <a href="/apoidea/performance.html">Performance</a>
+    <a href="/apoidea/">&larr; Home</a>
+  </nav>
+  <div class="content">
+    <h1>Quickstart</h1>
+    <p>Apoideia wraps your existing LLM client with durable memory, an explainable recall trace, and an automatic learning loop. No new framework to learn — you keep writing OpenAI/Anthropic calls the way you already do.</p>
+
+    <h2>1. Get a gateway</h2>
+    <p>You need a running Apoideia gateway and its URL before anything below will do anything. Two ways to get one:</p>
+    <ul>
+      <li><b>Already have one</b> (your own deploy, or one a teammate runs) — skip ahead, you just need its URL and an API key from its console.</li>
+      <li><b>Don't have one yet</b> — clone this repo and boot a local stack:
+        <pre class="hv-code">git clone &lt;repo&gt; && cd apoideia
+pnpm demo</pre>
+        Boots Postgres, the memory plane, the gateway API, this site, and the console on <code>localhost</code>; seeds a demo org; runs the scripted claims-triage learning arc. Prints your console URL and login when ready.
+      </li>
+    </ul>
+
+    <h2>2. Install the SDK</h2>
+    <pre class="hv-code">pip install -e "sdks/python[anthropic]"   # or [openai], depending on your client
+# TypeScript: npm install ./sdks/typescript</pre>
+
+    <h2>3. Create an account and an API key</h2>
+    <p><a data-console-link href="http://localhost:5173/auth">Open the console's sign-in page</a> — <code>http://localhost:5173/auth</code> on a local stack, wherever yours is deployed otherwise — and sign up with an email address and a password.</p>
+    <p><b>Email is the only sign-in method in v0.1.</b> GitHub and Google are deliberately not in this release: neither is registered, and the console renders its provider buttons from a list the gateway serves, so adding one later is configuration rather than a rewrite. There is nothing else to click on the sign-in page.</p>
+    <p>Then open the <b>Developer</b> area and create a key under <b>API keys</b>:</p>
+    <ul>
+      <li>The key is shown <b>once</b>. Only a salted SHA-256 hash of it is stored, so nobody — us included — can display it again; a lost key is revoked and replaced, not recovered.</li>
+      <li>It starts with <code>apo_live_</code>. The first few characters are kept in the clear as a lookup prefix, which is what the console shows you in the key list afterwards.</li>
+    </ul>
+    <pre class="hv-code">export APOIDEIA_API_KEY=apo_live_...
+export APOIDEIA_BASE_URL=http://localhost:4000   # your gateway's URL — the only self-host/cloud seam</pre>
+
+    <h2>4. Wrap your agent</h2>
+    <pre class="hv-code">from apoideia import Apoideia
+from openai import OpenAI
+
+apo = Apoideia()
+agent = apo.agent("claims-triage")
+client = agent.wrap(OpenAI())
+
+with agent.run() as run:
+    resp = client.chat.completions.create(
+        model="gpt-5-mini",
+        messages=[{"role": "user", "content": "Triage claim #4821..."}],
+    )
+    run.finish(outcome="success")
+
+agent.remember("Adjuster Diaz handles roof claims above $15k.")
+hits = agent.recall("who handles large roof claims?")
+print(hits.results[0]["content"], hits.trace.strategy)</pre>
+    <p>Every wrapped call injects the run's recalled memory and active lessons into the system prompt (capped by the SDK at <code>APOIDEIA_INJECT_MAX_TOKENS</code>, default 1500, estimated at 4 characters per token) and posts a trace event with token usage.</p>
+    <p>Recall failures never break your call — they fail soft, and the call proceeds with no injected context. The Python SDK records why on the <code>apoideia</code> logger at <code>DEBUG</code>, so an unreachable memory plane and a genuinely empty recall are distinguishable in your logs rather than identical:</p>
+    <pre class="hv-code">logging.getLogger("apoideia").setLevel(logging.DEBUG)</pre>
+    <p>The TypeScript SDK currently swallows the same failure without logging it. That is a gap, not a design decision — treat an unexplained absence of injected context there as worth checking against the gateway.</p>
+    <p><b>One recall per run, not per call.</b> The query is the first user message of the run — the task you opened it with — because a run is one unit of work and the last message in a loop is usually a tool result, not what the agent is actually working on. Every later call in the run reuses that recall, so a ten-step agent loop pays for one. Want to ask memory something else mid-run? Call <code>agent.recall()</code> directly with your own query.</p>
+
+    <h2>5. Watch it learn</h2>
+    <p>The distiller mines finished runs for repeated errors (pitfalls), winning tool sequences (playbooks), and explicitly promoted notes (facts). Lessons are scored from the outcomes of runs they were injected into, and muted automatically if they stop helping. Check the Skill Log in the console on any agent's detail page.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/">Home</a>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+</body>
+</html>

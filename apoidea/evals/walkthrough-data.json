@@ -1,0 +1,380 @@
+{
+  "generated_at": "2026-07-27T01:28:50.869426+00:00",
+  "what_this_is": "One multi-step investigation from the eval suite, driven twice through each arm. Every token count is the real prompt the pipeline assembled; recall and injection are real calls through the SDK and gateway. Captured by examples/evals/capture_walkthrough.py.",
+  "task": {
+    "id": "INV-7001",
+    "instruction": "Investigate water-loss claim INV-7001 for insured Harbor Point Holdings.",
+    "documents": 12,
+    "governing_document": "Engineering report",
+    "knowledge": "For water-loss investigations the Engineering report governs; the contractor estimates routinely conflict and must not drive the determination.",
+    "expected": "ESCALATE"
+  },
+  "baseline": [
+    {
+      "steps": [
+        {
+          "label": "plan",
+          "detail": "Reads the assignment and plans an approach.",
+          "tokens_in": 85,
+          "tokens_out": 19
+        },
+        {
+          "label": "search",
+          "detail": "Lists the 12 documents in the case file.",
+          "tokens_in": 234,
+          "tokens_out": 18
+        },
+        {
+          "label": "read:Contractor estimate A",
+          "detail": "Opens Contractor estimate A.",
+          "tokens_in": 1113,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Prior correspondence",
+          "detail": "Opens Prior correspondence.",
+          "tokens_in": 1848,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:First notice of loss",
+          "detail": "Opens First notice of loss.",
+          "tokens_in": 2444,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Coverage endorsement schedule",
+          "detail": "Opens Coverage endorsement schedule.",
+          "tokens_in": 3599,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Engineering report",
+          "detail": "Opens Engineering report.",
+          "tokens_in": 4195,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Photographs index",
+          "detail": "Opens Photographs index.",
+          "tokens_in": 5347,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Adjuster field notes",
+          "detail": "Opens Adjuster field notes.",
+          "tokens_in": 6361,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Contractor estimate B",
+          "detail": "Opens Contractor estimate B.",
+          "tokens_in": 7375,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Recorded statement transcript",
+          "detail": "Opens Recorded statement transcript.",
+          "tokens_in": 8530,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Subrogation referral memo",
+          "detail": "Opens Subrogation referral memo.",
+          "tokens_in": 9267,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Vendor invoice summary",
+          "detail": "Opens Vendor invoice summary.",
+          "tokens_in": 10421,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Depreciation worksheet",
+          "detail": "Opens Depreciation worksheet.",
+          "tokens_in": 11018,
+          "tokens_out": 15
+        },
+        {
+          "label": "policy",
+          "detail": "Checks coverage terms against the loss.",
+          "tokens_in": 11053,
+          "tokens_out": 12
+        },
+        {
+          "label": "history",
+          "detail": "Reviews the insured's prior claims.",
+          "tokens_in": 11083,
+          "tokens_out": 12
+        },
+        {
+          "label": "exposure",
+          "detail": "Totals the carrier's exposure.",
+          "tokens_in": 11109,
+          "tokens_out": 12
+        },
+        {
+          "label": "rework",
+          "detail": "Total didn't reconcile \u2014 duplicated invoice lines. Redo it.",
+          "tokens_in": 11141,
+          "tokens_out": 17
+        },
+        {
+          "label": "decide",
+          "detail": "Commits to a determination.",
+          "tokens_in": 11173,
+          "tokens_out": 20
+        }
+      ],
+      "step_count": 19,
+      "docs_read": 12,
+      "reworked": true,
+      "recalled": false,
+      "tokens_in": 127396,
+      "tokens_out": 290,
+      "tokens_total": 127686,
+      "cost_usd": 0.032429,
+      "correct": true
+    },
+    {
+      "steps": [
+        {
+          "label": "plan",
+          "detail": "Reads the assignment and plans an approach.",
+          "tokens_in": 85,
+          "tokens_out": 19
+        },
+        {
+          "label": "search",
+          "detail": "Lists the 12 documents in the case file.",
+          "tokens_in": 234,
+          "tokens_out": 18
+        },
+        {
+          "label": "read:Contractor estimate A",
+          "detail": "Opens Contractor estimate A.",
+          "tokens_in": 1113,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Prior correspondence",
+          "detail": "Opens Prior correspondence.",
+          "tokens_in": 1848,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:First notice of loss",
+          "detail": "Opens First notice of loss.",
+          "tokens_in": 2444,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Coverage endorsement schedule",
+          "detail": "Opens Coverage endorsement schedule.",
+          "tokens_in": 3599,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Engineering report",
+          "detail": "Opens Engineering report.",
+          "tokens_in": 4195,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Photographs index",
+          "detail": "Opens Photographs index.",
+          "tokens_in": 5347,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Adjuster field notes",
+          "detail": "Opens Adjuster field notes.",
+          "tokens_in": 6361,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Contractor estimate B",
+          "detail": "Opens Contractor estimate B.",
+          "tokens_in": 7375,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Recorded statement transcript",
+          "detail": "Opens Recorded statement transcript.",
+          "tokens_in": 8530,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Subrogation referral memo",
+          "detail": "Opens Subrogation referral memo.",
+          "tokens_in": 9267,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Vendor invoice summary",
+          "detail": "Opens Vendor invoice summary.",
+          "tokens_in": 10421,
+          "tokens_out": 15
+        },
+        {
+          "label": "read:Depreciation worksheet",
+          "detail": "Opens Depreciation worksheet.",
+          "tokens_in": 11018,
+          "tokens_out": 15
+        },
+        {
+          "label": "policy",
+          "detail": "Checks coverage terms against the loss.",
+          "tokens_in": 11053,
+          "tokens_out": 12
+        },
+        {
+          "label": "history",
+          "detail": "Reviews the insured's prior claims.",
+          "tokens_in": 11083,
+          "tokens_out": 12
+        },
+        {
+          "label": "exposure",
+          "detail": "Totals the carrier's exposure.",
+          "tokens_in": 11109,
+          "tokens_out": 12
+        },
+        {
+          "label": "rework",
+          "detail": "Total didn't reconcile \u2014 duplicated invoice lines. Redo it.",
+          "tokens_in": 11141,
+          "tokens_out": 17
+        },
+        {
+          "label": "decide",
+          "detail": "Commits to a determination.",
+          "tokens_in": 11173,
+          "tokens_out": 20
+        }
+      ],
+      "step_count": 19,
+      "docs_read": 12,
+      "reworked": true,
+      "recalled": false,
+      "tokens_in": 127396,
+      "tokens_out": 290,
+      "tokens_total": 127686,
+      "cost_usd": 0.032429,
+      "correct": true
+    }
+  ],
+  "apoideia": [
+    {
+      "steps": [
+        {
+          "label": "plan",
+          "detail": "Reads the assignment and plans an approach.",
+          "tokens_in": 271,
+          "tokens_out": 19
+        },
+        {
+          "label": "search",
+          "detail": "Lists the 12 documents in the case file.",
+          "tokens_in": 420,
+          "tokens_out": 18
+        },
+        {
+          "label": "read:Engineering report",
+          "detail": "Opens Engineering report.",
+          "tokens_in": 1020,
+          "tokens_out": 15
+        },
+        {
+          "label": "policy",
+          "detail": "Checks coverage terms against the loss.",
+          "tokens_in": 1054,
+          "tokens_out": 12
+        },
+        {
+          "label": "history",
+          "detail": "Reviews the insured's prior claims.",
+          "tokens_in": 1085,
+          "tokens_out": 12
+        },
+        {
+          "label": "exposure",
+          "detail": "Totals the carrier's exposure.",
+          "tokens_in": 1111,
+          "tokens_out": 12
+        },
+        {
+          "label": "decide",
+          "detail": "Commits to a determination.",
+          "tokens_in": 1138,
+          "tokens_out": 20
+        }
+      ],
+      "step_count": 7,
+      "docs_read": 1,
+      "reworked": false,
+      "recalled": true,
+      "tokens_in": 6099,
+      "tokens_out": 108,
+      "tokens_total": 6207,
+      "cost_usd": 0.0017407500000000001,
+      "correct": true
+    },
+    {
+      "steps": [
+        {
+          "label": "plan",
+          "detail": "Reads the assignment and plans an approach.",
+          "tokens_in": 271,
+          "tokens_out": 19
+        },
+        {
+          "label": "search",
+          "detail": "Lists the 12 documents in the case file.",
+          "tokens_in": 420,
+          "tokens_out": 18
+        },
+        {
+          "label": "read:Engineering report",
+          "detail": "Opens Engineering report.",
+          "tokens_in": 1020,
+          "tokens_out": 15
+        },
+        {
+          "label": "policy",
+          "detail": "Checks coverage terms against the loss.",
+          "tokens_in": 1054,
+          "tokens_out": 12
+        },
+        {
+          "label": "history",
+          "detail": "Reviews the insured's prior claims.",
+          "tokens_in": 1085,
+          "tokens_out": 12
+        },
+        {
+          "label": "exposure",
+          "detail": "Totals the carrier's exposure.",
+          "tokens_in": 1111,
+          "tokens_out": 12
+        },
+        {
+          "label": "decide",
+          "detail": "Commits to a determination.",
+          "tokens_in": 1138,
+          "tokens_out": 20
+        }
+      ],
+      "step_count": 7,
+      "docs_read": 1,
+      "reworked": false,
+      "recalled": true,
+      "tokens_in": 6099,
+      "tokens_out": 108,
+      "tokens_total": 6207,
+      "cost_usd": 0.0017407500000000001,
+      "correct": true
+    }
+  ]
+}

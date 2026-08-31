@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Performance — Apoideia</title>
+<meta name="description" content="Every measurement behind Apoideia: a live frontier-model run, an external legal workload, and a deterministic suite. Method, splits, and the results we lose." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/performance.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Performance — every measurement, including the ones we lose" />
+<meta property="og:description" content="A live frontier-model run, an external legal workload, and a deterministic suite. Method, splits, and the results we lose." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/performance.html" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Performance — every measurement, including the ones we lose" />
+<meta name="twitter:description" content="A live frontier-model run, an external legal workload, and a deterministic suite. Method, splits, and the results we lose." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+<link rel="stylesheet" href="/apoidea/evals.css" />
+<style>
+  /* Page-specific only — nav, page-head, footer and .muted live in site.css. */
+  section { padding: 40px 0; }
+  .toc { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; padding: 18px 0 0; }
+  .toc a { color: var(--text-dim); }
+</style>
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html">Docs</a>
+      <a href="/apoidea/performance.html" aria-current="page">Performance</a>
+      <a href="/apoidea/#compare">Compare</a>
+      <a href="/apoidea/#pricing">Pricing</a>
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head wrap">
+  <h1>Every measurement, including the ones we lose.</h1>
+  <p>
+    Three workloads: a live run against a frontier model, an external legal corpus we did not
+    write, and a deterministic suite that removes the model as a variable. Everything on this page
+    is rendered from a run's own output file — no number here was typed by hand. Where a result is
+    absent, this page says so rather than estimating.
+  </p>
+  <nav class="toc">
+    <a href="#live">Live model</a>
+    <a href="#corroboration">Corroborating workloads</a>
+    <a href="#suite">Deterministic suite</a>
+    <a href="#found">What measuring changed</a>
+    <a href="/apoidea/docs/tradeoffs.html">Tradeoffs &rarr;</a>
+  </nav>
+</div>
+
+<section id="live">
+  <div class="wrap">
+    <h2>Against a real model <span class="hv-badge-measured">MEASURED</span></h2>
+    <p class="muted" style="max-width:720px; margin:0 0 24px;">
+      One agent, one set of tasks, run twice through the same SDK and gateway — once with an empty
+      memory, once with the firm's knowledge in it. Both arms run the same tasks, so the
+      observations are paired and McNemar's exact test is the right instrument; comparing two
+      independent confidence intervals would discard the pairing and with it the finding.
+      Reproduce with <code>pnpm evals:live</code>.
+    </p>
+    <div id="bm-live"></div>
+  </div>
+</section>
+
+<section id="corroboration">
+  <div class="wrap">
+    <h2>Corroborating workloads</h2>
+    <p class="muted" style="max-width:720px; margin:0 0 24px;">
+      A single workload we wrote ourselves is the obvious objection to any result. These two answer
+      it from different directions: one is an external corpus annotated by lawyers, the other removes
+      the model from the measurement entirely.
+    </p>
+    <div id="bm-corroboration" class="ev-footnotes"></div>
+  </div>
+</section>
+
+<section id="suite">
+  <div class="wrap">
+    <h2>The deterministic suite, in full</h2>
+    <p class="muted" style="max-width:720px; margin:0 0 24px;">
+      Every task family and every shape of agent work, cut both ways, including where we do worst.
+      Its accuracy figure is <em>not</em> an accuracy claim about agents: the stub answers from the
+      recalled cue and never opens a document, which is why rebuilding the entire workload so every
+      document carried real content left this number unchanged to the decimal while the live numbers
+      moved. What it measures exactly, with zero sampling noise, is the memory layer itself — its
+      token and recall figures.
+    </p>
+    <div id="bm-body"></div>
+  </div>
+</section>
+
+<section id="found">
+  <div class="wrap">
+    <h2>What measuring this changed</h2>
+    <div class="ev-found hv-card">
+      <p>The first full run scored recall precision at 56%. That was not the workload being
+        hard — it was two defects, and both are fixed in the numbers above:</p>
+      <ul>
+        <li><b>Recall scored every matched word equally.</b> A memory matching “the” ranked
+          alongside one matching “subrogation”, so against a few hundred memories almost
+          everything tied and the tie-break — recency — silently decided what got recalled.
+          Ranking now weights each term by how rare it is in that agent's own store.</li>
+        <li><b>The wrapper asked memory about the wrong thing.</b> It built its recall query from
+          the <em>last</em> user message, which is right for a chat app and wrong for an agent
+          loop: by step seven that message is a tool result, so memory was being asked about
+          <code>compute_exposure → total returned</code> rather than the claim under
+          investigation. It now asks about the task the run opened with, and recalls once per
+          run instead of once per step.</li>
+      </ul>
+      <p class="bm-note">Neither was visible from the old two-workload benchmark. Both were
+        found by measuring against a store the size of a real one.</p>
+    </div>
+    <div class="ev-found hv-card" style="margin-top:16px;">
+      <h3>Two more, found the same way</h3>
+      <ul>
+        <li><b>Lessons were injected regardless of the question.</b> Selection ranked by score and
+          never looked at the query, so the top-scoring lessons went into every prompt whatever the
+          task. That is the leading explanation for the one regression published above — on tasks
+          needing no company-specific knowledge, the arm carrying memory scored
+          <em>worse</em> than the arm carrying none. Irrelevant context is not free. Injection is
+          relevance-gated now, and no relevant lesson means no injection.</li>
+        <li><b>A single memory was unrecallable.</b> Term weighting used
+          <code>log((n+1)/(df+1))</code>, which is exactly zero for a term appearing in every
+          candidate — and with one memory, that is every term it contains. The tokens doing the
+          matching were weighted to nothing. <code>remember</code> one fact and <code>recall</code>
+          it came back empty: the first thing every new user does.</li>
+      </ul>
+      <p class="bm-note">Both are fixed. The live figures above predate both fixes and are labelled
+        with the commit they were measured at — re-running against a frontier model costs real
+        money, so the numbers stay as measured until a re-run replaces them.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/">&larr; Home</a>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+<script src="/apoidea/paired.js"></script>
+<script src="/apoidea/evals.js"></script>
+</body>
+</html>

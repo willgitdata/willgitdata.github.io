@@ -1,0 +1,71 @@
+{
+  "seed": 1,
+  "results": [
+    {
+      "backend": "lexical",
+      "store_size": 280,
+      "distractors": 270,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 9,
+      "semantic_precision_at_5": 0.9
+    },
+    {
+      "backend": "lexical",
+      "store_size": 2710,
+      "distractors": 2700,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 8,
+      "semantic_precision_at_5": 0.8
+    },
+    {
+      "backend": "lexical",
+      "store_size": 27010,
+      "distractors": 27000,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 5,
+      "semantic_precision_at_5": 0.5
+    },
+    {
+      "backend": "adaptive",
+      "store_size": 280,
+      "distractors": 270,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 9,
+      "semantic_precision_at_5": 0.9
+    },
+    {
+      "backend": "adaptive",
+      "store_size": 2710,
+      "distractors": 2700,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 8,
+      "semantic_precision_at_5": 0.8
+    },
+    {
+      "backend": "adaptive",
+      "store_size": 27010,
+      "distractors": 27000,
+      "queries": 10,
+      "hits": 10,
+      "precision_at_5": 1.0,
+      "semantic_queries": 10,
+      "semantic_hits": 5,
+      "semantic_precision_at_5": 0.5
+    }
+  ]
+}

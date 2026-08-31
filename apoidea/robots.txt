@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /evals/
+Disallow: /hive8/
+
+Sitemap: https://willgitdata.github.io/apoidea/sitemap.xml

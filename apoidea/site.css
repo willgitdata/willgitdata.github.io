@@ -1,0 +1,159 @@
+/* The site's shared chrome: the top nav, the page frame, the footer, and the
+   handful of utility classes every page uses.
+   --------------------------------------------------------------------------
+   Before this file existed each page carried its own copy of the same rules in
+   a <style> block, and the copies had already drifted: the homepage's brand was
+   a <div> that did not link home, `header nav a[aria-current]` was styled on the
+   performance page and nowhere else, and `.muted` — used thirteen times across
+   five pages — was never defined anywhere at all, so every "quiet" caption on
+   the site rendered at full body colour.
+
+   Everything here is chrome. Page-specific layout (the hero grid, the eval
+   tables, the walkthrough) stays in the page or in its own stylesheet — the
+   test of whether a rule belongs here is whether two pages need it.
+
+   Colours come from hive8.css custom properties; nothing below invents one. */
+
+/* ---- frame -------------------------------------------------------------- */
+
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+/* Sections are separated by the rule above them, so the first one after the
+   hero/page-head reads as a divider rather than as a box. */
+section { padding: 48px 0; border-top: 2px solid var(--border); }
+
+/* ---- top nav ------------------------------------------------------------ */
+
+header.site-nav { border-bottom: 2px solid var(--border); padding: 16px 0; }
+header.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* The brand is an <a> on every page including the homepage: a reader who lands
+   deep in the docs reaches for the wordmark first.
+   Scoped under .hive8 deliberately — hive8.css styles `.hive8 a` honey, and a
+   bare `.brand` loses to it on specificity, which is why the wordmark was honey
+   on the performance page and grey on the homepage. */
+.hive8 .brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.hive8 .brand:hover { text-decoration: none; color: var(--honey); }
+.brand img { width: 22px; height: 22px; }
+
+header.site-nav nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+header.site-nav nav a { font-size: 13px; color: var(--text-dim); }
+header.site-nav nav a:hover { color: var(--honey); }
+header.site-nav nav a[aria-current="page"] { color: var(--honey); }
+
+/* The two account entry points. They sit at the end of the nav, separated from
+   the content links by a rule, because they are a different kind of thing: the
+   links above navigate this site, these two leave it for the console. */
+.nav-account {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 18px;
+  border-left: 2px solid var(--border);
+}
+.nav-account a.nav-signin { color: var(--text); font-size: 13px; }
+.nav-account a.nav-signin:hover { color: var(--honey); }
+.nav-account a.hv-btn { font-size: 11px; padding: 7px 12px; }
+.hive8 .nav-account a.hv-btn:hover { text-decoration: none; }
+
+@media (max-width: 720px) {
+  header.site-nav .wrap { justify-content: center; }
+  header.site-nav nav { justify-content: center; gap: 14px; }
+  /* On one column the vertical rule reads as a stray mark, and the row above it
+     is already the separation. */
+  .nav-account { padding-left: 0; border-left: none; width: 100%; justify-content: center; }
+}
+
+/* ---- page head (every page that is not the homepage) -------------------- */
+
+.page-head { padding: 56px 0 32px; }
+.page-head h1 {
+  font-size: 34px;
+  max-width: 760px;
+  margin: 0 0 16px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+.page-head p { color: var(--text-dim); max-width: 680px; font-size: 16px; line-height: 1.65; }
+
+/* ---- docs layout (quickstart, tradeoffs, terms, privacy) ---------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  gap: 32px;
+}
+@media (max-width: 768px) { .layout { grid-template-columns: 1fr; } }
+.side a { display: block; padding: 4px 0; font-size: 13px; color: var(--text-dim); }
+.side a:hover { color: var(--honey); }
+.side a.active { color: var(--honey); }
+.side .side-head {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  opacity: 0.75;
+  margin: 20px 0 6px;
+}
+.content { max-width: 680px; }
+.content p, .content li { line-height: 1.7; font-size: 14px; }
+.content h2 { margin-top: 32px; }
+
+/* ---- footer ------------------------------------------------------------- */
+
+footer { border-top: 2px solid var(--border); padding: 32px 0 40px; color: var(--text-dim); font-size: 12px; }
+footer .wrap { display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; }
+footer nav { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+footer .footer-legal { opacity: 0.85; max-width: 720px; line-height: 1.6; }
+
+/* ---- utilities ---------------------------------------------------------- */
+
+/* Used on every page since the site's first commit and defined on none of them.
+   It is the quiet voice: captions, sub-headings, the parenthetical after a
+   heading, the body of a card whose heading carries the weight. */
+.muted { color: var(--text-dim); }
+/* A <p class="muted"> inside a card should not also inherit the 14px default
+   from a page's own rules, so the size is left alone deliberately — this class
+   sets colour and nothing else. */
+
+/* session.js toggles the account controls with the `hidden` attribute so the
+   signed-out state is the served HTML and needs no script to be correct. Some
+   of those elements carry a display from another rule, and the UA's own
+   `[hidden] { display: none }` loses to it on specificity. */
+[hidden] { display: none !important; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

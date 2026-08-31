@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms — Apoideia</title>
+<meta name="description" content="The terms that apply to the Apoideia site, the Apache-2.0 software, and an account on a gateway deployment." />
+<link rel="canonical" href="https://willgitdata.github.io/apoidea/terms.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Apoideia" />
+<meta property="og:title" content="Terms — Apoideia" />
+<meta property="og:description" content="Short and plain: what the software is, what an account is, and what is not promised." />
+<meta property="og:url" content="https://willgitdata.github.io/apoidea/terms.html" />
+<meta property="og:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Apoideia bee" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Terms — Apoideia" />
+<meta name="twitter:description" content="Short and plain: what the software is, what an account is, and what is not promised." />
+<meta name="twitter:image" content="https://willgitdata.github.io/apoidea/icons/og-card.png" />
+
+<link rel="icon" href="/apoidea/favicon.ico" sizes="32x32" />
+<link rel="icon" type="image/svg+xml" href="/apoidea/hive8/icons/bee.svg" />
+<link rel="apple-touch-icon" href="/apoidea/icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="/apoidea/hive8/hive8.css" />
+<link rel="stylesheet" href="/apoidea/site.css" />
+<style>
+  .todo { border: 2px dashed var(--comb); padding: 14px 16px; margin: 0 0 28px; font-size: 13px; line-height: 1.65; }
+  .todo b { color: var(--comb); }
+</style>
+</head>
+<body class="hive8">
+<div class="hv-grain"></div>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/apoidea/"><img src="/apoidea/hive8/icons/bee.svg" alt="" /> APOIDEIA</a>
+    <nav>
+      <a href="/apoidea/docs/0-to-1.html">Docs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+      <a href="/apoidea/#compare">Compare</a>
+      <a href="/apoidea/#pricing">Pricing</a>
+      <span class="nav-account">
+        <a class="nav-signin" data-console-link data-signed-out href="http://localhost:5173/auth">Sign in</a>
+        <a class="hv-btn" data-console-link data-signed-out href="http://localhost:5173/auth">Get started</a>
+        <a class="hv-btn" data-console-link data-signed-in hidden href="http://localhost:5173/">Open console &rarr;</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side">
+    <div class="side-head">Legal</div>
+    <a href="/apoidea/terms.html" class="active">Terms</a>
+    <a href="/apoidea/privacy.html">Privacy</a>
+    <div class="side-head">Docs</div>
+    <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+    <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+    <a href="/apoidea/">&larr; Home</a>
+  </nav>
+  <div class="content">
+    <h1>Terms</h1>
+
+    <!-- Deliberately unfilled. Inventing a company address, a jurisdiction or a
+         contact address would put a false statement on a page whose entire
+         purpose is to be relied upon — and a fabricated contact detail is worse
+         than a visible gap, because nobody goes looking for it. -->
+    <div class="todo">
+      <b>TODO — for a human before launch.</b> Three facts on this page are not the build agent's
+      to decide and are left blank on purpose: the <b>legal entity name and address</b>, the
+      <b>governing law and venue</b>, and a <b>contact address for legal notices</b>. Everything
+      else below describes what the software actually does today and was written against the code.
+      Effective date: <b>TODO</b>.
+    </div>
+
+    <p>Apoideia is a memory and learning runtime for AI agents. There are two ways to use it and
+      these terms cover both: running the software yourself, and signing into a gateway someone
+      operates.</p>
+
+    <h2>The software is Apache-2.0</h2>
+    <p>The gateway, the console, this site and both SDKs are licensed under the Apache License,
+      Version 2.0 — the memory engine included. The retrieval engine is MIT. Those
+      licences govern your use of the code, including the warranty disclaimer and limitation of
+      liability in them — nothing on this page narrows the rights they grant you.</p>
+    <p>If you self-host, that licence is the whole relationship. You need no account with anyone,
+      and no part of your deployment reports to us.</p>
+
+    <h2>Accounts</h2>
+    <p>An account on a gateway deployment is an email address and a password. In v0.1 an account
+      belongs to exactly one organisation, and there are no invites, roles or seats.</p>
+    <ul>
+      <li>You are responsible for what is done with your credentials and with any API key minted
+        from your account. Keys are shown once and stored only as a salted hash, so a key you lose
+        is revoked and replaced rather than recovered.</li>
+      <li>Do not use an account to attack the deployment it belongs to, to work around its
+        quotas, or to store data you have no right to store.</li>
+      <li>Whoever operates the deployment may suspend an account that does one of those things.
+        Where you self-host, that person is you.</li>
+    </ul>
+
+    <h2>Paying, if you ever do</h2>
+    <p>There is a free plan and it stays free. If you self-host, that is the only plan there is:
+      the software has no billing in it unless whoever runs the deployment configures a payment
+      provider, and yours will not have.</p>
+    <p>On a deployment that does sell plans, three things are true. Payment is handled by Stripe
+      and no card details reach this software at any point — you are redirected to Stripe to pay
+      and to Stripe's billing portal to change a card, change a plan or cancel. Usage past a paid
+      plan's included allowance is metered from the counters the product already keeps, which you
+      can read yourself at any time under Usage. And an existing account is never silently
+      converted into a paid one: an upgrade is something you do, not something that happens.</p>
+    <p>If a subscription lapses — a card expires, a payment fails past the point of retrying — the
+      account is not cut off. It returns to the free plan's limits, keeps its data, and keeps
+      answering. What it loses is headroom.</p>
+
+    <h2>What is not promised</h2>
+    <ul>
+      <li><b>No uptime commitment.</b> v0.1 is a single gateway process, a single Postgres and a
+        single memory-engine instance, as <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a> says
+        plainly. There is no SLA.</li>
+      <li><b>The measurements are measurements, not predictions.</b> Every figure on
+        <a href="/apoidea/performance.html">the performance page</a> is rendered from a run's own output
+        file and each is reproducible from this repository. None of them is a promise about your
+        workload.</li>
+      <li><b>Data durability is the operator's, not ours.</b> Backups of a deployment's Postgres
+        and object store belong to whoever runs it.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>These terms will change as the product does — v0.1 is an early release and says so
+      everywhere. Material changes will be dated at the top of this page rather than applied
+      quietly.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <nav>
+      <a href="/apoidea/">Home</a>
+      <a href="/apoidea/terms.html">Terms</a>
+      <a href="/apoidea/privacy.html">Privacy</a>
+      <a href="/apoidea/docs/0-to-1.html">0 &rarr; 1</a>
+      <a href="/apoidea/docs/quickstart.html">Quickstart</a>
+      <a href="/apoidea/docs/tradeoffs.html">Tradeoffs</a>
+      <a href="/apoidea/performance.html">Performance</a>
+    </nav>
+    <div class="footer-legal">Apache-2.0 (gateway, console, site, SDKs, memory engine) · the retrieval engine is MIT</div>
+  </div>
+</footer>
+
+<script src="/apoidea/config.js"></script>
+<script src="/apoidea/console-link.js"></script>
+<script src="/apoidea/session.js"></script>
+</body>
+</html>
