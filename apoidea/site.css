@@ -61,27 +61,9 @@ header.site-nav nav a { font-size: 13px; color: var(--text-dim); }
 header.site-nav nav a:hover { color: var(--honey); }
 header.site-nav nav a[aria-current="page"] { color: var(--honey); }
 
-/* The two account entry points. They sit at the end of the nav, separated from
-   the content links by a rule, because they are a different kind of thing: the
-   links above navigate this site, these two leave it for the console. */
-.nav-account {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-left: 18px;
-  border-left: 2px solid var(--border);
-}
-.nav-account a.nav-signin { color: var(--text); font-size: 13px; }
-.nav-account a.nav-signin:hover { color: var(--honey); }
-.nav-account a.hv-btn { font-size: 11px; padding: 7px 12px; }
-.hive8 .nav-account a.hv-btn:hover { text-decoration: none; }
-
 @media (max-width: 720px) {
   header.site-nav .wrap { justify-content: center; }
   header.site-nav nav { justify-content: center; gap: 14px; }
-  /* On one column the vertical rule reads as a stray mark, and the row above it
-     is already the separation. */
-  .nav-account { padding-left: 0; border-left: none; width: 100%; justify-content: center; }
 }
 
 /* ---- page head (every page that is not the homepage) -------------------- */
