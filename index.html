@@ -281,6 +281,7 @@
     .tag-work { color: var(--yellow); border: 1px solid var(--yellow); }
     .tag-music { color: var(--cyan); border: 1px solid var(--cyan); }
     .tag-notebook { color: var(--text); border: 1px solid var(--text); }
+    .tag-research { color: var(--yellow); border: 1px solid var(--yellow); }
 
     .project-card h3 {
       font-family: var(--pixel-font);
@@ -517,6 +518,7 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#data-science">Data Science</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
     <li><a href="#skills">Skills</a></li>
   </ul>
 </nav>
@@ -636,6 +638,30 @@
         <div class="card-links">
           <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="research" class="content">
+  <div class="container">
+    <p class="section-label">// research</p>
+    <h2 class="section-title">Experiments &amp; write-ups</h2>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <span class="project-tag tag-research">evaluation</span>
+        <h3>Frontier per Dollar</h3>
+        <p>
+          The ten newest models on the Nous Research inference API, measured on real work &mdash; a racy
+          connection pool, a quoting-state-machine parser, a SQL window query, and Godot 4 gameplay code.
+          Runnable answers are scored by executing hidden tests locally; the rest are judged blind, with
+          item labels shuffled and the mapping sealed until every score was written. Introduces
+          <b>MQD</b> (marginal quality per dollar): what the next dollar actually buys, rather than what
+          the cheapest model happens to charge.
+        </p>
+        <a href="research/nous-model-eval.html">Read the study &rarr;</a>
       </div>
 
     </div>
