@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Explore the quality, cost and speed of twelve models served through Nous. Interactive results from an Odysseus Compare evaluation."
+      content="Explore the quality, cost and speed of ten models served through Nous. Interactive results from an Odysseus Compare evaluation."
     />
     <title>Frontier per Dollar — an interactive model study</title>
     <style>
@@ -1277,7 +1277,10 @@
           </div>
           <div class="snapshot">
             <span class="status">Recorded results</span
-            ><span>12 models · one evaluation snapshot</span>
+            ><span
+              ><span id="model-count"></span> models · one evaluation
+              snapshot</span
+            >
           </div>
         </div>
         <div class="summary-strip" id="summary-strip"></div>
@@ -1569,7 +1572,7 @@
               <p>
                 The original selected Nous API roster plus Claude Haiku 5.5 and
                 Gemini 4 Argon. This is a fixed historical selection, not a
-                claim to be today’s newest twelve models. Only models with full
+                claim to be today’s newest ten models. Only models with full
                 common-task coverage enter the leaderboard. Missing answers
                 remain missing, not zero-quality results.
               </p>
@@ -2061,111 +2064,6 @@
             "rank": 7
           },
           {
-            "id": "reflection/beam-1.0-501b-a23b",
-            "name": "beam-1.0-501b-a23b",
-            "provider": "reflection",
-            "ranked": false,
-            "quality": null,
-            "cost": null,
-            "latency": null,
-            "value": null,
-            "coverage": 0.0,
-            "items": {
-              "pool_fix": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": "EXC SyntaxError: invalid syntax"
-              },
-              "tsv_parse": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": "EXC SyntaxError: invalid syntax"
-              },
-              "sql_window": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": "query error: near \"The\": syntax error"
-              },
-              "godot_dash": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": ""
-              },
-              "godot_loadout": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": ""
-              },
-              "bug_hunt": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": ""
-              },
-              "refactor": { "score": null, "cost": 0, "answer": "", "test": "" }
-            }
-          },
-          {
-            "id": "inception/mercury-3",
-            "name": "mercury-3",
-            "provider": "inception",
-            "ranked": false,
-            "quality": 8.1,
-            "cost": 0.00674,
-            "latency": 6.373333333333333,
-            "value": 1201.7804154302669,
-            "coverage": 0.8571428571428571,
-            "items": {
-              "pool_fix": {
-                "score": 10,
-                "cost": 0.001136,
-                "answer": "```python\nimport threading\n\nclass Pool:\n    def __init__(self, factory, size=8):\n        self._factory = factory\n        self._idle = set()\n        self._all = set()\n        self._lock = threading.Lock()\n        self._size = size\n\n    def checkout(self):\n        with self._lock:\n            while self._idle:\n                conn = self._idle.pop()\n                if conn.is_healthy():\n                    return conn\n                self._all.discard(conn)\n                conn.close()\n\n            if len(self._all) \u003c self._size:\n                conn = self._factory()\n                self._all.add(conn)\n                return conn\n\n            return None\n\n    def checkin(self, conn):\n        with self._lock:\n            if conn.is_healthy():\n                self._idle.add(conn)\n            else:\n                self._idle.discard(conn)\n                self._all.discard(conn)\n                conn.close()\n```\n\nAllow this task to continue?",
-                "test": "clean 40x150 stress, 9 conns created"
-              },
-              "tsv_parse": {
-                "score": null,
-                "cost": 0,
-                "answer": "",
-                "test": "EXC SyntaxError: invalid syntax"
-              },
-              "sql_window": {
-                "score": 10,
-                "cost": 0.000541,
-                "answer": "```sql\nSELECT weight_class, name, total_cents\nFROM (\n  SELECT f.weight_class, f.name, t.total_cents,\n         ROW_NUMBER() OVER (PARTITION BY f.weight_class ORDER BY t.total_cents DESC, f.id ASC) AS rn\n  FROM (\n    SELECT fighter_id, SUM(payout_cents) AS total_cents\n    FROM fights\n    WHERE result = 'win'\n    GROUP BY fighter_id\n  ) t\n  JOIN fighters f ON f.id = t.fighter_id\n)\nWHERE rn = 1;\n```",
-                "test": "correct grouping + tie-break"
-              },
-              "godot_dash": {
-                "score": 5.5,
-                "cost": 0.002857,
-                "answer": "```gdscript\nextends CharacterBody2D\n\nsignal dashed(direction: Vector2)\nsignal iframes_changed(active: bool)\nsignal state_changed(new_state: int)\n\nenum State { IDLE, MOVE, DASH }\n\nconst MOVE_SPEED := 240.0\nconst GRAVITY := 980.0\nconst DASH_SPEED := 640.0\nconst DASH_TIME := 0.15\nconst COYOTE_TIME := 0.12\nconst INPUT_BUFFER := 0.10\nconst DASH_COOLDOWN := 0.40\n\nvar state: int = State.IDLE\nvar facing := 1.0\nvar fall_speed := 0.0\nvar coyote_left := 0.0\nvar dash_buffer_left := 0.0\nvar cooldown_left := 0.0\nvar dash_time_left := 0.0\nvar dash_direction := 1.0\nvar invincible := false\n\nfunc _physics_process(delta: float) -\u003e void:\n\t_update_timers(delta)\n\tif state == State.DASH:\n\t\t_dash_physics(delta)\n\telse:\n\t\t_normal_physics(delta)\n\nfunc _update_timers(delta: float) -\u003e void:\n\tcoyote_left = COYOTE_TIME if is_on_floor() else maxf(0.0, coyote_left - delta)\n\tif Input.is_action_just_pressed(\"dash\"):\n\t\tdash_buffer_left = INPUT_BUFFER\n\telse:\n\t\tdash_buffer_left = maxf(0.0, dash_buffer_left - delta)\n\tcooldown_left = maxf(0.0, cooldown_left - delta)\n\nfunc _normal_physics(delta: float) -\u003e void:\n\tvar axis := Input.get_axis(\"move_left\", \"move_right\")\n\tif axis != 0.0:\n\t\tfacing = signf(axis)\n\tvelocity.x = axis * MOVE_SPEED\n\tif not is_on_floor():\n\t\tfall_speed += GRAVITY * delta\n\tvelocity.y = fall_speed\n\tmove_and_slide()\n\tif is_on_floor():\n\t\tfall_speed = 0.0\n\t_set_state(State.MOVE if axis != 0.0 else State.IDLE)\n\tif dash_buffer_left \u003e 0.0 and cooldown_left \u003c= 0.0 and (is_on_floor() or coyote_left \u003e 0.0):\n\t\t_start_dash()\n\nfunc _dash_physics(delta: float) -\u003e void:\n\tdash_time_left -= delta\n\tvelocity = Vector2(dash_direction * DASH_SPEED, 0.0)\n\tmove_and_slide()\n\tif dash_time_left \u003c= 0.0:\n\t\t_end_dash()\n\nfunc _start_dash() -\u003e void:\n\tdash_direction = Input.get_axis(\"move_left\", \"move_right\")\n\tif dash_direction == 0.0:\n\t\tdash_direction = facing\n\tdash_direction = signf(dash_direction)\n\tdash_time_left = DASH_TIME\n\tcooldown_left = DASH_COOLDOWN\n\tdash_buffer_left = 0.0\n\tfall_speed = 0.0\n\t_set_state(State.DASH)\n\t_set_invincible(true)\n\tdashed.emit(Vector2(dash_direction, 0.0))\n\nfunc _end_dash() -\u003e void:\n\tfall_speed = 0.0\n\t_set_invincible(false)\n\t_set_state(State.IDLE)\n\nfunc _set_state(new_state: int) -\u003e void:\n\tif new_state != state:\n\t\tstate = new_state\n\t\tstate_changed.emit(state)\n\nfunc _set_invincible(active: bool) -\u003e void:\n\tif active != invincible:\n\t\tinvincible = active\n\t\tiframes_changed.emit(invincible)\n```\n\n- Coyote and input buffer are decaying timers; the dash consumes both, so edge/landing dashes feel responsive without enabling chaining.\n- Buffer is stored even while the dash is unavailable, so a press just before landing or leaving a ledge fires on the first valid frame.\n- Dash locks the state machine, zeroes gravity, and broadcasts i-frame changes so hitboxes/animation can react via signals.\n- Cooldown starts when the dash starts (not ends), making the recovery window predictable and preventing double-dash spam.",
-                "test": ""
-              },
-              "godot_loadout": {
-                "score": 7.25,
-                "cost": 0.001078,
-                "answer": "```gdscript\nextends Node\n## Loadout.gd — autoload singleton for the current run's perk loadout.\n\nsignal changed\n\nconst SNAP_STEP := 0.0001\n\nvar _picks: Dictionary = {}\n\nfunc add_perk(id: String, modifiers: Dictionary) -\u003e bool:\n\tif id.is_empty() or _picks.has(id):\n\t\treturn false\n\t_picks[id] = modifiers.duplicate(true)\n\tchanged.emit()\n\treturn true\n\nfunc total(mod_key: String) -\u003e float:\n\tvar result := 1.0\n\tfor modifiers in _picks.values():\n\t\tif modifiers.has(mod_key):\n\t\t\tresult *= float(modifiers[mod_key])\n\treturn snappedf(result, SNAP_STEP)\n\nfunc get_picks() -\u003e Dictionary:\n\treturn _picks.duplicate(true)\n\nfunc has_perk(id: String) -\u003e bool:\n\treturn _picks.has(id)\n\nfunc clear() -\u003e void:\n\tif _picks.is_empty():\n\t\treturn\n\t_picks.clear()\n\tchanged.emit()\n```\n\n- Duplicate or empty perk IDs are ignored, so `changed` fires only when a pick is actually added (or `clear()` removes picks).\n- `total()` multiplies every perk's value for a modifier key, treating missing keys as `1.0`, and snaps the result to 4 decimals to prevent HUD float drift.\n- Modifiers are deep-copied on add; `get_picks()` returns a snapshot so callers cannot mutate internal state.\n- Register as an autoload named `Loadout` and call `clear()` between runs; HUD should render totals with `String.num(Loadout.total(\"damage\"), 2)`.",
-                "test": ""
-              },
-              "bug_hunt": {
-                "score": 7.25,
-                "cost": 0.000695,
-                "answer": "LINE: 7 | BUG: The pooled client is never released, so every request leaks a database connection. | WHY: With no `client.release()` on any path, concurrent orders eventually exhaust the connection pool and hang. | FIX: add `finally { client.release(); }` around the query/response block.",
-                "test": ""
-              },
-              "refactor": {
-                "score": 8.6,
-                "cost": 0.000433,
-                "answer": "```python\ndef compute_leaderboard(rows, limit=10):\n    result = []\n    for r in sorted(rows, key=lambda x: (-x['points'], x['name'])):\n        if len(result) \u003e= limit:\n            break\n        if r.get('banned'):\n            continue\n        result.append({\n            'rank': len(result) + 1,\n            'name': r['name'],\n            'points': r['points'],\n            'streak': r['streak'],\n        })\n    return result\n\n\ndef render(entries):\n    return '\\n'.join(\n        f\"{e['rank']:2d}. {e['name'][:14]:\u003c14} {e['points']:\u003e5} \"\n        f\"{'*' * min(e['streak'], 5)}\"\n        for e in entries\n    )\n```\n\nAllow this task to continue?",
-                "test": ""
-              }
-            }
-          },
-          {
             "id": "anthropic/claude-haiku-5.5",
             "name": "claude-haiku-5.5",
             "provider": "anthropic",
@@ -2330,7 +2228,7 @@
             "rubric": "Pure/impure split, preserved truncation-then-filter semantics (limit counts non-banned only), identical rendering, testability."
           }
         ],
-        "coverage": 0.9047619047619048
+        "coverage": 1.0
       }
     </script>
     <script>
@@ -2606,6 +2504,9 @@
           : "Recorded answer";
         $("#evidence").showModal();
       }
+      if (!models.some((m) => !m.ranked))
+        $("#partial-summary").closest("details").hidden = true;
+      $("#model-count").textContent = models.length;
       $("#partial-summary").textContent =
         "Outside the ranking: partial and unavailable results";
       $("#partial-list").innerHTML = models

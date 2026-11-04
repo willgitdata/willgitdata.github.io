@@ -29,7 +29,7 @@ with sync_playwright() as p:
     data = page.locator('#report-data').text_content()
     data = json.loads(data)
     ranked = sorted([m for m in data['models'] if m['ranked']],key=lambda m:-m['quality'])
-    check('Twelve models retained; ten ranked on equal task coverage',len(data['models'])==12 and len(ranked)==10)
+    check('Ten models retained; all ranked on equal task coverage',len(data['models'])==10 and len(ranked)==10)
     for m in ranked:
         score = sum(x['score'] for x in m['items'].values())/len(m['items'])
         check('Score unchanged: '+m['name'],math.isclose(m['quality'],score))
@@ -82,9 +82,7 @@ with sync_playwright() as p:
         page.locator('#download').click()
     rows=list(csv.reader(io.StringIO(Path(result.value.path()).read_text())))
     check('Download contains real ranked data',len(rows)==11 and rows[1][1]==ranked[0]['name'])
-    page.locator('#partial-summary').click()
-    check('Partial and unavailable results are explicit', 'mercury-3' in page.locator('#partial-list').text_content() and 'No usable answers' in page.locator('#partial-list').text_content())
-    page.locator('#partial-summary').click()
+    check('Excluded models absent; partial section hidden', 'mercury' not in page.content() and 'beam-1.0' not in page.content() and page.locator('#partial-summary').is_hidden())
     page.locator('[data-sort=quality]').click()
     page.locator('#model-select').select_option(ranked[0]['id'])
     for w,h in [(1440,1080),(1024,900),(768,1024),(390,844),(320,740)]:
