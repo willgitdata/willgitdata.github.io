@@ -65,8 +65,7 @@
     stir(x, y, dx, dy) {
       if (![x, y, dx, dy].every(Number.isFinite) || !this.isWater(x, y)) return;
       const radius = 13, scale = 3.8 / Math.max(1, Math.hypot(dx, dy));
-      // One bounded local impulse per physics step; event frequency cannot
-      // turn a fast mouse sweep into unbounded fluid velocity.
+      // Blend toward a bounded velocity; fast sweeps cannot explode the solver.
       for (let row = Math.max(1, Math.floor(y - radius)); row < Math.min(this.ny - 1, y + radius); row++) {
         for (let col = Math.max(0, Math.floor(x - radius)); col < Math.min(this.nx, x + radius); col++) {
           const distance = ((col - x) ** 2 + (row - y) ** 2) / (radius * radius);
@@ -154,27 +153,38 @@
   // Each moving mark is a tiny material line with a finite fading lifetime.
   // Its path comes only from RK2 integration of the pressure-projected field.
   const particles = Array.from({ length: 3000 }, () => ({ x: 0, y: 0, age: 100, life: 1, trail: [] }));
-  const pointer = { previous: null, x: 0, y: 0, dx: 0, dy: 0 };
+  const pointer = { previous: null, strokes: [] };
   function reset(p) {
     do { p.x = random() * fluid.nx; p.y = random() * fluid.ny; } while (!fluid.isWater(p.x, p.y));
     p.age = 0; p.life = 100 + random() * 160; p.weight = 0.4 + random() * 0.65;
-    p.opacity = 0.15 + random() * 0.45; p.trail.length = 0;
+    p.opacity = 0.15 + random() * 0.45; p.trail.length = 0; p.tail = null;
   }
   function advance() {
-    if (pointer.dx || pointer.dy) {
-      fluid.stir(pointer.x, pointer.y, pointer.dx, pointer.dy);
-      pointer.dx = pointer.dy = 0;
+    const stirred = pointer.strokes.length > 0;
+    for (const { x, y, dx, dy, vx, vy } of pointer.strokes) {
+      const samples = Math.max(1, Math.ceil(Math.hypot(dx, dy) / 6));
+      for (let n = 1; n <= samples; n++) {
+        fluid.stir(x - dx + dx * n / samples, y - dy + dy * n / samples, vx, vy);
+      }
     }
+    pointer.strokes.length = 0;
     fluid.step();
+    // A full swept stroke affects more cells than a single dab.
+    if (stirred) fluid.project();
+  }
+  function advect(dt, record) {
     for (const p of particles) {
-      if (p.age++ > p.life || !fluid.move(p, 0.55)) reset(p);
+      p.age += dt;
+      if (p.age > p.life || !fluid.move(p, 0.55 * dt)) reset(p);
       const last = p.trail[p.trail.length - 1];
-      if (last && Math.abs(p.x - last[0]) > fluid.nx / 2) p.trail.length = 0;
-      p.trail.push([p.x, p.y]);
-      if (p.trail.length > 70) p.trail.shift();
+      if (last && Math.abs(p.x - last[0]) > fluid.nx / 2) { p.trail.length = 0; p.tail = null; }
+      if (record) {
+        p.trail.push([p.x, p.y]);
+        if (p.trail.length > 70) p.tail = p.trail.shift();
+      }
     }
   }
-  function draw() {
+  function draw(alpha = 0) {
     ctx.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
     ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
     ctx.strokeStyle = INK; ctx.lineCap = 'round';
@@ -184,7 +194,11 @@
       const margin = Math.min(1, p.y / 6, (fluid.ny - p.y) / 6, p.x / 6, (fluid.nx - p.x) / 6);
       ctx.globalAlpha = Math.max(0, fade * margin) * p.opacity;
       ctx.lineWidth = p.weight; ctx.beginPath();
-      p.trail.forEach((point, i) => { if (!i) ctx.moveTo(px(point[0]), py(point[1])); else ctx.lineTo(px(point[0]), py(point[1])); });
+      // Only slide a discarded sample; growing trails keep their original anchor.
+      const first = p.tail || p.trail[0], second = p.trail[0];
+      ctx.moveTo(px(first[0] + (second[0] - first[0]) * alpha), py(first[1] + (second[1] - first[1]) * alpha));
+      for (let i = 0; i < p.trail.length; i++) ctx.lineTo(px(p.trail[i][0]), py(p.trail[i][1]));
+      ctx.lineTo(px(p.x), py(p.y));
       ctx.stroke();
     }
     ctx.globalAlpha = 1;
@@ -193,32 +207,40 @@
     const width = canvas.getBoundingClientRect().width, ratio = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * ratio); canvas.height = Math.round(width * H / W * ratio); draw();
   }
-  for (let n = 0; n < 100; n++) advance();
+  for (let n = 0; n < 100; n++) { advance(); advect(1, true); }
   new ResizeObserver(resize).observe(canvas); resize();
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false, running = false, paused = false, request = 0, lastTime = 0, accumulator = 0;
-  function resetPointer() { pointer.previous = null; pointer.dx = pointer.dy = 0; }
+  function resetPointer() { pointer.previous = null; pointer.strokes.length = 0; }
   canvas.addEventListener('pointermove', event => {
     if (!running || !event.isPrimary) { resetPointer(); return; }
     const box = canvas.getBoundingClientRect();
-    const x = (event.clientX - box.left) / box.width * fluid.nx;
-    const y = (event.clientY - box.top) / box.height * fluid.ny;
-    if (pointer.previous) {
-      pointer.dx += x - pointer.previous.x; pointer.dy += y - pointer.previous.y;
-      pointer.x = x; pointer.y = y;
+    const events = event.getCoalescedEvents?.();
+    for (const sample of events?.length ? events : [event]) {
+      const x = (sample.clientX - box.left) / box.width * fluid.nx;
+      const y = (sample.clientY - box.top) / box.height * fluid.ny;
+      if (pointer.previous) {
+        const dx = x - pointer.previous.x, dy = y - pointer.previous.y;
+        const dt = Math.max(8, sample.timeStamp - pointer.previous.time);
+        if (dx || dy) pointer.strokes.push({ x, y, dx, dy, vx: dx * 33.333 / dt, vy: dy * 33.333 / dt });
+      }
+      pointer.previous = { x, y, time: sample.timeStamp };
     }
-    pointer.previous = { x, y };
   }, { passive: true });
-  canvas.addEventListener('pointerleave', resetPointer);
+  // Keep the final swept path until the next tick, but never join across re-entry.
+  canvas.addEventListener('pointerleave', () => { pointer.previous = null; });
   canvas.addEventListener('pointercancel', resetPointer);
   function animate(time) {
     if (!running) return;
-    accumulator += Math.min((time - lastTime) / 1000, 0.05); lastTime = time;
+    const elapsed = Math.min((time - lastTime) / 1000, 0.05); lastTime = time;
+    accumulator += elapsed;
     // Fixed 30Hz physics, at most two steps after a slow frame. Never catch up
     // an entire hidden-tab interval or create a second animation loop.
     let steps = 0;
     while (accumulator >= 1 / 30 && steps++ < 2) { advance(); accumulator -= 1 / 30; }
-    draw(); request = requestAnimationFrame(animate);
+    // The pressure solve stays at 30Hz; ink follows its velocity every display frame.
+    advect(elapsed * 30, steps > 0);
+    draw(accumulator * 30); request = requestAnimationFrame(animate);
   }
   function playback() {
     const next = visible && !document.hidden && !motion.matches && !paused;

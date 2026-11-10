@@ -67,17 +67,21 @@ periodic left/right boundaries and solid outer top/bottom cells contain the
 abstract flow. No banks, rocks or landscape are drawn. The pressure
 solve is iterative, so incompressibility is approximate, checked numerically.
 
-3,000 fading pen marks are advected by RK2 integration through that computed
-field. Longer trails reveal clockwise/counterclockwise swirls and connecting
+3,000 fading pen marks are advected by elapsed-time RK2 integration on every
+display frame, independently of the fixed 30Hz pressure solve. Trail tails
+interpolate between saved samples, avoiding duplicate frames and 30Hz cutoffs.
+Longer trails reveal clockwise/counterclockwise swirls and connecting
 flows. Torque is an external stirring force, not a replacement for velocity
 advection and pressure projection. Fine strokes fade into the paper margins,
 in `#2b46d6` on `#fcfcfa`, matching the mountain palette. Rendering is responsive,
 capped at 2× pixel density, with a slim 6:1 aspect ratio below the contact copy.
 `fluid-study-poster.png` preserves the same abstract layout without JavaScript.
 Moving the mouse across the canvas stirs the actual velocity field without
-clicking. Pointer deltas become bounded local impulses, consumed once per
-physics step before advection and pressure projection. Leaving the canvas or
-pausing clears pending input; passive pointer events preserve touch scrolling.
+clicking. Timestamped pointer samples (including browser-coalesced events)
+stir along the entire swept path, not just its endpoint, with bounded velocity.
+The path is consumed before each physics step, with an extra pressure pass
+after stirring. Leaving the canvas keeps the final stroke but breaks the next
+connection; pausing clears input. Passive pointer events preserve touch scrolling.
 Physics and pointer stirring pause offscreen, in hidden tabs, under reduced
 motion, and with the Pause button.
 This is a stylized top-down 2D effect, **not** a calibrated 3D
@@ -85,6 +89,7 @@ free-surface river model, and it does not simulate waterfalls or surface height.
 
 ```sh
 node tests/check_river.cjs      # projection, impermeable solids, real advection
+node tests/check_river_motion.cjs # every-frame motion and fast cursor paths
 node tests/check_portfolio.cjs # live pixel motion, pause, reduced motion, layout
 ```
 
