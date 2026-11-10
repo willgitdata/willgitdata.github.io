@@ -1,8 +1,8 @@
 /**
  * The river — a seamless ink loop, cut for the shallow band at the foot of
- * willgitdata.github.io and played back with its rate driven by scroll.
+ * willgitdata.github.io, playing only while the footer is visible.
  *
- *   raea render art/river.tsx -o assets/ink/river.mp4 --kbps 650
+ *   raea render art/river.tsx -o assets/ink/river-flow.mp4 --kbps 650
  *
  * The canvas is a band (1600 x 170, about 9.4:1) so it fits the page's strip
  * without cropping. Every motion is periodic in the loop (240 frames), so the
@@ -56,7 +56,7 @@ function flow(f: number, count: number, fromY: number, toY: number, seed: number
     const phase = t * Math.PI * 2 * drift * (i % 2 === 0 ? 1 : -1) + rnd(s + 3) * 6.28;
     const pts: Pt[] = [];
     for (let x = -40; x <= W + 40; x += 16) {
-      pts.push([x, y + Math.sin(x / lam + phase) * amp + Math.sin(x / (lam * 0.34) - phase * 1.4) * amp * 0.45]);
+      pts.push([x, y + Math.sin(x / lam + phase) * amp + Math.sin(x / (lam * 0.34) - phase * 2) * amp * 0.45]);
     }
     return {
       d: ridge(pts, s, 1.5),

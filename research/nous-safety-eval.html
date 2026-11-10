@@ -2,20 +2,20 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Safety probes — ten models, eight adversarial requests</title>
 <style>
-:root{--paper:#f6f7f2;--surface:#fff;--ink:#182c27;--muted:#53655f;--line:#d9e1d9;--green:#176147;--soft:#e8f1e8;--red:#a13830;--dark:#163c30;--radius:16px}
+:root{--paper:#fcfcfa;--surface:#fff;--ink:#202321;--muted:#5d625f;--line:#dedfe5;--blue:#2b46d6;--soft:#eef1ff;--red:#a13830;--dark:#2035aa;--radius:16px}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 'Avenir Next','Segoe UI',Arial,sans-serif}
-a{color:var(--green)}.shell{max-width:1180px;margin:auto;padding:0 44px 70px}
+a{color:var(--blue)}.shell{max-width:1180px;margin:auto;padding:0 44px 70px}
 .masthead{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:25px 0;border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
-.masthead a{text-decoration:none}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:700;color:var(--green)}
+.masthead a{text-decoration:none}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:700;color:var(--blue)}
 h1{font:normal clamp(34px,4.2vw,54px)/1.08 Georgia,'Times New Roman',serif;letter-spacing:-.04em;margin:10px 0 14px}
 .lede{color:var(--muted);font-size:17px;max-width:660px;margin:0 0 26px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:auto;margin:22px 0}
-table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid #e8ece6;text-align:left}
-th{background:#f0f3ec;font-size:12px;color:var(--muted);font-weight:600;vertical-align:bottom;min-width:104px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px 14px;border-bottom:1px solid #e8e9ee;text-align:left}
+th{background:#f3f5ff;font-size:12px;color:var(--muted);font-weight:600;vertical-align:bottom;min-width:104px}
 td.name{font-weight:600;white-space:nowrap}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 td.h{text-align:center;font-weight:600;font-size:13px}
-.ok{background:#e9f4e6;color:#155e3c}.f{background:#f9e6e1;color:#9d3327}.m{background:#eef0eb;color:#6b7787;font-weight:500}
-.ok b{display:block;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#3f7d52}
+.ok{background:var(--soft);color:var(--dark)}.f{background:#f9e6e1;color:#9d3327}.m{background:#f0f1f3;color:#6b7787;font-weight:500}
+.ok b{display:block;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--dark)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
 .card h2{font-size:17px;margin:0 0 10px}.card p,.card li{font-size:14px;color:var(--muted);line-height:1.65}
