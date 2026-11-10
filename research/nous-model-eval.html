@@ -11,17 +11,17 @@
     <style>
       :root {
         color-scheme: light;
-        --paper: #f6f7f2;
+        --paper: #fcfcfa;
         --surface: #fff;
-        --ink: #182c27;
-        --muted: #53655f;
-        --line: #d9e1d9;
-        --green: #176147;
-        --soft: #e8f1e8;
+        --ink: #202321;
+        --muted: #5d625f;
+        --line: #dedfe5;
+        --blue: #2b46d6;
+        --soft: #eef1ff;
         --red: #a13830;
         --red-soft: #f8e8e4;
-        --dark: #163c30;
-        --focus: #0a7050;
+        --dark: #2035aa;
+        --focus: #2b46d6;
         --radius: 16px;
       }
       * {
@@ -64,7 +64,7 @@
         cursor: default;
       }
       a {
-        color: var(--green);
+        color: var(--blue);
       }
       button:focus-visible,
       a:focus-visible,
@@ -124,7 +124,7 @@
         text-transform: uppercase;
         letter-spacing: 0.13em;
         font-weight: 700;
-        color: var(--green);
+        color: var(--blue);
       }
       .intro {
         display: grid;
@@ -159,7 +159,7 @@
         gap: 7px;
         font-size: 12px;
         font-weight: 700;
-        color: var(--green);
+        color: var(--blue);
         background: var(--soft);
         padding: 6px 10px;
         border-radius: 99px;
@@ -168,7 +168,7 @@
         content: "";
         width: 6px;
         height: 6px;
-        background: var(--green);
+        background: var(--blue);
         border-radius: 50%;
       }
       .summary-strip {
@@ -189,7 +189,7 @@
       }
       .summary-strip button {
         background: none;
-        color: var(--green);
+        color: var(--blue);
         font-size: 14px;
         text-decoration: underline;
         text-underline-offset: 3px;
@@ -263,7 +263,7 @@
       }
       .segmented button[aria-pressed="true"] {
         color: white;
-        background: var(--green);
+        background: var(--blue);
       }
       .check-label {
         display: flex;
@@ -273,7 +273,7 @@
         color: var(--muted);
       }
       input[type="checkbox"] {
-        accent-color: var(--green);
+        accent-color: var(--blue);
         width: 17px;
         min-height: 17px;
         height: 17px;
@@ -307,7 +307,7 @@
       }
       .plot .point:hover .halo,
       .plot .point:focus .halo {
-        stroke: var(--green);
+        stroke: var(--blue);
         stroke-width: 3;
       }
       .plot-caption {
@@ -325,12 +325,12 @@
       }
       .key-line {
         width: 22px;
-        border-top: 2px dashed var(--green);
+        border-top: 2px dashed var(--blue);
         display: inline-block;
       }
       .inspector {
         background: var(--dark);
-        color: #f6faf5;
+        color: #f7f8ff;
         padding: 26px;
         display: flex;
         flex-direction: column;
@@ -338,14 +338,14 @@
         border-radius: var(--radius);
       }
       .inspector .eyebrow {
-        color: #b5d8b8;
+        color: #d8dfff;
       }
       .inspector select {
         width: 100%;
         font-size: 14px;
-        background: #234b3d;
+        background: var(--dark);
         color: white;
-        border: 1px solid #537968;
+        border: 1px solid #a3b1ef;
         border-radius: 7px;
         padding: 8px 10px;
         margin: 14px 0 20px;
@@ -359,7 +359,7 @@
         margin: 0 0 6px;
       }
       .inspect-provider {
-        color: #c0d3c6;
+        color: #d8dfff;
         font-size: 13px;
         margin-bottom: 22px;
       }
@@ -371,7 +371,7 @@
       }
       .inspect-score small {
         font-size: 18px;
-        color: #c0d3c6;
+        color: #d8dfff;
         font-weight: 400;
         letter-spacing: 0;
       }
@@ -381,11 +381,11 @@
         gap: 18px 14px;
         margin: 24px 0;
         padding-top: 20px;
-        border-top: 1px solid #527060;
+        border-top: 1px solid #a3b1ef;
       }
       .inspect-metrics dt {
         font-size: 12px;
-        color: #c0d3c6;
+        color: #d8dfff;
       }
       .inspect-metrics dd {
         font-size: 19px;
@@ -395,7 +395,7 @@
       }
       .inspector .inspect-note {
         font-size: 13px;
-        color: #d1e2d5;
+        color: #e4e9ff;
         line-height: 1.6;
       }
       .inspector .inspect-note strong {
@@ -403,7 +403,7 @@
       }
       .inspector button {
         margin-top: auto;
-        border: 1px solid #648771;
+        border: 1px solid #a3b1ef;
         background: transparent;
         color: white;
         border-radius: 7px;
@@ -412,7 +412,7 @@
         font-weight: 600;
       }
       .inspector :focus-visible {
-        outline-color: #d2f8ce;
+        outline-color: #e4e9ff;
       }
       .section-heading {
         display: flex;
@@ -463,7 +463,7 @@
         color: var(--muted);
       }
       thead {
-        background: #f0f3ec;
+        background: #f3f5ff;
       }
       th {
         font-size: 12px;
@@ -491,7 +491,7 @@
       }
       td {
         padding: 14px 16px;
-        border-bottom: 1px solid #e8ece6;
+        border-bottom: 1px solid #e8e9ee;
         text-align: right;
         font-variant-numeric: tabular-nums;
       }
@@ -508,10 +508,10 @@
         border-bottom: 0;
       }
       tbody tr:hover {
-        background: #f4f7ef;
+        background: #f5f7ff;
       }
       tbody tr.selected {
-        background: #ecf3e8;
+        background: var(--soft);
       }
       .model-button {
         background: none;
@@ -537,13 +537,13 @@
       .mini-track {
         width: 74px;
         height: 5px;
-        background: #e0e7dc;
+        background: #e0e5f5;
         border-radius: 99px;
       }
       .mini-track span {
         display: block;
         height: 5px;
-        background: var(--green);
+        background: var(--blue);
         border-radius: 99px;
       }
       .metric-strong {
@@ -557,7 +557,7 @@
         padding: 4px 8px;
         border-radius: 5px;
         background: var(--soft);
-        color: var(--green);
+        color: var(--blue);
       }
       .table-foot {
         display: flex;
@@ -668,8 +668,8 @@
           to right,
           #f9efec 0%,
           #f9efec 50%,
-          #eaf3e9 50%,
-          #eaf3e9 100%
+          #eef1ff 50%,
+          #eef1ff 100%
         );
         border-radius: 4px;
       }
@@ -677,7 +677,7 @@
         content: "";
         position: absolute;
         width: 1px;
-        background: #76867d;
+        background: #7e8495;
         top: -3px;
         bottom: -3px;
         left: 50%;
@@ -692,7 +692,7 @@
         background: #b34b3e;
       }
       .mqd-bar.positive {
-        background: var(--green);
+        background: var(--blue);
       }
       .mqd-value {
         text-align: right;
@@ -704,7 +704,7 @@
         color: var(--red);
       }
       .positive-text {
-        color: var(--green);
+        color: var(--blue);
       }
       .chart-note {
         font-size: 13px;
@@ -769,7 +769,7 @@
       .heat-key i {
         width: 64px;
         height: 9px;
-        background: linear-gradient(90deg, #f8e8e4, #e6efde, #1f674c);
+        background: linear-gradient(90deg, #f8e8e4, #eef1ff, #bbc6f7);
         border-radius: 3px;
       }
       .heat-table th {
@@ -803,7 +803,7 @@
         font-variant-numeric: tabular-nums;
       }
       .heat-cell:hover {
-        outline: 2px solid var(--green);
+        outline: 2px solid var(--blue);
         outline-offset: -2px;
       }
       .method-grid {
@@ -849,7 +849,7 @@
         padding: 12px 16px;
         border-radius: 9px;
         font-size: 13px;
-        box-shadow: 0 8px 24px #182c2726;
+        box-shadow: 0 8px 24px #20232126;
         max-width: 280px;
       }
       .tooltip strong {
@@ -857,7 +857,7 @@
         margin-bottom: 3px;
       }
       .tooltip span {
-        color: #d1e2d5;
+        color: #e4e9ff;
       }
       .tooltip[hidden] {
         display: none;
@@ -873,7 +873,7 @@
         background: white;
       }
       dialog::backdrop {
-        background: #10281fc4;
+        background: #151d47c4;
       }
       dialog .dialog-header {
         padding: 22px 26px;
@@ -1266,7 +1266,7 @@
           <div>
             <div class="eyebrow">An Odysseus Compare study</div>
             <h1>
-              Frontier per Dollar<span style="color: var(--green)">.</span>
+              Frontier per Dollar<span style="color: var(--blue)">.</span>
             </h1>
             <p>
               What do you actually get when you spend more on a model?<br
@@ -2356,7 +2356,7 @@
           y = (q) => T + ((10 - q) / 10) * ph;
         let s = `<text x="${L}" y="15">Quality / 10 ↑</text>`;
         for (let n = 0; n <= 10; n += 2) {
-          s += `<line x1="${L}" x2="${W - R}" y1="${y(n)}" y2="${y(n)}" stroke="#dde5dc"/><text x="${L - 12}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
+          s += `<line x1="${L}" x2="${W - R}" y1="${y(n)}" y2="${y(n)}" stroke="var(--line)"/><text x="${L - 12}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
         }
         const ticks = log
           ? [0.01, 0.02, 0.05, 0.1, 0.2].filter(
@@ -2369,7 +2369,7 @@
         }
         s += `<text x="${W - R}" y="${H - 8}" text-anchor="end">${axis === "cost" ? (W < 400 ? "Battery cost (USD)" : "Recorded battery cost (USD)") + (log ? " · log scale" : "") : "Average response time"} →</text>`;
         const front = frontier();
-        s += `<path d="${front.map((m, i) => (i ? "L" : "M") + x(m[axis]) + "," + y(m.quality)).join(" ")}" fill="none" stroke="#3d7859" stroke-width="2" stroke-dasharray="5 5"/>`;
+        s += `<path d="${front.map((m, i) => (i ? "L" : "M") + x(m[axis]) + "," + y(m.quality)).join(" ")}" fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="5 5"/>`;
         const placed = [];
         const points = ranked.map((m) => {
           const ox = x(m[axis]),
@@ -2399,9 +2399,9 @@
         });
         for (const p of points) {
           if (Math.hypot(p.ox - p.px, p.oy - p.py) > 2)
-            s += `<line x1="${p.ox}" x2="${p.px}" y1="${p.oy}" y2="${p.py}" stroke="#7f9184"/><circle cx="${p.ox}" cy="${p.oy}" r="2" fill="#52665a"/>`;
+            s += `<line x1="${p.ox}" x2="${p.px}" y1="${p.oy}" y2="${p.py}" stroke="#8c93a8"/><circle cx="${p.ox}" cy="${p.oy}" r="2" fill="var(--muted)"/>`;
           const active = p.m.id === selected;
-          s += `<g class="point" role="button" tabindex="0" data-model="${esc(p.m.id)}" aria-label="Rank ${p.m.rank}: ${esc(p.m.name)}, quality ${num(p.m.quality)}, cost ${money(p.m.cost)}" aria-pressed="${active}"><circle class="halo" cx="${p.px}" cy="${p.py}" r="16" fill="none" stroke="${active ? "#176147" : "transparent"}" stroke-width="2"/><circle cx="${p.px}" cy="${p.py}" r="12" fill="${active ? "#176147" : "#53675d"}"/><text class="point-label" x="${p.px}" y="${p.py + 4}" text-anchor="middle">${p.m.rank}</text></g>`;
+          s += `<g class="point" role="button" tabindex="0" data-model="${esc(p.m.id)}" aria-label="Rank ${p.m.rank}: ${esc(p.m.name)}, quality ${num(p.m.quality)}, cost ${money(p.m.cost)}" aria-pressed="${active}"><circle class="halo" cx="${p.px}" cy="${p.py}" r="16" fill="none" stroke="${active ? "var(--blue)" : "transparent"}" stroke-width="2"/><circle cx="${p.px}" cy="${p.py}" r="12" fill="${active ? "var(--blue)" : "var(--muted)"}"/><text class="point-label" x="${p.px}" y="${p.py + 4}" text-anchor="middle">${p.m.rank}</text></g>`;
         }
         svg.innerHTML = s;
         svg.querySelectorAll(".point").forEach((el) => {
@@ -2470,11 +2470,11 @@
                     const sc = m.items[t.id].score;
                     const bg =
                       sc == null
-                        ? "#eef0eb"
+                        ? "#f0f1f3"
                         : sc === 0
                           ? "#f8e8e4"
-                          : `hsl(135 22% ${94 - sc * 3.5}%)`;
-                    return `<td><button class="heat-cell" data-evidence="${esc(m.id)}" data-task="${t.id}" style="background:${bg};color:#182c27" aria-label="${esc(m.name)}, ${esc(t.name)}: ${sc == null ? "no answer" : sc.toFixed(1) + " out of 10"}. View evidence.">${sc == null ? "—" : sc.toFixed(1)}</button></td>`;
+                          : `hsl(231 78% ${98 - sc * 1.3}%)`;
+                    return `<td><button class="heat-cell" data-evidence="${esc(m.id)}" data-task="${t.id}" style="background:${bg};color:var(--ink)" aria-label="${esc(m.name)}, ${esc(t.name)}: ${sc == null ? "no answer" : sc.toFixed(1) + " out of 10"}. View evidence.">${sc == null ? "—" : sc.toFixed(1)}</button></td>`;
                   })
                   .join("")}</tr>`,
             )

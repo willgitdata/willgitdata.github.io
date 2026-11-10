@@ -5,818 +5,261 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>William Humphrey | AI Engineer &amp; Data Scientist</title>
   <meta name="description" content="William Humphrey, AI Engineer and Data Scientist. Production LLM agents, evals, and predictive models for healthcare.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
 
-    :root {
-      --bg: #0a0a1a;
-      --bg-card: #111128;
-      --cyan: #5fcc73;
-      --magenta: #ff2daa;
-      --green: #a3d96c;
-      --yellow: #ffe600;
-      --text: #c8c8d8;
-      --text-dim: #6a6a8a;
-      --border: #2a2a4a;
-      --pixel-font: 'Press Start 2P', monospace;
-      --body-font: 'VT323', monospace;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body-font);
-      font-size: 20px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Scanline overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.08) 2px,
-        rgba(0, 0, 0, 0.08) 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* Star field canvas */
-    #stars {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-    }
-
-    /* Nav */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      background: rgba(10, 10, 26, 0.92);
-      border-bottom: 2px solid var(--border);
-      backdrop-filter: blur(6px);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
-    }
-
-    nav a {
-      font-family: var(--pixel-font);
-      font-size: 10px;
-      color: var(--text-dim);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: color 0.2s;
-    }
-
-    nav a:hover, nav a.active {
-      color: var(--cyan);
-      text-shadow: 0 0 10px var(--cyan);
-    }
-
-    /* Sections */
-    section {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 1.5rem 4rem;
-    }
-
-    .container {
-      max-width: 960px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Hero */
-    #hero {
-      text-align: center;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .hero-title {
-      font-family: var(--pixel-font);
-      font-size: clamp(18px, 4vw, 32px);
-      color: #fff;
-      line-height: 1.8;
-    }
-
-    .hero-title .name {
-      color: var(--cyan);
-      text-shadow: 0 0 20px rgba(95, 204, 115, 0.5);
-    }
-
-    .typed-cursor {
-      display: inline-block;
-      width: 2ch;
-      background: var(--green);
-      animation: blink 0.7s step-end infinite;
-      margin-left: 4px;
-      color: transparent;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .hero-subtitle {
-      font-family: var(--body-font);
-      font-size: 24px;
-      color: var(--text-dim);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .hero-links a {
-      font-family: var(--pixel-font);
-      font-size: 10px;
-      color: var(--bg);
-      background: var(--cyan);
-      padding: 12px 24px;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border: none;
-      transition: all 0.2s;
-      image-rendering: pixelated;
-    }
-
-    .hero-links a:hover {
-      background: var(--magenta);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 0 rgba(255, 45, 170, 0.4);
-    }
-
-    .hero-links a.outline {
-      background: transparent;
-      color: var(--cyan);
-      border: 2px solid var(--cyan);
-    }
-
-    .hero-links a.outline:hover {
-      color: var(--magenta);
-      border-color: var(--magenta);
-    }
-
-    /* Section titles */
-    .section-label {
-      font-family: var(--pixel-font);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--magenta);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: var(--pixel-font);
-      font-size: clamp(14px, 3vw, 22px);
-      color: #fff;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    /* About */
-    #about { background: rgba(17, 17, 40, 0.4); }
-
-    .about-text {
-      font-size: 22px;
-      line-height: 1.8;
-      max-width: 700px;
-    }
-
-    .about-text a {
-      color: var(--cyan);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .about-text a:hover {
-      border-color: var(--cyan);
-    }
-
-    /* Project cards */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      padding: 1.5rem;
-      transition: all 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--cyan);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .project-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .project-card:hover {
-      border-color: var(--cyan);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 0 rgba(95, 204, 115, 0.1);
-    }
-
-
-    .project-tag {
-      font-family: var(--pixel-font);
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 4px 8px;
-      display: inline-block;
-      margin-bottom: 0.75rem;
-    }
-
-    .tag-oss { color: var(--green); border: 1px solid var(--green); }
-    .tag-ai { color: var(--magenta); border: 1px solid var(--magenta); }
-    .tag-work { color: var(--yellow); border: 1px solid var(--yellow); }
-    .tag-music { color: var(--cyan); border: 1px solid var(--cyan); }
-    .tag-notebook { color: var(--text); border: 1px solid var(--text); }
-    .tag-research { color: var(--yellow); border: 1px solid var(--yellow); }
-
-    .project-card h3 {
-      font-family: var(--pixel-font);
-      font-size: 12px;
-      color: #fff;
-      margin-bottom: 0.5rem;
-      line-height: 1.6;
-    }
-
-    .project-card p {
-      font-size: 20px;
-      color: var(--text-dim);
-      line-height: 1.6;
-    }
-
-    .project-card a {
-      display: inline-block;
-      margin-top: 1rem;
-      font-family: var(--pixel-font);
-      font-size: 9px;
-      color: var(--cyan);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
-
-    .project-card a:hover { color: var(--magenta); }
-    .project-card a::after { content: ' >>'; }
-
-    /* Skills */
-    #skills { background: rgba(17, 17, 40, 0.4); }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .skill-item {
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      padding: 1.25rem 1rem;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .skill-item:hover {
-      border-color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    .skill-icon {
-      font-size: 28px;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .skill-item h4 {
-      font-family: var(--pixel-font);
-      font-size: 9px;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
-
-    .skill-item p {
-      font-size: 16px;
-      color: var(--text-dim);
-    }
-
-    /* keeps hyphenated terms from splitting across lines */
-    .nb { white-space: nowrap; }
-
-    /* Footer */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 3rem 1.5rem;
-      border-top: 2px solid var(--border);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      font-family: var(--pixel-font);
-      font-size: 10px;
-      color: var(--text-dim);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--cyan);
-      text-shadow: 0 0 8px var(--cyan);
-    }
-
-    .footer-copy {
-      font-size: 16px;
-      color: var(--text-dim);
-    }
-
-    /* Pixel art decorations */
-    .pixel-divider {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin: 2rem 0;
-    }
-
-    .pixel-divider span {
-      width: 6px;
-      height: 6px;
-      background: var(--border);
-      display: inline-block;
-    }
-
-    .pixel-divider span:nth-child(3) { background: var(--cyan); }
-    .pixel-divider span:nth-child(5) { background: var(--magenta); }
-    .pixel-divider span:nth-child(7) { background: var(--green); }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav ul { gap: 1rem; }
-      nav a { font-size: 8px; }
-      section { padding: 5rem 1rem 3rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      nav ul { gap: 0.9rem; flex-wrap: wrap; padding: 0.8rem 0.5rem; }
-      nav a { font-size: 7px; letter-spacing: 1px; }
-      section.content { padding: 4.5rem 1rem 3rem; }
-    }
-
-    /* ---- Preview v2 additions ---- */
-    section.content { min-height: auto; padding: 6rem 1.5rem 5rem; }
-    .hero-role {
-      font-family: var(--pixel-font);
-      font-size: clamp(12px, 2.4vw, 18px);
-      color: var(--green);
-      line-height: 1.8;
-    }
-    .hero-typed { font-family: var(--body-font); font-size: 26px; color: var(--text); }
-    .hero-subtitle { color: var(--text); }
-
-    .role-meta { font-size: 20px; color: var(--text-dim); margin: -1.25rem 0 2rem; }
-    .role-meta b { color: var(--yellow); font-weight: normal; }
-
-    .case {
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      padding: 2rem;
-    }
-    .case-head { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
-    .case h3 { font-family: var(--pixel-font); font-size: 13px; color: #fff; line-height: 1.6; }
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem 2rem;
-      margin-top: 1rem;
-    }
-    .case-grid h4 {
-      font-family: var(--pixel-font);
-      font-size: 9px;
-      color: var(--magenta);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 0.5rem;
-    }
-    .case-grid p, .case-grid li { font-size: 20px; color: var(--text); line-height: 1.5; }
-    .case-grid ul { list-style: none; }
-    .case-grid li { padding-left: 1.2em; position: relative; }
-    .case-grid li::before { content: '>'; position: absolute; left: 0; color: var(--green); }
-    .metric-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.25rem; }
-    .metric {
-      border: 2px solid var(--cyan);
-      padding: 0.5rem 0.9rem;
-      font-size: 18px;
-      color: var(--text);
-    }
-    .metric b { font-family: var(--pixel-font); font-size: 13px; color: var(--cyan); margin-right: 6px; }
-    .case-note { font-size: 16px; color: var(--text-dim); margin-top: 1.5rem; }
-
-    .ds-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .project-card .big {
-      font-family: var(--pixel-font);
-      font-size: 14px;
-      color: var(--cyan);
-      display: block;
-      margin: 0.25rem 0 0.75rem;
-      line-height: 1.5;
-    }
-    .project-card .proof-note {
-      margin-top: 1rem;
-      padding-top: 0.75rem;
-      border-top: 1px dashed var(--border);
-      font-size: 18px;
-    }
-    .project-card .proof-note b { color: var(--green); font-weight: normal; }
-    .card-links a { margin-right: 1.25rem; }
-
-    .skill-item { text-align: left; }
-    .skill-item p.used { font-size: 16px; color: var(--green); margin-top: 0.5rem; }
-
-    .also { font-size: 18px; color: var(--text-dim); margin-bottom: 1.25rem; }
-    .also a { color: var(--cyan); text-decoration: none; }
-
-    @media (max-width: 760px) {
-      .case { padding: 1.25rem; }
-      .case-grid { grid-template-columns: 1fr; }
-      .ds-grid { grid-template-columns: 1fr; }
-      #hero { min-height: auto; padding-top: 7rem; }
-    }
-  </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<canvas id="stars"></canvas>
+<header class="topbar">
+  <a class="brand" href="#hero">William <span>Humphrey</span></a>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#data-science">Data Science</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ul>
+  </nav>
+</header>
 
-<nav>
-  <ul>
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#data-science">Data Science</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#skills">Skills</a></li>
-  </ul>
-</nav>
-
-<section id="hero">
-  <div class="container" style="text-align:center; display:flex; flex-direction:column; gap:1.5rem;">
-    <h1 class="hero-title">
-      Hi, I'm <span class="name">William Humphrey</span>
-    </h1>
-    <p class="hero-role">AI Engineer &amp; Data Scientist</p>
-    <p class="hero-typed">&gt; <span id="typed-text"></span><span class="typed-cursor">_</span></p>
-    <p class="hero-subtitle">I build production LLM agents, evals, and predictive models for healthcare.</p>
-    <div class="hero-links">
-      <a href="/William_Humphrey_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener" class="outline">LinkedIn</a>
-      <a href="mailto:will@pollenate.us" class="outline">Email</a>
-    </div>
-  </div>
-</section>
-
-<section id="work" class="content">
-  <div class="container">
-    <p class="section-label">// featured work</p>
-    <h2 class="section-title">Unite Us: next-best-action agent</h2>
-    <p class="role-meta"><b>Data Scientist / AI Engineer</b>, Apr 2023 to present &nbsp;·&nbsp; Data Scientist 1, May 2021 to Apr 2023</p>
-
-    <div class="case">
-      <div class="case-head">
-        <span class="project-tag tag-ai">llm agents</span>
-        <span class="project-tag tag-work">healthcare</span>
-        <span class="project-tag tag-oss">evals in ci</span>
+<main id="main">
+  <section id="hero" class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">AI Engineer &amp; Data Scientist</p>
+      <h1><span class="name">William Humphrey</span></h1>
+      <p class="lede">I build production LLM agents, evals, and predictive models for healthcare.</p>
+      <div class="actions">
+        <a class="btn solid" href="/William_Humphrey_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn" href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:will@pollenate.us">Email</a>
       </div>
-      <h3>An LLM agent that recommends which programs and services would most help a person in need</h3>
-      <div class="case-grid">
-        <div>
-          <h4>Problem</h4>
-          <p>Finding the right social care programs for a person was manual: searching programs, checking eligibility, and deciding referrals by hand. That made navigation slow and inconsistent.</p>
+    </div>
+
+    <figure class="hero-art">
+      <img src="assets/ink/denali-sketch.webp" width="2048" height="1152" fetchpriority="high"
+           alt="Blue-pen-style illustration of Denali, with a broad snowy massif, intricate rock faces, and descending glaciers.">
+      <figcaption class="hero-caption"><span id="mountain-name">Denali · Alaska Range</span><span>Mountain of the day</span></figcaption>
+    </figure>
+    <script src="assets/js/mountain-of-the-day.js"></script>
+  </section>
+
+  <section id="work" class="content">
+    <div class="wrap">
+      <p class="label">01 / Featured work</p>
+      <h2>Unite Us: next-best-action agent</h2>
+      <span class="rule"></span>
+      <p class="section-note">Data Scientist / AI Engineer, Apr 2023 to present · Data Scientist 1, May 2021 to Apr 2023</p>
+
+      <article class="card case tilt-a">
+        <div class="case-head">
+          <span class="tag">llm agents</span>
+          <span class="tag">healthcare</span>
+          <span class="tag red">evals in ci</span>
         </div>
-        <div>
-          <h4>What I built</h4>
-          <ul>
-            <li>A next-best-action LLM agent for social care referrals</li>
-            <li>Tools for program and resource search, eligibility checks, and referral history</li>
-            <li>Part of the multi-agent LLM systems I build on EHR and social determinants of health data</li>
-          </ul>
-        </div>
-        <div>
-          <h4>How I evaluated it</h4>
-          <ul>
-            <li>Eval gates in CI/CD, so quality regressions block a deploy</li>
-            <li>Accuracy scored against expert review</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Impact</h4>
-          <div class="metric-row">
-            <div class="metric"><b>~98%</b>accuracy vs. expert review</div>
-            <div class="metric"><b>~1.3 days</b>referral turnaround</div>
+        <h3>An LLM agent that recommends which programs and services would most help a person in need</h3>
+
+        <div class="case-grid">
+          <div>
+            <h4>Problem</h4>
+            <p>Finding the right social care programs for a person was manual: searching programs, checking eligibility, and deciding referrals by hand. That made navigation slow and inconsistent.</p>
+          </div>
+          <div>
+            <h4>What I built</h4>
+            <ul>
+              <li>A next-best-action LLM agent for social care referrals</li>
+              <li>Tools for program and resource search, eligibility checks, and referral history</li>
+              <li>Part of the multi-agent LLM systems I build on EHR and social determinants of health data</li>
+            </ul>
+          </div>
+          <div>
+            <h4>How I evaluated it</h4>
+            <ul>
+              <li>Eval gates in CI/CD, so quality regressions block a deploy</li>
+              <li>Accuracy scored against expert review</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Impact</h4>
+            <div class="metrics">
+              <div class="metric"><b>~98%</b><span>accuracy vs. expert review</span></div>
+              <div class="metric"><b>~1.3 days</b><span>referral turnaround</span></div>
+            </div>
           </div>
         </div>
-      </div>
-      <p class="case-note">Details are generalized. No confidential or member data is shown.</p>
+
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="data-science" class="content" style="background: rgba(17, 17, 40, 0.4);">
-  <div class="container">
-    <p class="section-label">// data science</p>
-    <h2 class="section-title">Predictive modeling &amp; causal impact</h2>
-    <div class="ds-grid">
-      <div class="project-card">
-        <span class="project-tag tag-work">predictive modeling</span>
-        <h3>Medicare targeting models</h3>
-        <span class="big">30% engagement<br>20% ROI</span>
-        <p>Predictive targeting models for Medicare outreach. Recognized with a PROPS Award.</p>
-      </div>
-      <div class="project-card">
-        <span class="project-tag tag-oss">causal inference</span>
-        <h3>Program impact analyses</h3>
-        <span class="big">DiD analyses</span>
-        <p>Difference-in-differences analyses that measure whether programs actually changed outcomes, beyond what a simple before and after comparison shows.</p>
-      </div>
-      <div class="project-card">
-        <span class="project-tag tag-ai">ml ops</span>
-        <h3>Model standards &amp; drift monitoring</h3>
-        <span class="big">50+ models</span>
-        <p>Standards and drift monitoring across 50+ production models, so degradation gets caught before it reaches decisions.</p>
+  <section id="data-science" class="content">
+    <div class="wrap">
+      <p class="label">02 / Data science</p>
+      <h2>Predictive modeling &amp; causal impact</h2>
+      <span class="rule"></span>
+
+      <div class="grid-3">
+        <article class="card tilt-a">
+          <span class="tag red">predictive modeling</span>
+          <h3 class="small">Medicare targeting models</h3>
+          <span class="big">30% engagement · 20% ROI</span>
+          <p>Predictive targeting models for Medicare outreach. Recognized with a PROPS Award.</p>
+        </article>
+        <article class="card">
+          <span class="tag">causal inference</span>
+          <h3 class="small">Program impact analyses</h3>
+          <span class="big">DiD analyses</span>
+          <p>Difference-in-differences analyses that measure whether programs actually changed outcomes, beyond what a simple before and after comparison shows.</p>
+        </article>
+        <article class="card tilt-b">
+          <span class="tag">ml ops</span>
+          <h3 class="small">Model standards &amp; drift monitoring</h3>
+          <span class="big">50+ models</span>
+          <p>Standards and drift monitoring across 50+ production models, so degradation gets caught before it reaches decisions.</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="projects" class="content">
-  <div class="container">
-    <p class="section-label">// projects</p>
-    <h2 class="section-title">What I've built</h2>
-    <div class="projects-grid">
+  <section id="projects" class="content">
+    <div class="wrap">
+      <p class="label">03 / Projects</p>
+      <h2>What I've built</h2>
+      <span class="rule"></span>
 
-      <div class="project-card">
-        <span class="project-tag tag-ai">ai engineering</span>
-        <h3>Apoidea</h3>
-        <p>A memory and learning runtime for AI agent fleets in regulated industries. A one-line wrap() over existing LLM clients adds durable memory, explainable recall traces, and a lesson loop that improves agents over time. Demonstrated on a PACE elder-care coordination fleet.</p>
-        <p class="proof-note"><b>How I know it works:</b> a published performance page with a paired live-model run (McNemar's exact test), an external lawyer-annotated legal corpus, and a deterministic suite, including the results it loses and the defects measuring uncovered.</p>
-        <!-- TODO(William): add 1-2 headline numbers here from apoidea/performance.html once you pick which to feature. Repo github.com/willgitdata/apoidea is private, so it is not linked. -->
-        <div class="card-links">
-          <a href="/apoidea/">Visit the site</a>
-          <a href="/apoidea/performance.html">See the evals</a>
+      <div class="grid-2">
+        <article class="card tilt-a">
+          <span class="tag">ai engineering</span>
+          <h3 class="small">Apoidea</h3>
+          <p>A memory and learning runtime for AI agent fleets in regulated industries. A one-line wrap() over existing LLM clients adds durable memory, explainable recall traces, and a lesson loop that improves agents over time. Demonstrated on a PACE elder-care coordination fleet.</p>
+          <p class="proof-note"><b>How I know it works:</b> a published performance page with a paired live-model run (McNemar's exact test), an external lawyer-annotated legal corpus, and a deterministic suite, including the results it loses and the defects measuring uncovered.</p>
+          <!-- TODO(William): add 1-2 headline numbers here from apoidea/performance.html once you pick which to feature. Repo github.com/willgitdata/apoidea is private, so it is not linked. -->
+          <div class="card-links">
+            <a href="/apoidea/">Visit the site</a>
+            <a href="/apoidea/performance.html">See the evals</a>
+          </div>
+        </article>
+
+        <article class="card tilt-b">
+          <span class="tag">ai agents</span>
+          <h3 class="small">Pollenate</h3>
+          <p>Founded and built an AI agent platform for commercial pollination ops, including agents that draft contracts and workflows for growers.</p>
+          <div class="card-links">
+            <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="content">
+    <div class="wrap">
+      <p class="label">04 / Research</p>
+      <h2>Experiments &amp; write-ups</h2>
+      <span class="rule"></span>
+
+      <div class="grid-2">
+        <article class="card tilt-b">
+          <span class="tag red">safety</span>
+          <h3 class="small">Eight Adversarial Requests</h3>
+          <p>A second pass over the same ten models: injected instructions, a planted password in a public issue draft, a confidently wrong premise, a persona jailbreak, and two calibration probes for over-refusal. Scored by written rules, with every flagged answer read by hand.</p>
+          <p><a class="more" href="research/nous-safety-eval.html">See the safety probes &rarr;</a></p>
+        </article>
+
+        <article class="card tilt-a">
+          <span class="tag">interactive study</span>
+          <h3 class="small">Frontier per Dollar</h3>
+          <p>Explore how twelve models served through Nous trade off quality, cost, and speed. Compare models, change the value baseline, and open individual results to inspect the actual tasks and answers. Includes Claude Haiku 5.5 and Gemini 4 Argon.</p>
+          <p><a class="more" href="research/nous-model-eval.html">Explore the results &rarr;</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="content">
+    <div class="wrap">
+      <p class="label">05 / Skills</p>
+      <h2>Tools &amp; tech</h2>
+      <span class="rule"></span>
+
+      <div class="skills">
+        <div class="skill">
+          <h4>AI engineering</h4>
+          <p>LLM agents, evals, RAG and retrieval, embeddings, <span class="nb">fine-tuning</span>, LangChain, FastAPI</p>
+          <p class="used">Used in: Unite Us agents and CI eval gates, Apoidea</p>
+        </div>
+        <div class="skill">
+          <h4>ML &amp; statistics</h4>
+          <p>Predictive modeling, causal inference (DiD), XGBoost, PyTorch, TensorFlow</p>
+          <p class="used">Used in: Medicare targeting, program impact analyses</p>
+        </div>
+        <div class="skill">
+          <h4>Data</h4>
+          <p>SQL, Snowflake, dbt, Postgres, EHR and SDOH data</p>
+        </div>
+        <div class="skill">
+          <h4>Infra &amp; languages</h4>
+          <p>Python, TypeScript, Java, R, AWS, GCP, Docker, Temporal</p>
+          <p class="used">Temporal: Apoidea durable workflows</p>
         </div>
       </div>
-
-      <div class="project-card">
-        <span class="project-tag tag-work">ai agents</span>
-        <h3>Pollenate</h3>
-        <p>Founded and built an AI agent platform for commercial pollination ops, including agents that draft contracts and workflows for growers.</p>
-        <div class="card-links">
-          <a href="https://www.pollenate.us/" target="_blank" rel="noopener">Visit site</a>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="research" class="content">
-  <div class="container">
-    <p class="section-label">// research</p>
-    <h2 class="section-title">Experiments &amp; write-ups</h2>
-    <div class="projects-grid">
-
-      <div class="project-card featured">
-        <span class="project-tag tag-research">safety</span>
-        <h3>Eight Adversarial Requests</h3>
-        <p>
-          A second pass over the same ten models: injected instructions, a planted password in a
-          public issue draft, a confidently wrong premise, a persona jailbreak, and two calibration
-          probes for over-refusal. Scored by written rules, with every flagged answer read by hand.
-        </p>
-        <a href="research/nous-safety-eval.html">See the safety probes &rarr;</a>
+  <footer aria-label="Contact">
+    <div class="wrap">
+      <h2 class="footer-heading">Let's talk.</h2>
+      <div class="footer-links">
+        <a href="/William_Humphrey_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:will@pollenate.us">Email</a>
       </div>
-
-      <div class="project-card featured">
-        <span class="project-tag tag-research">interactive study</span>
-        <h3>Frontier per Dollar</h3>
-        <p>
-          Explore how twelve models served through Nous trade off quality, cost, and speed.
-          Compare models, change the value baseline, and open individual results to inspect
-          the actual tasks and answers. Includes Claude Haiku 5.5 and Gemini 4 Argon.
-        </p>
-        <a href="research/nous-model-eval.html">Explore the results &rarr;</a>
-      </div>
-
+      <p class="also">I also write <a href="https://www.epilogueidea.com/" target="_blank" rel="noopener">Epilogue</a>, problem pages on non-trivial problems.</p>
+      <p class="footer-copy">Reach out via email or LinkedIn.</p>
     </div>
-  </div>
-</section>
+  </footer>
+</main>
 
-<section id="skills" class="content">
-  <div class="container">
-    <p class="section-label">// skills</p>
-    <h2 class="section-title">Tools &amp; tech</h2>
-    <div class="skills-grid">
-      <div class="skill-item">
-        <h4>AI engineering</h4>
-        <p>LLM agents, evals, RAG and retrieval, embeddings, <span class="nb">fine-tuning</span>, LangChain, FastAPI</p>
-        <p class="used">Used in: Unite Us agents and CI eval gates, Apoidea</p>
-      </div>
-      <div class="skill-item">
-        <h4>ML &amp; statistics</h4>
-        <p>Predictive modeling, causal inference (DiD), XGBoost, PyTorch, TensorFlow</p>
-        <p class="used">Used in: Medicare targeting, program impact analyses</p>
-      </div>
-      <div class="skill-item">
-        <h4>Data</h4>
-        <p>SQL, Snowflake, dbt, Postgres, EHR and SDOH data</p>
-      </div>
-      <div class="skill-item">
-        <h4>Infra &amp; languages</h4>
-        <p>Python, TypeScript, Java, R, AWS, GCP, Docker, Temporal</p>
-        <p class="used">Temporal: Apoidea durable workflows</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-links">
-    <a href="/William_Humphrey_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-    <a href="https://github.com/willgitdata" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/willliamhumphrey" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:will@pollenate.us">Email</a>
-  </div>
-  <p class="also">I also write <a href="https://www.epilogueidea.com/" target="_blank" rel="noopener">Epilogue</a>, problem pages on non-trivial problems.</p>
-  <p class="footer-copy">Reach out via email or LinkedIn.</p>
-</footer>
+<div class="river">
+  <canvas id="river-canvas" width="1440" height="240" aria-hidden="true"></canvas>
+  <button class="river-pause" type="button" aria-pressed="false">Pause motion</button>
+  <noscript><img src="assets/ink/fluid-study-poster.png" alt="" width="1440" height="240"></noscript>
+</div>
+<script src="assets/js/river.js" defer></script>
 
 <script>
-// Star field
-(function() {
-  var canvas = document.getElementById('stars');
-  var ctx = canvas.getContext('2d');
-  var stars = [];
-  var count = 120;
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function init() {
-    resize();
-    stars = [];
-    for (var i = 0; i < count; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 0.5,
-        speed: Math.random() * 0.3 + 0.05,
-        opacity: Math.random() * 0.6 + 0.2
-      });
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      ctx.fillStyle = 'rgba(200, 200, 230, ' + s.opacity + ')';
-      ctx.fillRect(Math.floor(s.x), Math.floor(s.y), Math.ceil(s.size), Math.ceil(s.size));
-      s.y += s.speed;
-      if (s.y > canvas.height) {
-        s.y = 0;
-        s.x = Math.random() * canvas.width;
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  draw();
-})();
-
-// Typing effect
-(function() {
-  var phrases = [
-    'build LLM agents',
-    'design eval harnesses',
-    'ship predictive models',
-    'measure causal impact'
-  ];
-  var el = document.getElementById('typed-text');
-  var phraseIndex = 0;
-  var charIndex = 0;
-  var deleting = false;
-  var delay = 120;
-
-  function tick() {
-    var current = phrases[phraseIndex];
-    if (deleting) {
-      el.textContent = current.substring(0, charIndex--);
-      delay = 60;
-      if (charIndex < 0) {
-        deleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        delay = 400;
-      }
-    } else {
-      el.textContent = current.substring(0, charIndex++);
-      delay = 120;
-      if (charIndex > current.length) {
-        deleting = true;
-        delay = 1800;
-      }
-    }
-    setTimeout(tick, delay);
-  }
-
-  tick();
-})();
 
 // Active nav highlight on scroll
-(function() {
-  var links = document.querySelectorAll('nav a');
-  var sections = document.querySelectorAll('section[id]');
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.topbar nav a'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  if (!sections.length) return;
 
-  window.addEventListener('scroll', function() {
-    var scrollPos = window.scrollY + 100;
-    sections.forEach(function(section) {
-      if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-        var id = section.getAttribute('id');
-        links.forEach(function(link) {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
+  function update() {
+    var y = window.scrollY + document.querySelector('.topbar').offsetHeight + 40;
+    var current = sections[0].id;
+    sections.forEach(function (s) {
+      if (y >= s.offsetTop) current = s.id;
     });
-  });
+    links.forEach(function (l) {
+      var active = l.getAttribute('href') === '#' + current;
+      l.classList.toggle('active', active);
+      if (active) l.setAttribute('aria-current', 'location');
+      else l.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
+
 </script>
 
 </body>
