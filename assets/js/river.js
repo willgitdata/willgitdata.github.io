@@ -142,13 +142,15 @@
 
   const canvas = document.getElementById('river-canvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  // Firefox's accelerated per-stroke path stalls visible frames; CPU rendering avoids it.
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return;
   const fluid = new RiverFluid();
   const INK = '#2b46d6', PAPER = '#fcfcfa';
   let randomState = 2749;
   const random = () => { randomState = (Math.imul(randomState, 1664525) + 1013904223) >>> 0; return randomState / 4294967296; };
   const W = 1440, H = 240;
+  let pixelRatio = Math.min(devicePixelRatio || 1, 2), slowFrames = 0;
   const px = x => x / fluid.nx * W, py = y => y / fluid.ny * H;
   // Each moving mark is a tiny material line with a finite fading lifetime.
   // Its path comes only from RK2 integration of the pressure-projected field.
@@ -197,15 +199,22 @@
       // Only slide a discarded sample; growing trails keep their original anchor.
       const first = p.tail || p.trail[0], second = p.trail[0];
       ctx.moveTo(px(first[0] + (second[0] - first[0]) * alpha), py(first[1] + (second[1] - first[1]) * alpha));
-      for (let i = 0; i < p.trail.length; i++) ctx.lineTo(px(p.trail[i][0]), py(p.trail[i][1]));
+      // Omit subpixel bends: Firefox's stroker is costly with 70 tiny joins per mark.
+      let ax = first[0], ay = first[1];
+      for (let i = 0; i < p.trail.length - 1; i++) {
+        const b = p.trail[i], c = p.trail[i + 1], dx = c[0] - ax, dy = c[1] - ay;
+        if (Math.abs((b[0] - ax) * dy - (b[1] - ay) * dx) < 0.06 * Math.hypot(dx, dy)) continue;
+        ctx.lineTo(px(b[0]), py(b[1])); ax = b[0]; ay = b[1];
+      }
+      const end = p.trail[p.trail.length - 1]; ctx.lineTo(px(end[0]), py(end[1]));
       ctx.lineTo(px(p.x), py(p.y));
       ctx.stroke();
     }
     ctx.globalAlpha = 1;
   }
   function resize() {
-    const width = canvas.getBoundingClientRect().width, ratio = Math.min(devicePixelRatio || 1, 2);
-    canvas.width = Math.round(width * ratio); canvas.height = Math.round(width * H / W * ratio); draw();
+    const width = canvas.getBoundingClientRect().width;
+    canvas.width = Math.round(width * pixelRatio); canvas.height = Math.round(width * H / W * pixelRatio); draw();
   }
   for (let n = 0; n < 100; n++) { advance(); advect(1, true); }
   new ResizeObserver(resize).observe(canvas); resize();
@@ -233,6 +242,9 @@
   function animate(time) {
     if (!running) return;
     const elapsed = Math.min((time - lastTime) / 1000, 0.05); lastTime = time;
+    // Keep Retina detail when fast; fall back to CSS-pixel resolution on slow renderers.
+    slowFrames = elapsed > 1 / 35 ? slowFrames + 1 : 0;
+    if (slowFrames >= 12 && pixelRatio > 1) { pixelRatio = 1; resize(); }
     accumulator += elapsed;
     // Fixed 30Hz physics, at most two steps after a slow frame. Never catch up
     // an entire hidden-tab interval or create a second animation loop.
@@ -246,7 +258,7 @@
     const next = visible && !document.hidden && !motion.matches && !paused;
     if (next === running) return;
     running = next;
-    if (running) { lastTime = performance.now(); accumulator = 0; request = requestAnimationFrame(animate); }
+    if (running) { lastTime = performance.now(); accumulator = 0; slowFrames = 0; request = requestAnimationFrame(animate); }
     else { cancelAnimationFrame(request); resetPointer(); }
   }
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; playback(); }).observe(canvas);

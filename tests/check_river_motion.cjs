@@ -8,7 +8,8 @@ for (const candidate of [process.env.PLAYWRIGHT_MODULE, 'playwright', path.join(
 }
 if (!playwright) throw new Error('Install Playwright or set PLAYWRIGHT_MODULE.');
 (async () => {
-  const browser = await playwright.chromium.launch({ channel: 'chrome' });
+  const name = process.env.RIVER_BROWSER || 'chromium';
+  const browser = await playwright[name].launch(name === 'chromium' ? { channel: 'chrome' } : {});
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 300 } });
     await page.clock.install({ time: new Date('2026-11-10T12:00:00Z') });
