@@ -75,6 +75,13 @@ flows. Torque is an external stirring force, not a replacement for velocity
 advection and pressure projection. Fine strokes fade into the paper margins,
 in `#2b46d6` on `#fcfcfa`, matching the mountain palette. Rendering is responsive,
 capped at 2× pixel density, with a slim 6:1 aspect ratio below the contact copy.
+Subpixel bends are omitted from drawn paths to reduce Canvas stroke joins.
+The context requests `willReadFrequently: true` to favor CPU-backed rendering:
+Firefox's visible accelerated canvas path can stall even when headless tests
+and JavaScript draw timings look fast. Verify visible-window cadence too.
+After 12 consecutive frames slower than 35fps, rendering drops to 1× density
+for the rest of the page visit; physics, particle count and interaction stay
+unchanged. Fast renderers retain Retina detail, without browser sniffing.
 `fluid-study-poster.png` preserves the same abstract layout without JavaScript.
 Moving the mouse across the canvas stirs the actual velocity field without
 clicking. Timestamped pointer samples (including browser-coalesced events)
@@ -90,6 +97,9 @@ free-surface river model, and it does not simulate waterfalls or surface height.
 ```sh
 node tests/check_river.cjs      # projection, impermeable solids, real advection
 node tests/check_river_motion.cjs # every-frame motion and fast cursor paths
+RIVER_BROWSER=firefox node tests/check_river_motion.cjs # same checks in Firefox
+node tests/check_river_performance.cjs # Chrome + Firefox real-time frame budget
+RIVER_HEADED=1 node tests/check_river_performance.cjs # visible compositor path
 node tests/check_portfolio.cjs # live pixel motion, pause, reduced motion, layout
 ```
 
