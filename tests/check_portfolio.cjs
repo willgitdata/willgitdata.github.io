@@ -148,6 +148,27 @@ const server = http.createServer((req, res) => {
       }
       return low < -0.05 && high > 0.05;
     }));
+    const params = page.locator('.river-params');
+    check('Navier–Stokes params panel stays hidden until hover', await params.evaluate(panel => getComputedStyle(panel).visibility === 'hidden'));
+    await page.locator('.river-pause').hover();
+    check('Hovering Pause reveals the Navier–Stokes params panel with bounded sliders', await params.evaluate(panel => {
+      const inputs = [...panel.querySelectorAll('input')];
+      return getComputedStyle(panel).visibility === 'visible'
+        && panel.querySelector('.river-params-title').textContent === 'Navier-Stokes params'
+        && inputs.length === 4 && inputs.every(input => +input.min < +input.value && +input.value < +input.max);
+    }));
+    check('Slider defaults equal the solver defaults (no step snapping)', await page.locator('#river-canvas').evaluate(canvas => {
+      const shown = [...document.querySelectorAll('.river-param output')].map(output => +output.value);
+      const live = Object.values(canvas.river.params);
+      return shown.length === live.length && shown.every((value, i) => value === live[i]);
+    }));
+    await page.locator('[data-param="viscosity"]').evaluate(input => { input.value = '0.03'; input.dispatchEvent(new Event('input', { bubbles: true })); });
+    check('A slider writes the live solver parameter and its readout', await page.locator('#river-canvas').evaluate(canvas => canvas.river.params.viscosity === 0.03
+      && document.querySelector('[data-param="viscosity"]').closest('label').querySelector('output').value === '0.03'));
+    await page.locator('[data-param="viscosity"]').evaluate(input => { input.value = '0.012'; input.dispatchEvent(new Event('input', { bubbles: true })); });
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(220); // visibility flips at the end of the fade-out
+    check('Leaving the control hides the params panel again', await params.evaluate(panel => getComputedStyle(panel).visibility === 'hidden'));
     await page.locator('.river-pause').click();
     const manualSteps = await page.locator('#river-canvas').evaluate(canvas => canvas.river.fluid.steps);
     await page.waitForTimeout(150);

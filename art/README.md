@@ -91,6 +91,13 @@ after stirring. Leaving the canvas keeps the final stroke but breaks the next
 connection; pausing clears input. Passive pointer events preserve touch scrolling.
 Physics and pointer stirring pause offscreen, in hidden tabs, under reduced
 motion, and with the Pause button.
+Hovering or focusing that Pause button reveals a **Navier-Stokes params** panel
+with four live controls, bounded to stable ranges: viscosity `0–0.05`,
+pressure sweeps `8–64`, vortex force `0.2–2`, cursor stir `0.5–8`. They write
+`fluid.params`, so viscosity changes the diffusion term, sweeps change the
+projection iteration count, and force/stir scale the body force and cursor
+impulse. Defaults are unchanged; the panel is CSS-only (`:hover`/`:focus-within`),
+keyboard reachable by tabbing into the sliders, and hidden from axe when closed.
 This is a stylized top-down 2D effect, **not** a calibrated 3D
 free-surface river model, and it does not simulate waterfalls or surface height.
 

@@ -230,7 +230,16 @@
 
 <div class="river">
   <canvas id="river-canvas" width="1440" height="240" aria-hidden="true"></canvas>
-  <button class="river-pause" type="button" aria-pressed="false">Pause motion</button>
+  <div class="river-controls">
+    <button class="river-pause" type="button" aria-pressed="false">Pause motion</button>
+    <div class="river-params" role="group" aria-label="Navier-Stokes params">
+      <p class="river-params-title">Navier-Stokes params</p>
+      <label class="river-param"><span>Viscosity <output>0.012</output></span><input type="range" data-param="viscosity" min="0" max="0.05" step="0.002" value="0.012"></label>
+      <label class="river-param"><span>Pressure sweeps <output>32</output></span><input type="range" data-param="iterations" min="8" max="64" step="8" value="32"></label>
+      <label class="river-param"><span>Vortex force <output>1</output></span><input type="range" data-param="force" min="0.2" max="2" step="0.1" value="1"></label>
+      <label class="river-param"><span>Cursor stir <output>3.8</output></span><input type="range" data-param="stir" min="0.5" max="8" step="0.1" value="3.8"></label>
+    </div>
+  </div>
   <noscript><img src="assets/ink/fluid-study-poster.png" alt="" width="1440" height="240"></noscript>
 </div>
 <script src="assets/js/river.js" defer></script>

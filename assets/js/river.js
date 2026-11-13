@@ -9,6 +9,8 @@
   class RiverFluid {
     constructor(nx = 240, ny = 40) {
       this.nx = nx; this.ny = ny; this.stride = nx + 1;
+      // Live-tunable solver values; all within stable ranges for dt=1, dx=1.
+      this.params = { viscosity: 0.012, iterations: 32, force: 1, stir: 3.8 };
 
       const size = (nx + 1) * (ny + 1);
       for (const key of ['u', 'v', 'oldU', 'oldV', 'pressure', 'forceU', 'forceV']) this[key] = new Float32Array(size);
@@ -64,7 +66,7 @@
     velocity(x, y) { return [this.sample(this.u, x, y, true), this.sample(this.v, x, y, false)]; }
     stir(x, y, dx, dy) {
       if (![x, y, dx, dy].every(Number.isFinite) || !this.isWater(x, y)) return;
-      const radius = 13, scale = 3.8 / Math.max(1, Math.hypot(dx, dy));
+      const radius = 13, scale = this.params.stir / Math.max(1, Math.hypot(dx, dy));
       // Blend toward a bounded velocity; fast sweeps cannot explode the solver.
       for (let row = Math.max(1, Math.floor(y - radius)); row < Math.min(this.ny - 1, y + radius); row++) {
         for (let col = Math.max(0, Math.floor(x - radius)); col < Math.min(this.nx, x + radius); col++) {
@@ -77,7 +79,7 @@
       }
       this.boundaries();
     }
-    project(iterations = 32) {
+    project(iterations = this.params.iterations) {
       const { nx, ny, stride: s, u, v, fluid: f, pressure } = this;
       pressure.fill(0);
       // Gauss-Seidel pressure projection: div(u)=0, with no normal flux into
@@ -117,11 +119,12 @@
         const left = this.index((x + nx - 1) % nx, y), right = this.index((x + 1) % nx, y);
         const ux = oldU[i], uy = this.sample(oldV, x, y + 0.5, false);
         const vx = this.sample(oldU, x + 0.5, y, true), vy = oldV[i];
-        // nu=0.012 cell²/step, dt=1. Viscosity bound is safely below 1/4.
+        // dt=1, dx=1; the slider caps nu at 0.05, safely below the 1/4 bound.
+        const nu = this.params.viscosity, push = stirring * this.params.force;
         u[i] = (this.sample(oldU, x - ux, y + 0.5 - uy, true)
-          + 0.012 * (oldU[left] + oldU[right] + oldU[i - s] + oldU[i + s] - 4 * ux) + forceU[i] * stirring + 0.0004) * 0.996;
+          + nu * (oldU[left] + oldU[right] + oldU[i - s] + oldU[i + s] - 4 * ux) + forceU[i] * push + 0.0004) * 0.996;
         v[i] = (this.sample(oldV, x + 0.5 - vx, y - vy, false)
-          + 0.012 * (oldV[left] + oldV[right] + oldV[i - s] + oldV[i + s] - 4 * vy) + forceV[i] * stirring) * 0.996;
+          + nu * (oldV[left] + oldV[right] + oldV[i - s] + oldV[i + s] - 4 * vy) + forceV[i] * push) * 0.996;
       }
       this.boundaries();
       this.project();
@@ -270,6 +273,17 @@
     pauseButton.textContent = paused ? 'Resume motion' : 'Pause motion';
     pauseButton.setAttribute('aria-pressed', String(paused)); playback();
   });
+  // Sliders are the only writers; HTML bounds keep every value inside stability.
+  for (const input of document.querySelectorAll('.river-params input[data-param]')) {
+    const output = input.closest('label')?.querySelector('output');
+    const key = input.dataset.param;
+    if (!(key in fluid.params)) continue;
+    const apply = () => {
+      fluid.params[key] = +input.value;
+      if (output) output.value = input.value;
+    };
+    input.addEventListener('input', apply); apply();
+  }
   // Small inspectable handle for numerical/browser regression checks.
-  canvas.river = { fluid, particles, get running() { return running; } };
+  canvas.river = { fluid, particles, params: fluid.params, get running() { return running; } };
 })();
